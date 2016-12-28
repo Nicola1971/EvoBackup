@@ -210,12 +210,13 @@ if ($handle = opendir($modx_backup_dir)) {
 
 $out .= <<<EOD
 </tbody></table><h2>Generate New Backup:</h2>
-<p> Select  what to include in the archive</p>
+<p><i class="fa fa-lg fa-info-circle"></i> <b>Note</b>: /assets folder is always included in the archive</p>
+<h3> Select additional folders and files to include in the archive</h3>
 
-<label><input type="checkbox" name="dumpmanager" checked="checked" /> /manager </label><br />
+<label><input type="checkbox" name="dumpmanager" /> /manager </label><br />
 <label><input type="checkbox" name="dumpdbase" checked="checked" /> database</label><br />
 
-<label><input type="checkbox" name="dumphtaccess" checked="checked" /> .htaccess </label><br />
+<label><input type="checkbox" name="dumphtaccess" /> .htaccess </label><br />
 <label><input type="checkbox" name="dumprobots" /> robots.txt </label><br />
 <label><input type="checkbox" name="dumpindex" />  index.php </label><br />
 <label><input type="checkbox" name="dumpindexajax" />  index-ajax.php </label><br />
