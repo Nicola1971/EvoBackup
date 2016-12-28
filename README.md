@@ -17,5 +17,5 @@ https://modx.com/extras/package/modbak
 * Evolution installer for Package Manager and Extras module
 * various mods
 
-
+![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/evobackup.png)
 
