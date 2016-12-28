@@ -3,7 +3,7 @@
 *   Modbak Settings
 *  v1.2
 */
-$modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].'evo-test-4/backup';
+$modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].'/backup/';
 
 // Generate Archive(s) within subdir of backup directory - ie /backup_dir/site1/site1_date1_db.zip
 //                                                                                                                           /site1/site1_date2_db.zip                              

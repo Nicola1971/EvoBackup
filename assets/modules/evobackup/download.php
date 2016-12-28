@@ -2,8 +2,6 @@
 // set this to YOUR modx backup directory, root directory is NOT secure
 include_once(dirname(__FILE__).'/settings.php');
 
-$modx_backup_dir = (isset($modx_backup_dir))? $modx_backup_dir: $_SERVER['DOCUMENT_ROOT'].'/backup/';
-
 
 $filename = isset($_GET['filename']) ? $_GET['filename']:'';
 $filename = $modx_backup_dir.$filename;
