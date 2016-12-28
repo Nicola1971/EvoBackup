@@ -2,9 +2,11 @@
  * EvoBackup
  *
  * 1.2 Beta 1 - Backup modx files and compress into .zip for easy download
- * @author Nicola Lambathakis
  * @category	module
- * @internal	@modx_category uncategorized
+ * @version     1.2 Beta 1
+ * @author      Author: Nicola Lambathakis http://www.tattoocms.it/
+ * @internal	@modx_category Manager
+ * @internal    @properties &backup_dir=Backup Directory:;string;/backup/;; Need to Edit /assets/modules/modbak/settings.php too, and set $modx_backup_dir. Make sure read/write permission is set &zip_t_limit=zip time limit:;string;250 &zip_m_limit=zip memory limit:;string;50M &db_t_limit=db time limit:;string;250 &db_m_limit=db memory limit:;string;50M &dump_logs=Dump logs tables:;menu;false,true;false;;include Log table data in database backup, these tables can be quite large, so default is to exclude them
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
  */
 /**
@@ -24,10 +26,6 @@
 *  ----------------------------------------
 */
 /*
-&backup_dir=Backup Directory:;string;assets/backup/;;directory for zip archives. make sure read/write permission is set &zip_t_limit=zip time limit:;string;250 &zip_m_limit=zip memory limit:;string;50M &db_t_limit=db time limit:;string;250 &db_m_limit=db memory limit:;string;50M &dump_logs=Dump logs tables:;menu;false,true;false;;include Log table data in database backup, these tables can be quite large, so default is to exclude them
-
-&modx_backup_dir=Backup Directory:;menu;show,hide;hide;;Show deprecated Dashboard header with logo and site name
-
 
 */
 /**
