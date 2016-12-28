@@ -201,8 +201,8 @@ if ($handle = opendir($modx_backup_dir)) {
        {
            $fs = filesize($modx_backup_dir.$file)/1024; 
            $out .= "<tr><td><b>$file</b></td><td> ".ceil($fs)." kb</td>"
-                  ."<td style=\"text-align:right;\"><a class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class='fa fa-download'></i></a> 
-                   <a class=\"btn btn-default btn-sm\" onclick=\"postForm('delete','$file')\" /><i class='fa fa-trash'></i></a></td></tr>";
+                  ."<td style=\"text-align:right;\"><a title='download' class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class='fa fa-download'></i></a> 
+                   <a title='delete' class=\"btn btn-default btn-sm\" onclick=\"postForm('delete','$file')\" /><i class='fa fa-trash'></i></a></td></tr>";
        }
    }
    closedir($handle);
