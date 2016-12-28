@@ -24,7 +24,10 @@ table.evobackup th, table.evobackup td {font-size:13px;}
 </h1>
 <div id="actions">
     <ul class="actionButtons">
-        <li id="Button2"><a href="index.php?a=2">
+    <!--@IF:[[#hasPermission?key=new_module]] OR [[#hasPermission?key=edit_module]]-->
+    <li id="Button6"><a href="index.php?a=108&id=$module_id"><i class='fa fa-cog'></i></a> </li>
+    <!--@ENDIF-->
+        <li id="Button5"><a href="index.php?a=2">
             Close
         </a></li>
     </ul>
