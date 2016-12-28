@@ -12,6 +12,7 @@ if(!$modx->hasPermission('bk_manager')) {
 
 // module info
 $module_version = '1.2 (beta 1)';
+$module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 $out ='';
 // check if backup exists and is writable
@@ -223,6 +224,5 @@ $out .= <<<EOD
 
 <p></p><input type="submit" name="generate_backup" onclick="postForm('generate')" value="Backup Now!" />
 </form>
-
 EOD;
 ?>
