@@ -38,4 +38,5 @@ https://modx.com/extras/package/modbak
 # to do
 
 * **change backup folder path**: avoid edit hardcoded path in settings.php
+* multi language
 
