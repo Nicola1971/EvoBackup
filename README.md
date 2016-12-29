@@ -6,7 +6,7 @@ https://modx.com/extras/package/modbak
 
 # What's New in EvoBackup
 
-* Added checkbox options to choose which folder and files add to archive (manager folder, index.php, index-ajax.php, htaccess, robot.txt)
+* Added checkbox options to choose which folder and files add to archive
 * Moved most hardcoded parameters to the module configuration
 * Updated to work with Evo 1+
 * Mysql to Mysqli
