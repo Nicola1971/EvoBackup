@@ -329,6 +329,7 @@ $check_all= $_lang["check_all"];
 $out .= <<<EOD
 </tbody></table><h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
 <p class="info"><input type="checkbox" id="checkAllBackup" > $check_all</p>
+<div class="border-top"style='clear:both'></div>
 <div class="left border-right">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Assets Backup</h3>
 <p class="info"><i class="fa fa-lg fa-info-circle"></i> <b>Note</b>: /assets folder is always included in zip archive</p>
