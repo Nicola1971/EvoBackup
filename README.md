@@ -31,10 +31,6 @@ https://modx.com/extras/package/modbak
 2. Set Module configuration > **Backup Directory** to your new backup dir
 
 
-# known issues
-
-* **database backup**: duplicated .sql files backup inside backup folder and .zip archive - **modbak issue or behaviour?**
-
 # to do
 
 * **change backup folder path**: avoid edit hardcoded path in settings.php
