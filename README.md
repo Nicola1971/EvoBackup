@@ -35,4 +35,5 @@ https://modx.com/extras/package/modbak
 
 * **change backup folder path**: avoid edit hardcoded path in settings.php
 * multi language
-
+* option to add custom assets folders - ie: assets/galleries
+* support for custom/renamed manager folder
