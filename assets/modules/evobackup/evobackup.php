@@ -336,7 +336,6 @@ $out .= <<<EOD
 <label><input type="checkbox" name="dumpfiles" checked="checked"/>  /files </label><br />
 <label><input type="checkbox" name="dumpflash" checked="checked"/>  /flash </label><br />
 <label><input type="checkbox" name="dumpimages" checked="checked"/>  /images </label><br />
-<label><input type="checkbox" name="dumpdocs" checked="checked"/>  /docs </label><br />
 <label><input type="checkbox" name="dumpmedia" checked="checked"/>  /media </label><br />
 </div>
 <div class="left border-right">
@@ -353,6 +352,7 @@ $out .= <<<EOD
 <label><input type="checkbox" name="dumpthumbs" /> /.thumbs </label><br />
 <label><input type="checkbox" name="dumpbackup" checked="checked"/> /backup </label><br />
 <label><input type="checkbox" name="dumpcache" /> /cache </label><br />
+<label><input type="checkbox" name="dumpdocs" />  /docs </label><br />
 <label><input type="checkbox" name="dumpexport" />  /export </label><br />
 <label><input type="checkbox" name="dumpimport" />  /import </label><br />
 <label><input type="checkbox" name="dumpsite" />  /site</label><br />
