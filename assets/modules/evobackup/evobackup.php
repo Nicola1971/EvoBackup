@@ -3,7 +3,7 @@
 * Main Modbak include code
 */
 if(IN_MANAGER_MODE!="true") die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the MODx Content Manager instead of accessing this file directly.");
-
+global $modx, $_lang;
 if(!$modx->hasPermission('bk_manager')) {	
 	$e->setError(3);
 	$e->dumpError();
@@ -11,7 +11,7 @@ if(!$modx->hasPermission('bk_manager')) {
 }
 
 // module info
-$module_version = '1.2 (beta 1)';
+$module_version = '1.2 (beta 2)';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 $out ='';
@@ -98,11 +98,11 @@ switch($opcode)
         $deletefile = $modx_backup_dir.$filename;
         if (!file_exists($deletefile))
         {
-            $out .= "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> File $filename does not exist<br />";
+            $out .= "<p class=\"alert\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> File $filename does not exist<br /></p>";
         } else
             {
                 unlink($deletefile);
-                $out .= "<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename Deleted<br />";
+                $out .= "<p class=\"alert\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename Deleted<br /></p>";
             }
     break;
     
@@ -122,7 +122,7 @@ switch($opcode)
             return $out;
         }
         rename($tempfile,$archive_file);       
-        $out .= "<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> <br />Modx Backup Successful <strong>--&gt <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\">$archive_file</a></strong><br /><br />";    
+        $out .= "<p class=\"success\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> <br />Modx Backup Successful <strong>--&gt <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\">$archive_file</a></strong><br /><br /></p>";    
 
         // add database, callback for dbdump
         if ($dumpdbase!='') {
@@ -181,17 +181,19 @@ switch($opcode)
 		
 		// list($fname,$ext) = explode('.',$filename);
         rename($modx_backup_dir.$filename,$modx_backup_dir.$fname.'_db.'.$ext);
-        
+        // delete .sql file in backup dir after adding to zip
+        unlink($modx_backup_dir.$database_filename);
     break;
 }
 
 /**
 * Display list of backups with download
 */
-$out .= "<h2>Current Backups:</h2><p> Download or delete previous backup archives</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
-    <th style=\"width: 300px;\"><b>file</b></th>
-    <th><b>size</b></th>
-    <th style=\"text-align:right;\"><b>actions</b></th>
+global $modx, $_lang;
+$out .= "<h2><i class=\"fa fa-download\" aria-hidden=\"true\"></i> Manage Backups:</h2><p> Download or delete previous backup archives</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
+    <th style=\"width: 300px;\"><b>".$_lang['files_filename']."</b></th>
+    <th><b>".$_lang['files_filesize']."</b></th>
+    <th style=\"text-align:right;\"><b>".$_lang['files_fileoptions']."</b></th>
   </tr></thead><tbody>
   ";
 if ($handle = opendir($modx_backup_dir)) {
@@ -200,29 +202,35 @@ if ($handle = opendir($modx_backup_dir)) {
        if ($file!='.' && $file!='..' && (strpos($file,$archive_prefix)!==false ) && $file!=$database_filename)
        {
            $fs = filesize($modx_backup_dir.$file)/1024; 
-           $out .= "<tr><td><b>$file</b></td><td> ".ceil($fs)." kb</td>"
-                  ."<td style=\"text-align:right;\"><a title='download' class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class='fa fa-download'></i></a> 
-                   <a title='delete' class=\"btn btn-default btn-sm\" onclick=\"postForm('delete','$file')\" /><i class='fa fa-trash'></i></a></td></tr>";
+           $out .= "<tr><td><i class=\"fa fa-file-archive-o yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
+                  ."<td style=\"text-align:right;\"><a title='".$_lang['file_download_file']."' class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class='fa fa-download'></i></a> 
+                   <a title='".$_lang['file_delete_file']."' onclick=\"return confirm('".$_lang['confirm_delete_record']."')\" class=\"btn btn-default btn-sm\" onclick=\"postForm('delete','$file')\" /><i class='fa fa-trash'></i></a></td></tr>";
        }
    }
    closedir($handle);
 }
 
-
+$backup = $_lang['backup'];
 $out .= <<<EOD
-</tbody></table><h2>Generate New Backup:</h2>
-<p><i class="fa fa-lg fa-info-circle"></i> <b>Note</b>: /assets folder is always included in the archive</p>
-<h3> Select additional folders and files to include in the archive</h3>
+</tbody></table><h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
+<div class="left border-right">
+<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Files Backup</h3>
+<h4>Select additional folders and files to include in zip archive</h4>
+<p class="info"><i class="fa fa-lg fa-info-circle"></i> <b>Note</b>: /assets folder is always included in zip archive</p>
 
 <label><input type="checkbox" name="dumpmanager" /> /manager </label><br />
-<label><input type="checkbox" name="dumpdbase" checked="checked" /> database</label><br />
-
 <label><input type="checkbox" name="dumphtaccess" /> .htaccess </label><br />
 <label><input type="checkbox" name="dumprobots" /> robots.txt </label><br />
 <label><input type="checkbox" name="dumpindex" />  index.php </label><br />
-<label><input type="checkbox" name="dumpindexajax" />  index-ajax.php </label><br />
-
-<p></p><input type="submit" name="generate_backup" onclick="postForm('generate')" value="Backup Now!" />
+<label><input type="checkbox" name="dumpindexajax" />  index-ajax.php </label><br /><br />
+</div>
+<div class="left">
+<h3><i class="fa fa-database" aria-hidden="true"></i> Database Backup</h3>
+<label><input type="checkbox" name="dumpdbase" checked="checked" /> include  .sql database backup to zip </label><br /><br />
+</div>
+<div class="border-top"style='clear:both'></div>
+<p class="actionButtons"><a class="primary" href="#" onclick="postForm('generate')" value="Backup Now!" />$backup</a></p>
 </form>
+<div style='clear:both'></div>
 EOD;
 ?>

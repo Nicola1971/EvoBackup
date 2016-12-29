@@ -11,8 +11,16 @@ $o = <<<EOD
 
 </head>
 <style>
+h2 {border-bottom: 1px dotted #dedede;}
 table.evobackup {margin-bottom:24px;}
 table.evobackup th, table.evobackup td {font-size:13px;}
+.info {color: #3e87fd; margin-bottom: 15px;}
+.alert {padding: 20px;background-color: #f44336; /* Red */color: white;margin-bottom: 5px;}
+.success {color: #07b922;}
+.yellow {font-size:14px; color:#444; background-color: yellow; border-radius:50%; border: 1px solid #f7bf04; padding:5px 7px; margin-right:5px;}
+.left {float: left; padding:10px; margin-right:20px;}
+.border-right {border-right: 1px dotted #dedede;}
+.border-top {padding-top: 10px; border-top: 1px dotted #dedede;}
 </style>
 <h1 class="pagetitle">
   <span class="pagetitle-icon">
