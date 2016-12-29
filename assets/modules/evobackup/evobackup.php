@@ -11,7 +11,7 @@ if(!$modx->hasPermission('bk_manager')) {
 }
 
 // module info
-$module_version = '1.2 (beta 2)';
+$module_version = '1.2 (beta 3)';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 $out ='';
@@ -36,13 +36,127 @@ $dumpindex  = isset($_POST['dumpindex']) ? $_POST['dumpindex']:'';
 $dumpindexajax  = isset($_POST['dumpindexajax']) ? $_POST['dumpindexajax']:'';
 $dumphtaccess  = isset($_POST['dumphtaccess']) ? $_POST['dumphtaccess']:'';
 $dumprobots  = isset($_POST['dumprobots']) ? $_POST['dumprobots']:'';
+$dumpconfig  = isset($_POST['dumpconfig']) ? $_POST['dumpconfig']:'';
+$dumpthemes  = isset($_POST['dumpthemes']) ? $_POST['dumpthemes']:'';
+$dumpmanhtaccess  = isset($_POST['dumpmanhtaccess']) ? $_POST['dumpmanhtaccess']:'';
 
-$modx_files_array = array($modx_root_dir.'assets');    
+//assets subfolders
+$dumpthumbs  = isset($_POST['dumpthumbs']) ? $_POST['dumpthumbs']:'';
+$dumpbackup  = isset($_POST['dumpbackup']) ? $_POST['dumpbackup']:'';
+$dumpcache  = isset($_POST['dumpcache']) ? $_POST['dumpcache']:'';
+$dumpdocs  = isset($_POST['dumpdocs']) ? $_POST['dumpdocs']:'';
+$dumpexport  = isset($_POST['dumpexport']) ? $_POST['dumpexport']:'';
+$dumpfiles  = isset($_POST['dumpfiles']) ? $_POST['dumpfiles']:'';
+$dumpflash  = isset($_POST['dumpflash']) ? $_POST['dumpflash']:'';
+$dumpimages  = isset($_POST['dumpimages']) ? $_POST['dumpimages']:'';
+$dumpimport  = isset($_POST['dumpimport']) ? $_POST['dumpimport']:'';
+$dumpjs  = isset($_POST['dumpjs']) ? $_POST['dumpjs']:'';
+$dumplib  = isset($_POST['dumplib']) ? $_POST['dumplib']:'';
+$dumpmedia  = isset($_POST['dumpmedia']) ? $_POST['dumpmedia']:'';
+$dumpmodules  = isset($_POST['dumpmodules']) ? $_POST['dumpmodules']:'';
+$dumpplugins  = isset($_POST['dumpplugins']) ? $_POST['dumpplugins']:'';
+$dumpsite  = isset($_POST['dumpsite']) ? $_POST['dumpsite']:'';
+$dumpsnippets  = isset($_POST['dumpsnippets']) ? $_POST['dumpsnippets']:'';
+$dumptemplates  = isset($_POST['dumptemplates']) ? $_POST['dumptemplates']:'';
+$dumptvs  = isset($_POST['dumptvs']) ? $_POST['dumptvs']:'';
+//dump assets folder and index.html
+$modx_files_array = array($modx_root_dir.'assets/index.html');
 
+if ($dumpthumbs!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/.thumbs';
+}
+if ($dumpbackup!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/backup';
+}
+if ($dumpcache!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/cache';
+}
+if ($dumpdocs!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/docs';
+}
+if ($dumpexport!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/export';
+}
+if ($dumpfiles!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/files';
+}
+if ($dumpflash!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/flash';
+}
+if ($dumpimages!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/images';
+}
+if ($dumpimport!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/import';
+}
+if ($dumpjs!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/js';
+}
+if ($dumplib!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/lib';
+}
+if ($dumpmedia!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/media';
+}
+if ($dumpmodules!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/modules';
+}
+if ($dumpplugins!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/plugins';
+}
+if ($dumpsite!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/site';
+}
+if ($dumpsnippets!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/snippets';
+}
+if ($dumptemplates!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/templates';
+}
+if ($dumpsite!='')
+{
+    $modx_files_array[]=$modx_root_dir.'assets/tvs';
+}
+
+
+//other folders
+
+if ($dumpconfig!='')
+{
+    $modx_files_array[]=$modx_root_dir.'manager/includes/config.inc.php';
+}    
 if ($dumpmanager!='')
 {
     $modx_files_array[]=$modx_root_dir.'manager';
 }
+if ($dumpthemes!='')
+{
+    $modx_files_array[]=$modx_root_dir.'manager/media/style';
+} 
+if ($dumpmanhtaccess!='')
+{
+if (file_exists($modx_root_dir.'manager/.htaccess'))
+{
+    $modx_files_array[]=$modx_root_dir.'manager/.htaccess';
+}
+} 
 if ($dumpindex!='')
 {
     $modx_files_array[]=$modx_root_dir.'index.php';
@@ -214,20 +328,62 @@ $backup = $_lang['backup'];
 $out .= <<<EOD
 </tbody></table><h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
 <div class="left border-right">
-<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Files Backup</h3>
-<h4>Select additional folders and files to include in zip archive</h4>
+<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Assets Backup</h3>
 <p class="info"><i class="fa fa-lg fa-info-circle"></i> <b>Note</b>: /assets folder is always included in zip archive</p>
-
-<label><input type="checkbox" name="dumpmanager" /> /manager </label><br />
-<label><input type="checkbox" name="dumphtaccess" /> .htaccess </label><br />
-<label><input type="checkbox" name="dumprobots" /> robots.txt </label><br />
-<label><input type="checkbox" name="dumpindex" />  index.php </label><br />
-<label><input type="checkbox" name="dumpindexajax" />  index-ajax.php </label><br /><br />
+<div class="left border-right">
+<h4>User Folders</h4>
+<label><input type="checkbox" name="dumptemplates" checked="checked"/>  /templates</label><br />
+<label><input type="checkbox" name="dumpfiles" checked="checked"/>  /files </label><br />
+<label><input type="checkbox" name="dumpflash" checked="checked"/>  /flash </label><br />
+<label><input type="checkbox" name="dumpimages" checked="checked"/>  /images </label><br />
+<label><input type="checkbox" name="dumpdocs" checked="checked"/>  /docs </label><br />
+<label><input type="checkbox" name="dumpmedia" checked="checked"/>  /media </label><br />
+</div>
+<div class="left border-right">
+<h4>Elements Folders</h4>
+<label><input type="checkbox" name="dumpmodules" checked="checked"/>  /modules</label><br />
+<label><input type="checkbox" name="dumpplugins" checked="checked"/>  /plugins</label><br />
+<label><input type="checkbox" name="dumpsnippets" checked="checked"/>  /snippets</label><br />
+<label><input type="checkbox" name="dumptvs" checked="checked"/>  /tvs</label><br />
+<label><input type="checkbox" name="dumplib" checked="checked"/>  /lib </label><br />
+<label><input type="checkbox" name="dumpjs" checked="checked"/>  /js </label><br />
+</div>
+<div class="left">
+<h4>System Folders</h4>
+<label><input type="checkbox" name="dumpthumbs" /> /.thumbs </label><br />
+<label><input type="checkbox" name="dumpbackup" checked="checked"/> /backup </label><br />
+<label><input type="checkbox" name="dumpcache" /> /cache </label><br />
+<label><input type="checkbox" name="dumpexport" />  /export </label><br />
+<label><input type="checkbox" name="dumpimport" />  /import </label><br />
+<label><input type="checkbox" name="dumpsite" />  /site</label><br />
+</div>
 </div>
 <div class="left">
 <h3><i class="fa fa-database" aria-hidden="true"></i> Database Backup</h3>
 <label><input type="checkbox" name="dumpdbase" checked="checked" /> include  .sql database backup to zip </label><br /><br />
 </div>
+
+
+<div class="border-top"style='clear:both'></div>
+<div class="left border-right">
+<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Manager Backup</h3>
+<label><input type="checkbox" name="dumpmanager" /> /manager </label><br />
+<br />
+<label><input type="checkbox" name="dumpconfig" checked="checked"/> /manager/includes/config.inc.php </label><br />
+<label><input type="checkbox" name="dumpmanhtaccess" /> /manager/.htaccess </label><br />
+<label><input type="checkbox" name="dumpthemes" /> /manager/media/styles </label><br />
+</div>
+<div class="left">
+<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Root files Backup</h3>
+<p class="info">Select additional folders and files to include in zip archive</p>
+<label><input type="checkbox" name="dumphtaccess" /> .htaccess </label><br />
+<label><input type="checkbox" name="dumprobots" /> robots.txt </label><br />
+<label><input type="checkbox" name="dumpindex" />  index.php </label><br />
+<label><input type="checkbox" name="dumpindexajax" />  index-ajax.php </label><br /><br />
+</div>
+
+
+
 <div class="border-top"style='clear:both'></div>
 <p class="actionButtons"><a class="primary" href="#" onclick="postForm('generate')" value="Backup Now!" />$backup</a></p>
 </form>
