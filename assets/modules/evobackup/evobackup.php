@@ -325,65 +325,61 @@ if ($handle = opendir($modx_backup_dir)) {
 }
 
 $backup = $_lang['backup'];
-$check_all= $_lang["check_all"];
 $out .= <<<EOD
 </tbody></table><h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
-<p class="info"><input type="checkbox" id="checkAllBackup" > $check_all</p>
 <div class="left border-right">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Assets Backup</h3>
 <p class="info"><i class="fa fa-lg fa-info-circle"></i> <b>Note</b>: /assets folder is always included in zip archive</p>
-
 <div class="left border-right">
 <h4>User Folders</h4>
-<label><input type="checkbox" name="dumptemplates" class="checkAssets checkAll" checked="checked"/>  /templates</label><br />
-<label><input type="checkbox" name="dumpfiles" class="checkAssets checkAll" checked="checked"/>  /files </label><br />
-<label><input type="checkbox" name="dumpflash" class="checkAssets checkAll" checked="checked"/>  /flash </label><br />
-<label><input type="checkbox" name="dumpimages" class="checkAssets checkAll" checked="checked"/>  /images </label><br />
-<label><input type="checkbox" name="dumpmedia" class="checkAssets checkAll" checked="checked"/>  /media </label><br />
+<label><input type="checkbox" name="dumptemplates" checked="checked"/>  /templates</label><br />
+<label><input type="checkbox" name="dumpfiles" checked="checked"/>  /files </label><br />
+<label><input type="checkbox" name="dumpflash" checked="checked"/>  /flash </label><br />
+<label><input type="checkbox" name="dumpimages" checked="checked"/>  /images </label><br />
+<label><input type="checkbox" name="dumpmedia" checked="checked"/>  /media </label><br />
 </div>
 <div class="left border-right">
 <h4>Elements Folders</h4>
-<label><input type="checkbox" name="dumpmodules" class="checkAssets checkAll" checked="checked"/>  /modules</label><br />
-<label><input type="checkbox" name="dumpplugins" class="checkAssets checkAll" checked="checked"/>  /plugins</label><br />
-<label><input type="checkbox" name="dumpsnippets" class="checkAssets checkAll" checked="checked"/>  /snippets</label><br />
-<label><input type="checkbox" name="dumptvs" class="checkAssets checkAll" checked="checked"/>  /tvs</label><br />
-<label><input type="checkbox" name="dumplib" class="checkAssets checkAll" checked="checked"/>  /lib </label><br />
-<label><input type="checkbox" name="dumpjs" class="checkAssets checkAll" checked="checked"/>  /js </label><br />
+<label><input type="checkbox" name="dumpmodules" checked="checked"/>  /modules</label><br />
+<label><input type="checkbox" name="dumpplugins" checked="checked"/>  /plugins</label><br />
+<label><input type="checkbox" name="dumpsnippets" checked="checked"/>  /snippets</label><br />
+<label><input type="checkbox" name="dumptvs" checked="checked"/>  /tvs</label><br />
+<label><input type="checkbox" name="dumplib" checked="checked"/>  /lib </label><br />
+<label><input type="checkbox" name="dumpjs" checked="checked"/>  /js </label><br />
 </div>
 <div class="left">
 <h4>System Folders</h4>
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpthumbs" /> /.thumbs </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpbackup" checked="checked"/> /backup </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpcache" /> /cache </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpdocs" />  /docs </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpexport" />  /export </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpimport" />  /import </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpsite" />  /site</label><br />
+<label><input type="checkbox" name="dumpthumbs" /> /.thumbs </label><br />
+<label><input type="checkbox" name="dumpbackup" checked="checked"/> /backup </label><br />
+<label><input type="checkbox" name="dumpcache" /> /cache </label><br />
+<label><input type="checkbox" name="dumpdocs" />  /docs </label><br />
+<label><input type="checkbox" name="dumpexport" />  /export </label><br />
+<label><input type="checkbox" name="dumpimport" />  /import </label><br />
+<label><input type="checkbox" name="dumpsite" />  /site</label><br />
 </div>
-<p class="info"><input type="checkbox" id="checkAllAssets" > $check_all Assets</p>
 </div>
 <div class="left">
 <h3><i class="fa fa-database" aria-hidden="true"></i> Database Backup</h3>
-<label><input type="checkbox" name="dumpdbase" class="checkAll" checked="checked" /> include  .sql database backup to zip </label><br /><br />
+<label><input type="checkbox" name="dumpdbase" checked="checked" /> include  .sql database backup to zip </label><br /><br />
 </div>
 
 
 <div class="border-top"style='clear:both'></div>
 <div class="left border-right">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Manager Backup</h3>
-<p class="info"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> /manager </label></p>
+<label><input type="checkbox" name="dumpmanager" /> /manager </label><br />
 <br />
-<label><input type="checkbox" name="dumpconfig" class="checkAll" checked="checked"/> /manager/includes/config.inc.php </label><br />
+<label><input type="checkbox" name="dumpconfig" checked="checked"/> /manager/includes/config.inc.php </label><br />
 <label><input type="checkbox" name="dumpmanhtaccess" /> /manager/.htaccess </label><br />
 <label><input type="checkbox" name="dumpthemes" /> /manager/media/styles </label><br />
 </div>
 <div class="left">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Root files Backup</h3>
 <p class="info">Select additional folders and files to include in zip archive</p>
-<label><input type="checkbox" class="checkAll" name="dumphtaccess" /> .htaccess </label><br />
-<label><input type="checkbox" class="checkAll" name="dumprobots" /> robots.txt </label><br />
-<label><input type="checkbox" class="checkAll" name="dumpindex" />  index.php </label><br />
-<label><input type="checkbox" class="checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
+<label><input type="checkbox" name="dumphtaccess" /> .htaccess </label><br />
+<label><input type="checkbox" name="dumprobots" /> robots.txt </label><br />
+<label><input type="checkbox" name="dumpindex" />  index.php </label><br />
+<label><input type="checkbox" name="dumpindexajax" />  index-ajax.php </label><br /><br />
 </div>
 
 

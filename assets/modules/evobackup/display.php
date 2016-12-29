@@ -8,18 +8,8 @@ $o = <<<EOD
 	<meta http-equiv="Content-Type" content="text/html; charset=$modx_manager_charset" />
 	<link rel="stylesheet" type="text/css" href="media/style/$manager_theme/style.css" />
     <link rel="stylesheet" href="media/style/common/font-awesome/css/font-awesome.min.css" />
-<script src="media/script/jquery/jquery.min.js"></script>
+
 </head>
-<script>
-jQuery( document ).ready(function( $ ) {
-$('#checkAllAssets').click(function () {    
-    $(':checkbox.checkAssets').prop('checked', this.checked);    
- });
-$('#checkAllBackup').click(function () {    
-    $(':checkbox.checkAll').prop('checked', this.checked);    
- });
- });
- </script>
 <style>
 h2 {border-bottom: 1px dotted #dedede;}
 table.evobackup {margin-bottom:24px;}
