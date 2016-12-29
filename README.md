@@ -19,3 +19,23 @@ https://modx.com/extras/package/modbak
 
 ![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/evobackup.png)
 
+# Setup
+1. Create a  "backup" directory on your root webserver to hold modx .zip archives, and set read/write permissions to 777
+2. Install EvoBackup with Package Manager or Extras module
+3. Run EvoBackup module
+4. Select additional folders and files to include in the archive
+5. Click Backup Now!, if it works there should be a .zip link containing your modx site.
+
+## Change Backup directory
+1. Edit /assets/modules/modbak/settings.php, and set $modx_backup_dir to backup dir in new directory
+2. Set Module configuration > **Backup Directory** to your new backup dir
+
+
+# known issues
+
+* **database backup**: duplicated .sql files backup inside backup folder and .zip archive - **modbak issue or behaviour?**
+
+# to do
+
+* **change backup folder path**: avoid edit hardcoded path settings.php
+
