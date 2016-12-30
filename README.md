@@ -44,4 +44,4 @@ Remove some folders from backup or increase "ZIP memory limit" value in module c
 * **change backup folder path**: avoid edit hardcoded path in settings.php
 * multi language
 * option to add custom assets folders - ie: assets/galleries (done in beta 4.1)
-* support for custom/renamed manager folder
+* support for custom/renamed manager folder (done in beta 4.0)
