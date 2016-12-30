@@ -1,6 +1,7 @@
 <?php
     global $_lang, $manager_language, $manager_theme,$theme_refresher,$modx_manager_charset, $syncid, $syncsite,$messagesallowed;
-
+$help = $_lang['help'];
+$Config = $_lang["settings_config"];
 $o = <<<EOD
 <html>
 <head>
