@@ -22,9 +22,17 @@ $('#checkAllBackup').click(function () {
  </script>
 <style>
 h2 {border-bottom: 1px dotted #dedede;}
+h3 {color: #3697CD;}
+p {margin-bottom: 10px;}
 table.evobackup {margin-bottom:24px;}
 table.evobackup th, table.evobackup td {font-size:13px;}
-.info {color: #3e87fd; margin-bottom: 15px;}
+table.evobackup a {
+  cursor: pointer;
+}
+table.evobackup .btn {
+  width: 15px;
+}
+.info {color: #777;}
 .alert {padding: 20px;background-color: #f44336; /* Red */color: white;margin-bottom: 5px;}
 .success {color: #07b922;}
 .yellow {font-size:14px; color:#444; background-color: yellow; border-radius:50%; border: 1px solid #f7bf04; padding:5px 7px; margin-right:5px;}
@@ -37,7 +45,7 @@ table.evobackup th, table.evobackup td {font-size:13px;}
     <i class="fa fa-download"></i>
   </span>
   <span class="pagetitle-text">
-    Evo Backup v$module_version
+    EvoBackup v$module_version
   </span>
 </h1>
 <div id="actions">
