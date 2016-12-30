@@ -30,8 +30,7 @@ table.evobackup a {
   cursor: pointer;
 }
 table.evobackup .btn {
-  display: inline-block;
-  padding: 5px 7px;
+  width: 15px;
 }
 .info {color: #777;}
 .alert {padding: 20px;background-color: #f44336; /* Red */color: white;margin-bottom: 5px;}
