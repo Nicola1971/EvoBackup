@@ -305,9 +305,9 @@ switch($opcode)
 */
 global $modx, $_lang;
 $out .= "<h2><i class=\"fa fa-download\" aria-hidden=\"true\"></i> Manage Backups:</h2><p> Download or delete previous backup archives</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
-    <th style=\"width: 300px;\"><b>".$_lang['files_filename']."</b></th>
-    <th><b>".$_lang['files_filesize']."</b></th>
-    <th style=\"text-align:right;\"><b>".$_lang['files_fileoptions']."</b></th>
+    <th style=\"width: 300px;\">".$_lang['files_filename']."</th>
+    <th>".$_lang['files_filesize']."</b></th>
+    <th style=\"text-align:right;\">".$_lang['files_fileoptions']."</th>
   </tr></thead><tbody>
   ";
 if ($handle = opendir($modx_backup_dir)) {
@@ -328,11 +328,13 @@ $backup = $_lang['backup'];
 $check_all= $_lang["check_all"];
 $out .= <<<EOD
 </tbody></table><h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
-<p class="info"><input type="checkbox" id="checkAllBackup" > $check_all</p>
+<p><label><input type="checkbox" id="checkAllBackup" > $check_all</label></p>
+
 <div class="border-top"style='clear:both'></div>
+
 <div class="left border-right">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Assets Backup</h3>
-<p class="info"><i class="fa fa-lg fa-info-circle"></i> <b>Note</b>: /assets folder is always included in zip archive</p>
+<p><label><input type="checkbox" id="checkAllAssets" > $check_all Assets</label></p>
 
 <div class="left border-right">
 <h4>User Folders</h4>
@@ -342,6 +344,7 @@ $out .= <<<EOD
 <label><input type="checkbox" name="dumpimages" class="checkAssets checkAll" checked="checked"/>  /images </label><br />
 <label><input type="checkbox" name="dumpmedia" class="checkAssets checkAll" checked="checked"/>  /media </label><br />
 </div>
+
 <div class="left border-right">
 <h4>Elements Folders</h4>
 <label><input type="checkbox" name="dumpmodules" class="checkAssets checkAll" checked="checked"/>  /modules</label><br />
@@ -351,6 +354,7 @@ $out .= <<<EOD
 <label><input type="checkbox" name="dumplib" class="checkAssets checkAll" checked="checked"/>  /lib </label><br />
 <label><input type="checkbox" name="dumpjs" class="checkAssets checkAll" checked="checked"/>  /js </label><br />
 </div>
+
 <div class="left">
 <h4>System Folders</h4>
 <label><input type="checkbox" class="checkAssets checkAll" name="dumpthumbs" /> /.thumbs </label><br />
@@ -361,37 +365,43 @@ $out .= <<<EOD
 <label><input type="checkbox" class="checkAssets checkAll" name="dumpimport" />  /import </label><br />
 <label><input type="checkbox" class="checkAssets checkAll" name="dumpsite" />  /site</label><br />
 </div>
-<p class="info"><input type="checkbox" id="checkAllAssets" > $check_all Assets</p>
-</div>
-<div class="left">
-<h3><i class="fa fa-database" aria-hidden="true"></i> Database Backup</h3>
-<label><input type="checkbox" name="dumpdbase" class="checkAll" checked="checked" /> include  .sql database backup to zip </label><br /><br />
+<p class="info"><i class="fa fa-lg fa-info-circle"></i> /assets folder is always included in archive</p>
+
 </div>
 
-
-<div class="border-top"style='clear:both'></div>
-<div class="left border-right">
+<div class="left" style="padding-right: 25px;">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Manager Backup</h3>
-<p class="info"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> /manager </label></p>
-<br />
+<p>Whole manager folder:</p>
+<p style="margin-bottom: 15px;"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> /manager</label></p>
+<p>Only those manager files and folders:</p>
 <label><input type="checkbox" name="dumpconfig" class="checkAll" checked="checked"/> /manager/includes/config.inc.php </label><br />
 <label><input type="checkbox" name="dumpmanhtaccess" /> /manager/.htaccess </label><br />
 <label><input type="checkbox" name="dumpthemes" /> /manager/media/styles </label><br />
 </div>
-<div class="left">
+
+<div class="border-top"style='clear:both'></div>
+
+<div class="left border-right" style="padding-right: 25px;">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Root files Backup</h3>
-<p class="info">Select additional folders and files to include in zip archive</p>
+<p>Select additional root files to include in archive</p>
 <label><input type="checkbox" class="checkAll" name="dumphtaccess" /> .htaccess </label><br />
 <label><input type="checkbox" class="checkAll" name="dumprobots" /> robots.txt </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindex" />  index.php </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
 </div>
 
-
+<div class="left">
+<h3><i class="fa fa-database" aria-hidden="true"></i> Database Backup</h3>
+<label><input type="checkbox" name="dumpdbase" class="checkAll" checked="checked" /> include  .sql database backup in archive</label><br /><br />
+</div>
 
 <div class="border-top"style='clear:both'></div>
+
 <p class="actionButtons"><a class="primary" href="#" onclick="postForm('generate')" value="Backup Now!" />$backup</a></p>
+
 </form>
+
 <div style='clear:both'></div>
+
 EOD;
 ?>
