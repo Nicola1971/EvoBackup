@@ -53,6 +53,7 @@ table.evobackup .btn {
   margin-bottom: 15px;
   color: #777;
 }
+
 </style>
 <h1 class="pagetitle">
   <span class="pagetitle-icon">
@@ -65,8 +66,9 @@ table.evobackup .btn {
 <div id="actions">
     <ul class="actionButtons">
     <!--@IF:[[#hasPermission?key=new_module]] OR [[#hasPermission?key=edit_module]]-->
-    <li id="Button6"><a href="index.php?a=108&id=$module_id"><i class='fa fa-cog'></i></a> </li>
+    <li id="Button6"><a href="index.php?a=108&id=$module_id"><i class='fa fa-cog'></i> $Config</a> </li>
     <!--@ENDIF-->
+     <li id="Button9"><a href="#" class="evobackup-help"><i class='fa fa-question-circle'></i> $help</a></li>
         <li id="Button5"><a href="index.php?a=2">
             Close
         </a></li>

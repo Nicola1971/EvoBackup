@@ -368,6 +368,7 @@ if ($handle = opendir($modx_backup_dir)) {
 
 $backup = $_lang['backup'];
 $help = $_lang['help'];
+$Config = $_lang["settings_config"];
 $check_all= $_lang["check_all"];
 $out .= <<<EOD
 </tbody></table>
@@ -380,21 +381,26 @@ $out .= <<<EOD
             <h3>Full Site Backup</h3>
             <p>This backup includes whole assets and manager folder (included custom sub folders), root files and db backup<br/> Generates a bigger zip archive and requires more memory and resources</p> </p>
         </div>
-<ul class="actionButtons">
-             <li><a href="#" id="evobackup-help">$help</a></li>
-        </ul>
+
  <script>
 $(document).ready(function(){
-    $("#evobackup-help").click(function(){
-        $("#evobackup-info").toggle();
+    $(".evobackup-help").click(function(){
+        $("#evobackup-info").toggle(800);
+    });
+    $("#more-options-button").click(function(){
+        $("#more-options").toggle(800);
     });
 });
 </script>
 <h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
-<p><b>Choose Backup type</b>: <span class="info">
+<p><span class="info"><b><a href="#" class="evobackup-help"><i class="fa fa-question-circle fa-lg " aria-hidden="true"></i></a></b></span> Choose Backup type: <span class="info">
 <input type="checkbox" id="checkMinBackup"><b>Light Backup</b> 
-<input type="checkbox" id="checkReqBackup" checked="checked"><b>Medium Backup</b>  <input type="checkbox" id="checkAllBackup" > <b>Full Site Backup</b></span><br /></p>
+<input type="checkbox" id="checkReqBackup" checked="checked"><b>Medium Backup</b>  <input type="checkbox" id="checkAllBackup" > <b>Full Site Backup</b></span></p>
+     
+             <!--- <a href="#" id="more-options-button">More Options</a>-->
+
 <div class="border-top"style='clear:both'></div>
+<div id="more-options" style="display:inline">
 <div class="left border-right">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Assets Backup</h3>
 <p class="info"><input type="checkbox" id="checkAllAssets" > $check_all  
@@ -429,7 +435,7 @@ $(document).ready(function(){
 <label><input type="checkbox" class="checkAssets" name="dumpimport" />  /import </label><br />
 <label><input type="checkbox" class="checkAssets" name="dumpsite" />  /site</label><br />
 </div>
-<p class="info"><i class="fa fa-lg fa-info-circle"></i> /assets folder is always included in archive</p>
+
 
 </div>
 
@@ -437,14 +443,10 @@ $(document).ready(function(){
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> <span class="capitalize">$MGR_DIR</span> Backup</h3>
 <p class="info"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> <b>/$MGR_DIR</b>  (Whole $MGR_DIR folder)</label></p>
 <div class="left">
-<h4>Only those $MGR_DIR config files:</h4>
-<label><input type="checkbox" name="dumpconfig" class="checkReq checkMin" checked="checked"/> /$MGR_DIR/includes/config.inc.php </label><br />
-<label><input type="checkbox" name="dumpmanhtaccess" /> /$MGR_DIR/.htaccess </label><br />
-<p style="margin-bottom: 10px;"></p>
-<h4><span class="capitalize">$MGR_DIR</span> Themes:</h4>
-<label><input type="checkbox" name="dumpthemes" /> /$MGR_DIR/media/styles </label><br />
-<p style="margin-bottom: 10px;"></p>
-<h4>System manager Folders:</h4>
+<h4>Only those $MGR_DIR files and folders:</h4>
+<label><input type="checkbox" name="dumpconfig" class="checkReq checkMin" checked="checked"/> /includes/config.inc.php </label><span class="info">(config file)</span><br />
+<label><input type="checkbox" name="dumpmanhtaccess" /> /.htaccess </label><br />
+<label><input type="checkbox" name="dumpthemes" /> /media/styles </label><span class="info">(manager themes)</span><br />
 <label><input type="checkbox" name="dumpmframes" /> /frames </label><br />
 <label><input type="checkbox" name="dumpmincludes" /> /includes </label><br />
 <label><input type="checkbox" name="dumpmmedia" /> /media </label><br />
@@ -457,7 +459,7 @@ $(document).ready(function(){
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Root files Backup</h3>
 <p>Select additional root files to include in archive</p>
 <label><input type="checkbox" class="checkAll" name="dumphtaccess" /> .htaccess </label><br />
-<label><input type="checkbox" class="checkAll" name="dumprobots" /> robots.txt </label><br />
+<label><input type="checkbox" class="checkAll checkReq" name="dumprobots" /> robots.txt </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindex" />  index.php </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
 </div>
@@ -468,8 +470,12 @@ $(document).ready(function(){
 </div>
 
 <div class="border-top"style='clear:both'></div>
-
-<p class="actionButtons"><a class="primary" href="#" onclick="postForm('generate')" value="Backup Now!" />$backup</a></p>
+</div>
+<span class="actionButtons evobkpbuttons">
+             
+             <!--- <a href="#" id="more-options-button">More Options</a>-->
+             <a class="primary" href="#" onclick="postForm('generate')" value="Backup Now!" />$backup</a>
+        </span>
 
 </form>
 
