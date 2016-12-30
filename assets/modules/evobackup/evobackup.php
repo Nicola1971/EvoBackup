@@ -459,7 +459,7 @@ $(document).ready(function(){
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Root files Backup</h3>
 <p>Select additional root files to include in archive</p>
 <label><input type="checkbox" class="checkAll" name="dumphtaccess" /> .htaccess </label><br />
-<label><input type="checkbox" class="checkAll checkReq" name="dumprobots" /> robots.txt </label><br />
+<label><input type="checkbox" class="checkAll checkReq" name="dumprobots" checked="checked"/> robots.txt </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindex" />  index.php </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
 </div>
