@@ -4,6 +4,7 @@
 */
 if(IN_MANAGER_MODE!="true") die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the MODx Content Manager instead of accessing this file directly.");
 global $modx, $_lang;
+$MGR_DIR = MGR_DIR;
 if(!$modx->hasPermission('bk_manager')) {	
 	$e->setError(3);
 	$e->dumpError();
@@ -11,7 +12,7 @@ if(!$modx->hasPermission('bk_manager')) {
 }
 
 // module info
-$module_version = '1.2 (beta 3)';
+$module_version = '1.2 (beta 4)';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 $out ='';
@@ -32,6 +33,13 @@ if (isset($BACKUPERROR) && $BACKUPERROR!='') {
 
 // --------------- Set Directories and files to include in archive
 $dumpmanager  = isset($_POST['dumpmanager']) ? $_POST['dumpmanager']:'';
+$dumpmactions  = isset($_POST['dumpmactions']) ? $_POST['dumpmactions']:'';
+$dumpmframes  = isset($_POST['dumpmframes']) ? $_POST['dumpmframes']:'';
+$dumpmincludes  = isset($_POST['dumpmincludes']) ? $_POST['dumpmincludes']:'';
+$dumpmmedia  = isset($_POST['dumpmmedia']) ? $_POST['dumpmmedia']:'';
+$dumpmprocessors  = isset($_POST['dumpmprocessors']) ? $_POST['dumpmprocessors']:'';
+
+
 $dumpindex  = isset($_POST['dumpindex']) ? $_POST['dumpindex']:'';
 $dumpindexajax  = isset($_POST['dumpindexajax']) ? $_POST['dumpindexajax']:'';
 $dumphtaccess  = isset($_POST['dumphtaccess']) ? $_POST['dumphtaccess']:'';
@@ -40,6 +48,7 @@ $dumpconfig  = isset($_POST['dumpconfig']) ? $_POST['dumpconfig']:'';
 $dumpthemes  = isset($_POST['dumpthemes']) ? $_POST['dumpthemes']:'';
 $dumpmanhtaccess  = isset($_POST['dumpmanhtaccess']) ? $_POST['dumpmanhtaccess']:'';
 
+$dumpassets  = isset($_POST['dumpassets']) ? $_POST['dumpassets']:'';
 //assets subfolders
 $dumpthumbs  = isset($_POST['dumpthumbs']) ? $_POST['dumpthumbs']:'';
 $dumpbackup  = isset($_POST['dumpbackup']) ? $_POST['dumpbackup']:'';
@@ -60,8 +69,16 @@ $dumpsnippets  = isset($_POST['dumpsnippets']) ? $_POST['dumpsnippets']:'';
 $dumptemplates  = isset($_POST['dumptemplates']) ? $_POST['dumptemplates']:'';
 $dumptvs  = isset($_POST['dumptvs']) ? $_POST['dumptvs']:'';
 //dump assets folder and index.html
+//$modx_files_array = array($modx_root_dir.'assets/index.html');
+// dump whole assets..
+if ($dumpassets!='')
+{
+    $modx_files_array = array($modx_root_dir.'assets');
+}
+//else selected folder
+else {
 $modx_files_array = array($modx_root_dir.'assets/index.html');
-
+    
 if ($dumpthumbs!='')
 {
     $modx_files_array[]=$modx_root_dir.'assets/.thumbs';
@@ -135,28 +152,53 @@ if ($dumpsite!='')
     $modx_files_array[]=$modx_root_dir.'assets/tvs';
 }
 
+}
+//dump whole manager folder...
 
-//other folders
-
-if ($dumpconfig!='')
-{
-    $modx_files_array[]=$modx_root_dir.'manager/includes/config.inc.php';
-}    
 if ($dumpmanager!='')
 {
-    $modx_files_array[]=$modx_root_dir.'manager';
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR;
 }
+// ..else selcted files or folders
+else {
+if ($dumpconfig!='')
+{
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR.'/includes/config.inc.php';
+}    
+
 if ($dumpthemes!='')
 {
-    $modx_files_array[]=$modx_root_dir.'manager/media/style';
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR.'/media/style';
 } 
 if ($dumpmanhtaccess!='')
 {
-if (file_exists($modx_root_dir.'manager/.htaccess'))
+if (file_exists($modx_root_dir.$MGR_DIR.'/.htaccess'))
 {
-    $modx_files_array[]=$modx_root_dir.'manager/.htaccess';
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR.'/.htaccess';
 }
 } 
+if ($dumpmactions!='')
+{
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR.'/actions';
+}
+if ($dumpmframes!='')
+{
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR.'/frames';
+}
+if ($dumpmincludes!='')
+{
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR.'/includes';
+}
+if ($dumpmmedia!='')
+{
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR.'/media';
+}
+if ($dumpmprocessors!='')
+{
+    $modx_files_array[]=$modx_root_dir.$MGR_DIR.'/processors';
+}
+}
+//dump root files 
 if ($dumpindex!='')
 {
     $modx_files_array[]=$modx_root_dir.'index.php';
@@ -325,60 +367,90 @@ if ($handle = opendir($modx_backup_dir)) {
 }
 
 $backup = $_lang['backup'];
+$help = $_lang['help'];
 $check_all= $_lang["check_all"];
 $out .= <<<EOD
-</tbody></table><h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
-<p><label><input type="checkbox" id="checkAllBackup" > $check_all</label></p>
-
+</tbody></table>
+<div id="evobackup-info" style="display:none">
+            <p class="element-edit-message">
+            <h3>Light Backup</h3>
+            <p>This backup includes only required files, user files and db.<br/> Generates a smaller zip archive and requires less memory and resources</p>  
+            <h3>Medium Backup</h3>
+            <p>This backup includes required files, user files, elements (snippets, modules, plugins..) and db.<br/> Generates a medium zip archive</p>  
+            <h3>Full Site Backup</h3>
+            <p>This backup includes whole assets and manager folder (included custom sub folders), root files and db backup<br/> Generates a bigger zip archive and requires more memory and resources</p> </p>
+        </div>
+<ul class="actionButtons">
+             <li><a href="#" id="evobackup-help">$help</a></li>
+        </ul>
+ <script>
+$(document).ready(function(){
+    $("#evobackup-help").click(function(){
+        $("#evobackup-info").toggle();
+    });
+});
+</script>
+<h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
+<p><b>Choose Backup type</b>: <span class="info">
+<input type="checkbox" id="checkMinBackup"><b>Light Backup</b> 
+<input type="checkbox" id="checkReqBackup" checked="checked"><b>Medium Backup</b>  <input type="checkbox" id="checkAllBackup" > <b>Full Site Backup</b></span><br /></p>
 <div class="border-top"style='clear:both'></div>
-
 <div class="left border-right">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Assets Backup</h3>
-<p><label><input type="checkbox" id="checkAllAssets" > $check_all Assets</label></p>
+<p class="info"><input type="checkbox" id="checkAllAssets" > $check_all  
+ <label><input type="checkbox" name="dumpassets" class="checkAll"/>  <b>/assets</b> (Whole assets folder)</label></p>
 
 <div class="left border-right">
 <h4>User Folders</h4>
-<label><input type="checkbox" name="dumptemplates" class="checkAssets checkAll" checked="checked"/>  /templates</label><br />
-<label><input type="checkbox" name="dumpfiles" class="checkAssets checkAll" checked="checked"/>  /files </label><br />
-<label><input type="checkbox" name="dumpflash" class="checkAssets checkAll" checked="checked"/>  /flash </label><br />
-<label><input type="checkbox" name="dumpimages" class="checkAssets checkAll" checked="checked"/>  /images </label><br />
-<label><input type="checkbox" name="dumpmedia" class="checkAssets checkAll" checked="checked"/>  /media </label><br />
+<label><input type="checkbox" name="dumptemplates" class="checkAssets checkReq checkMin" checked="checked"/>  /templates</label><br />
+<label><input type="checkbox" name="dumpfiles" class="checkAssets checkReq checkMin" checked="checked"/>  /files </label><br />
+<label><input type="checkbox" name="dumpflash" class="checkAssets checkReq checkMin" checked="checked"/>  /flash </label><br />
+<label><input type="checkbox" name="dumpimages" class="checkAssets checkReq checkMin" checked="checked"/>  /images </label><br />
+<label><input type="checkbox" name="dumpmedia" class="checkAssets checkReq checkMin" checked="checked"/>  /media </label><br />
 </div>
 
 <div class="left border-right">
 <h4>Elements Folders</h4>
-<label><input type="checkbox" name="dumpmodules" class="checkAssets checkAll" checked="checked"/>  /modules</label><br />
-<label><input type="checkbox" name="dumpplugins" class="checkAssets checkAll" checked="checked"/>  /plugins</label><br />
-<label><input type="checkbox" name="dumpsnippets" class="checkAssets checkAll" checked="checked"/>  /snippets</label><br />
-<label><input type="checkbox" name="dumptvs" class="checkAssets checkAll" checked="checked"/>  /tvs</label><br />
-<label><input type="checkbox" name="dumplib" class="checkAssets checkAll" checked="checked"/>  /lib </label><br />
-<label><input type="checkbox" name="dumpjs" class="checkAssets checkAll" checked="checked"/>  /js </label><br />
+<label><input type="checkbox" name="dumpmodules" class="checkAssets checkReq" checked="checked"/>  /modules</label><br />
+<label><input type="checkbox" name="dumpplugins" class="checkAssets checkReq" checked="checked"/>  /plugins</label><br />
+<label><input type="checkbox" name="dumpsnippets" class="checkAssets checkReq" checked="checked"/>  /snippets</label><br />
+<label><input type="checkbox" name="dumptvs" class="checkAssets checkReq" checked="checked"/>  /tvs</label><br />
+<label><input type="checkbox" name="dumplib" class="checkAssets checkReq" checked="checked"/>  /lib </label><br />
+<label><input type="checkbox" name="dumpjs" class="checkAssets checkReq" checked="checked"/>  /js </label><br />
 </div>
 
 <div class="left">
 <h4>System Folders</h4>
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpthumbs" /> /.thumbs </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpbackup" checked="checked"/> /backup </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpcache" /> /cache </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpdocs" />  /docs </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpexport" />  /export </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpimport" />  /import </label><br />
-<label><input type="checkbox" class="checkAssets checkAll" name="dumpsite" />  /site</label><br />
+<label><input type="checkbox" class="checkAssets" name="dumpthumbs" /> /.thumbs </label><br />
+<label><input type="checkbox" class="checkAssets" name="dumpbackup"/> /backup </label><br />
+<label><input type="checkbox" class="checkAssets" name="dumpcache" /> /cache </label><br />
+<label><input type="checkbox" class="checkAssets" name="dumpdocs" />  /docs </label><br />
+<label><input type="checkbox" class="checkAssets" name="dumpexport" />  /export </label><br />
+<label><input type="checkbox" class="checkAssets" name="dumpimport" />  /import </label><br />
+<label><input type="checkbox" class="checkAssets" name="dumpsite" />  /site</label><br />
 </div>
 <p class="info"><i class="fa fa-lg fa-info-circle"></i> /assets folder is always included in archive</p>
 
 </div>
 
 <div class="left" style="padding-right: 25px;">
-<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Manager Backup</h3>
-<p>Whole manager folder:</p>
-<p style="margin-bottom: 15px;"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> /manager</label></p>
-<p>Only those manager files and folders:</p>
-<label><input type="checkbox" name="dumpconfig" class="checkAll" checked="checked"/> /manager/includes/config.inc.php </label><br />
-<label><input type="checkbox" name="dumpmanhtaccess" /> /manager/.htaccess </label><br />
-<label><input type="checkbox" name="dumpthemes" /> /manager/media/styles </label><br />
+<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> <span class="capitalize">$MGR_DIR</span> Backup</h3>
+<p class="info"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> <b>/$MGR_DIR</b>  (Whole $MGR_DIR folder)</label></p>
+<div class="left">
+<h4>Only those $MGR_DIR config files:</h4>
+<label><input type="checkbox" name="dumpconfig" class="checkReq checkMin" checked="checked"/> /$MGR_DIR/includes/config.inc.php </label><br />
+<label><input type="checkbox" name="dumpmanhtaccess" /> /$MGR_DIR/.htaccess </label><br />
+<p style="margin-bottom: 10px;"></p>
+<h4><span class="capitalize">$MGR_DIR</span> Themes:</h4>
+<label><input type="checkbox" name="dumpthemes" /> /$MGR_DIR/media/styles </label><br />
+<p style="margin-bottom: 10px;"></p>
+<h4>System manager Folders:</h4>
+<label><input type="checkbox" name="dumpmframes" /> /frames </label><br />
+<label><input type="checkbox" name="dumpmincludes" /> /includes </label><br />
+<label><input type="checkbox" name="dumpmmedia" /> /media </label><br />
+<label><input type="checkbox" name="dumpmprocessors" /> /processors </label><br />
 </div>
-
+</div>
 <div class="border-top"style='clear:both'></div>
 
 <div class="left border-right" style="padding-right: 25px;">
@@ -392,7 +464,7 @@ $out .= <<<EOD
 
 <div class="left">
 <h3><i class="fa fa-database" aria-hidden="true"></i> Database Backup</h3>
-<label><input type="checkbox" name="dumpdbase" class="checkAll" checked="checked" /> include  .sql database backup in archive</label><br /><br />
+<label><input type="checkbox" name="dumpdbase" class="checkAll checkReq checkMin" checked="checked" /> include  .sql database backup to zip </label><br /><br />
 </div>
 
 <div class="border-top"style='clear:both'></div>

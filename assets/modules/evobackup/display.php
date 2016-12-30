@@ -18,6 +18,12 @@ $('#checkAllAssets').click(function () {
 $('#checkAllBackup').click(function () {    
     $(':checkbox.checkAll').prop('checked', this.checked);    
  });
+$('#checkReqBackup').click(function () {    
+    $(':checkbox.checkReq').prop('checked', this.checked);    
+ });
+$('#checkMinBackup').click(function () {    
+    $(':checkbox.checkMin').prop('checked', this.checked);    
+ });
  });
  </script>
 <style>
@@ -33,12 +39,20 @@ table.evobackup .btn {
   width: 15px;
 }
 .info {color: #777;}
+.info b{color: #3697CD;}
 .alert {padding: 20px;background-color: #f44336; /* Red */color: white;margin-bottom: 5px;}
 .success {color: #07b922;}
 .yellow {font-size:14px; color:#444; background-color: yellow; border-radius:50%; border: 1px solid #f7bf04; padding:5px 7px; margin-right:5px;}
 .left {float: left; padding:10px; margin-right:20px;}
 .border-right {border-right: 1px dotted #dedede;}
 .border-top {padding-top: 10px; border-top: 1px dotted #dedede;}
+.capitalize {text-transform: capitalize;}
+.element-edit-message {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 15px;
+  color: #777;
+}
 </style>
 <h1 class="pagetitle">
   <span class="pagetitle-icon">
@@ -64,6 +78,7 @@ table.evobackup .btn {
         
         </div>
         <div class="tab-page panel-container">
+        
 EOD;
 
 $out = $o.$out.'</div></div></div>';

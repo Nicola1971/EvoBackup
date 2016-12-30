@@ -1,9 +1,9 @@
 /**
  * EvoBackup
  *
- * 1.2 Beta 3 - Backup modx files and compress into .zip for easy download
+ * 1.2 Beta 4 - Backup modx files and compress into .zip for easy download
  * @category	module
- * @version     1.2 Beta 3
+ * @version     1.2 Beta 4
  * @author      Author: Nicola Lambathakis http://www.tattoocms.it/
  * @internal	@modx_category Manager
  * @internal    @properties &backup_dir=Backup Directory:;string;/_evobackup_archives/;; Need to edit /assets/modules/evobackup/settings.php too and set $modx_backup_dir. Make sure read/write permission is set. &zip_t_limit=ZIP time limit:;string;250 &zip_m_limit=ZIP memory limit:;string;50M &db_t_limit=DB time limit:;string;250 &db_m_limit=DB memory limit:;string;50M &dump_logs=Dump logs tables:;menu;false,true;false;;Include Log table data in database backup. These tables can be quite large, so default is to exclude them.
