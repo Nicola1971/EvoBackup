@@ -20,7 +20,7 @@ https://modx.com/extras/package/modbak
 ![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/evobackup-beta3.png)
 
 # Setup
-1. Create a  "backup" directory on your root webserver to hold modx .zip archives, and set read/write permissions to 777
+1. Create a  "_evobackup_archives" directory on your root webserver to hold modx .zip archives, and set read/write permissions to 777
 2. Install EvoBackup with Package Manager or Extras module
 3. Run EvoBackup module
 4. Select additional folders and files to include in the archive
