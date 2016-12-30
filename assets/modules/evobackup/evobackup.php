@@ -12,7 +12,7 @@ if(!$modx->hasPermission('bk_manager')) {
 }
 
 // module info
-$module_version = '1.2 (beta 4)';
+$module_version = '1.2 (beta 4.1)';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 $out ='';
@@ -30,7 +30,12 @@ if (isset($BACKUPERROR) && $BACKUPERROR!='') {
     include_once($mods_path.'evobackup/display.php');
     return $out;
 }
-
+//custom folder
+$customfold1 = isset ($customfold1) ? $customfold1 : '';
+$customfold2 = isset ($customfold2) ? $customfold2 : '';
+$customfold3 = isset ($customfold3) ? $customfold3 : '';
+$customfold4 = isset ($customfold4) ? $customfold4 : '';
+$customfold5 = isset ($customfold5) ? $customfold5 : '';
 // --------------- Set Directories and files to include in archive
 $dumpmanager  = isset($_POST['dumpmanager']) ? $_POST['dumpmanager']:'';
 $dumpmactions  = isset($_POST['dumpmactions']) ? $_POST['dumpmactions']:'';
@@ -47,6 +52,12 @@ $dumprobots  = isset($_POST['dumprobots']) ? $_POST['dumprobots']:'';
 $dumpconfig  = isset($_POST['dumpconfig']) ? $_POST['dumpconfig']:'';
 $dumpthemes  = isset($_POST['dumpthemes']) ? $_POST['dumpthemes']:'';
 $dumpmanhtaccess  = isset($_POST['dumpmanhtaccess']) ? $_POST['dumpmanhtaccess']:'';
+
+$dumpcustomfold1  = isset($_POST['dumpcustomfold1']) ? $_POST['dumpcustomfold1']:'';
+$dumpcustomfold2  = isset($_POST['dumpcustomfold2']) ? $_POST['dumpcustomfold2']:'';
+$dumpcustomfold3  = isset($_POST['dumpcustomfold3']) ? $_POST['dumpcustomfold3']:'';
+$dumpcustomfold4  = isset($_POST['dumpcustomfold4']) ? $_POST['dumpcustomfold4']:'';
+$dumpcustomfold5  = isset($_POST['dumpcustomfold5']) ? $_POST['dumpcustomfold5']:'';
 
 $dumpassets  = isset($_POST['dumpassets']) ? $_POST['dumpassets']:'';
 //assets subfolders
@@ -68,6 +79,7 @@ $dumpsite  = isset($_POST['dumpsite']) ? $_POST['dumpsite']:'';
 $dumpsnippets  = isset($_POST['dumpsnippets']) ? $_POST['dumpsnippets']:'';
 $dumptemplates  = isset($_POST['dumptemplates']) ? $_POST['dumptemplates']:'';
 $dumptvs  = isset($_POST['dumptvs']) ? $_POST['dumptvs']:'';
+
 //dump assets folder and index.html
 //$modx_files_array = array($modx_root_dir.'assets/index.html');
 // dump whole assets..
@@ -224,6 +236,29 @@ if (file_exists($modx_root_dir.'robots.txt'))
     $modx_files_array[]=$modx_root_dir.'robots.txt';
 }  
 }
+
+//custom files and folders
+if ($dumpcustomfold1!='' && file_exists($modx_root_dir.$customfold1))
+{
+    $modx_files_array[]=$modx_root_dir.$customfold1;
+}  
+if ($dumpcustomfold2!='' && file_exists($modx_root_dir.$customfold2))
+{
+    $modx_files_array[]=$modx_root_dir.$customfold2;
+} 
+if ($dumpcustomfold3!='' && file_exists($modx_root_dir.$customfold3))
+{
+    $modx_files_array[]=$modx_root_dir.$customfold3;
+}
+if ($dumpcustomfold4!='' && file_exists($modx_root_dir.$customfold4))
+{
+    $modx_files_array[]=$modx_root_dir.$customfold4;
+}
+if ($dumpcustomfold5!='' && file_exists($modx_root_dir.$customfold5))
+{
+    $modx_files_array[]=$modx_root_dir.$customfold5;
+}
+
 if (!defined('PCLZIP_TEMPORARY_DIR')) { define( 'PCLZIP_TEMPORARY_DIR', $modx_backup_dir ); }
 
 $archive_file = $modx_backup_dir.$archive_prefix;
@@ -258,7 +293,9 @@ switch($opcode)
         } else
             {
                 unlink($deletefile);
-                $out .= "<p class=\"alert\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename Deleted<br /></p>";
+                $out .= "<div class=\"alert\">
+                <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>
+                <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename Deleted<br /></div>";
             }
     break;
     
@@ -464,22 +501,49 @@ $(document).ready(function(){
 <label><input type="checkbox" class="checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
 </div>
 
-<div class="left">
+<div class="left border-right">
 <h3><i class="fa fa-database" aria-hidden="true"></i> Database Backup</h3>
 <label><input type="checkbox" name="dumpdbase" class="checkAll checkReq checkMin" checked="checked" /> include  .sql database backup to zip </label><br /><br />
 </div>
+<div class="left">
+EOD;
 
-<div class="border-top"style='clear:both'></div>
+if ($customfold1!=''){
+$out .= '
+<h3><i class="fa fa-folder-open" aria-hidden="true"></i> Custom Files and Folders</h3>
+<label><input type="checkbox" name="dumpcustomfold1" class="checkAll"/>  '.$customfold1.' </label><br />';
+}
+if ($customfold2!=''){
+$out .=  '
+<label><input type="checkbox" name="dumpcustomfold2" class="checkAll"/>  '.$customfold2.' </label><br />';
+}
+if ($customfold3!=''){
+$out .= '
+<label><input type="checkbox" name="dumpcustomfold3" class="checkAll"/>  '.$customfold3.' </label><br />';
+}
+if ($customfold4!=''){
+$out .= '
+<label><input type="checkbox" name="dumpcustomfold4" class="checkAll"/>  '.$customfold4.' </label><br />';
+}
+if ($customfold5!=''){
+$out .= '
+<label><input type="checkbox" name="dumpcustomfold5" class="checkAll"/>  '.$customfold5.' </label><br />';
+}
+
+$out .=  '
+</div>
+
+<div class="border-top" style="clear:both"></div>
 </div>
 <span class="actionButtons evobkpbuttons">
              
              <!--- <a href="#" id="more-options-button">More Options</a>-->
-             <a class="primary" href="#" onclick="postForm('generate')" value="Backup Now!" />$backup</a>
+             <a class="primary" href="#" onclick="postForm(\'generate\')" value="Backup Now!" />'.$backup.'</a>
         </span>
 
 </form>
 
-<div style='clear:both'></div>
+<div style="clear:both"></div>
 
-EOD;
+';
 ?>

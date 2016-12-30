@@ -41,7 +41,20 @@ table.evobackup .btn {
 }
 .info {color: #777;}
 .info b{color: #3697CD;}
-.alert {padding: 20px;background-color: #f44336; /* Red */color: white;margin-bottom: 5px;}
+.alert {padding: 20px;background-color: #f44336; color: white;margin-bottom: 5px;}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
+}
 .success {color: #07b922;}
 .yellow {font-size:14px; color:#444; background-color: yellow; border-radius:50%; border: 1px solid #f7bf04; padding:5px 7px; margin-right:5px;}
 .left {float: left; padding:10px; margin-right:20px;}
