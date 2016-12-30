@@ -30,6 +30,11 @@ https://modx.com/extras/package/modbak
 1. Edit /assets/modules/modbak/settings.php, and set $modx_backup_dir to backup dir in new directory
 2. Set Module configuration > **Backup Directory** to your new backup dir
 
+# troubleshooting
+#### 1) module does not complete backup, stops with a temp file of 50M
+
+**Solution**
+Remove some folders from backup or increase "ZIP memory limit" value in module configuration page
 
 # to do
 
