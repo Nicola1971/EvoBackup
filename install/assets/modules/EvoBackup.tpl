@@ -6,7 +6,7 @@
  * @version     1.2 Beta 3
  * @author      Author: Nicola Lambathakis http://www.tattoocms.it/
  * @internal	@modx_category Manager
- * @internal    @properties &backup_dir=Backup Directory:;string;/backup/;; Need to Edit /assets/modules/modbak/settings.php too, and set $modx_backup_dir. Make sure read/write permission is set &zip_t_limit=zip time limit:;string;250 &zip_m_limit=zip memory limit:;string;50M &db_t_limit=db time limit:;string;250 &db_m_limit=db memory limit:;string;50M &dump_logs=Dump logs tables:;menu;false,true;false;;include Log table data in database backup, these tables can be quite large, so default is to exclude them
+ * @internal    @properties &backup_dir=Backup Directory:;string;/_evobackup_archives/;; Need to edit /assets/modules/evobackup/settings.php too and set $modx_backup_dir. Make sure read/write permission is set. &zip_t_limit=ZIP time limit:;string;250 &zip_m_limit=ZIP memory limit:;string;50M &db_t_limit=DB time limit:;string;250 &db_m_limit=DB memory limit:;string;50M &dump_logs=Dump logs tables:;menu;false,true;false;;Include Log table data in database backup. These tables can be quite large, so default is to exclude them.
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
  */
 /**
@@ -64,7 +64,7 @@ $site_name = str_replace(' ','_', $modx->config['site_name']);
 $archive_prefix = (isset($archive_prefix))? $archive_prefix: $site_name;
 
 // Suffix to add to archive name  (ie modxbackup12-11-2005-1735)   .zip will be added to output file
-$archive_suffix = date('d-m-Y-Hi');
+$archive_suffix = '_'.date('Y-m-d-Hi');
 
 // sql database filename
 // 5mar07 - change from database_backup.sql to sitename.sql - robstemp
@@ -76,7 +76,7 @@ $table_prefix = (isset($table_prefix))? $table_prefix: $GLOBALS['table_prefix'];
 // include Log table data in database backup, these tables can be quite large, so default is to exclude them
 $dump_log_tables = $dump_logs;
 
-$out =  '';
+$out = '';
 
 // temporary file for archive, this is created and then renamed if zip is successfull
 $tempfile = $modx_backup_dir.'tmpbackup.zip';
