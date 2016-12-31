@@ -16,6 +16,8 @@ https://modx.com/extras/package/modbak
 * MODxRE2 styles
 * Font Awesome
 * Complete restyle for Evo 1.2.1
+* Multilanguage
+* Support for custom/renamed manager folder
 * Evolution installer for Package Manager and Extras module
 * Help
 * various mods
