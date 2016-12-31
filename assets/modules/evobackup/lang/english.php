@@ -38,6 +38,7 @@ $_lang['medium_backup'] = 'Medium Backup';
 $_lang['full_backup'] = 'Full Site Backup';
 //assets Backup
 $_lang['assets_backup'] = 'Assets Backup';
+$_lang['check_all'] = 'Select All';
 $_lang['whole_assets'] = 'whole assets folder';
 $_lang['assets_user_folders'] = 'User Folders';
 $_lang['assets_elements_folders'] = 'Elements Folders';
@@ -60,7 +61,6 @@ $_lang['custom_files_backup'] = 'Custom Files and Folders';
 $_lang['backup_button_text'] = 'Backup Now!';
 $_lang['help'] = 'Help';
 $_lang['settings_module'] = 'Settings';
-$_lang['check_all'] = 'Select All';
 //help
 $_lang['help_light_backup'] = '<p>This backup includes only required files, user files and db.<br/> Generates a smaller zip archive and requires less memory and resources</p>  ';
 $_lang['help_medium_backup'] = '<p>This backup includes required files, user files, elements (snippets, modules, plugins..) and db.<br/> Generates a medium zip archive</p> ';
