@@ -39,15 +39,15 @@ $_lang['full_backup'] = 'Backup Completo';
 //assets Backup
 $_lang['assets_backup'] = 'Assets Backup';
 $_lang['check_all'] = 'Seleziona tutto';
-$_lang['whole_assets'] = 'assets e tutte le sotto directory';
-$_lang['assets_user_folders'] = 'Directory Utente';
-$_lang['assets_elements_folders'] = 'Directory Elementi';
-$_lang['assets_system_folders'] = 'Directory di Sistema';
+$_lang['whole_assets'] = 'e tutte le sotto directory';
+$_lang['assets_user_folders'] = 'Utente';
+$_lang['assets_elements_folders'] = 'Elementi';
+$_lang['assets_system_folders'] = 'Sistema';
 //manager backup
 $_lang['manager_backup'] = 'Manager Backup';
-$_lang['whole_manager'] = 'manager e tutte le sotto directory';
+$_lang['whole_manager'] = 'e tutte le sotto directory';
 $_lang['only_those_manager_files'] = 'Solo questi file e directory:';
-$_lang['manager_config_file'] = 'file di configurazione';
+$_lang['manager_config_file'] = 'configurazione';
 $_lang['manager_themes'] = 'temi del manager';
 //root backup
 $_lang['root_backup'] = 'Backup file in root';
