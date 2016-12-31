@@ -1,4 +1,4 @@
-# EvoBackup 1.2 beta 4.1
+# EvoBackup 1.2 beta 4.2
 Backup Evo files and compress into .zip for easy download
 
 Based on modbak by stempy
@@ -44,6 +44,6 @@ Remove some folders from backup or increase "ZIP memory limit" value in module c
 # to do
 
 * **change backup folder path**: avoid edit hardcoded path in settings.php
-* multi language
+* multi language (done in 4.2)
 * option to add custom assets folders - ie: assets/galleries (done in beta 4.1)
 * support for custom/renamed manager folder (done in beta 4.0)
