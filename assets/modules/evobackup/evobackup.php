@@ -12,9 +12,14 @@ if(!$modx->hasPermission('bk_manager')) {
 }
 
 // module info
-$module_version = '1.2 (beta 4.1)';
+$module_version = '1.2 (beta 4.2)';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
-
+//lang
+$_lang = array();
+include($mods_path.'evobackup/lang/english.php');
+if (file_exists($mods_path.'evobackup/lang/' . $modx->config['manager_language'] . '.php')) {
+    include($mods_path.'evobackup/lang/' . $modx->config['manager_language'] . '.php');
+}
 $out ='';
 // check if backup exists and is writable
 if (!file_exists($modx_backup_dir))
@@ -382,11 +387,11 @@ switch($opcode)
 /**
 * Display list of backups with download
 */
-global $modx, $_lang;
-$out .= "<h2><i class=\"fa fa-download\" aria-hidden=\"true\"></i> Manage Backups:</h2><p> Download or delete previous backup archives</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
-    <th style=\"width: 300px;\">".$_lang['files_filename']."</th>
-    <th>".$_lang['files_filesize']."</b></th>
-    <th style=\"text-align:right;\">".$_lang['files_fileoptions']."</th>
+global $modx;
+$out .= "<h2><i class=\"fa fa-download\" aria-hidden=\"true\"></i> ".$_lang['manage_backup']."</h2><p> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
+    <th style=\"width: 300px;\">".$_lang['backup_filename']."</th>
+    <th>".$_lang['backup_filesize']."</b></th>
+    <th style=\"text-align:right;\">".$_lang['backup_file_options']."</th>
   </tr></thead><tbody>
   ";
 if ($handle = opendir($modx_backup_dir)) {
@@ -396,8 +401,8 @@ if ($handle = opendir($modx_backup_dir)) {
        {
            $fs = filesize($modx_backup_dir.$file)/1024; 
            $out .= "<tr><td><i class=\"fa fa-file-archive-o yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
-                  ."<td style=\"text-align:right;\"><a title='".$_lang['file_download_file']."' class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class='fa fa-download'></i></a> 
-                   <a title='".$_lang['file_delete_file']."' class=\"btn btn-default btn-sm\" onclick=\"postForm('delete','$file')\" /><i class='fa fa-trash'></i></a></td></tr>";
+                  ."<td style=\"text-align:right;\"><a title='".$_lang['download_backup']."' class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class='fa fa-download'></i></a> 
+                   <a title='".$_lang['delete_backup']."' class=\"btn btn-default btn-sm\" onclick=\"postForm('delete','$file')\" /><i class='fa fa-trash'></i></a></td></tr>";
        }
    }
    closedir($handle);
@@ -405,18 +410,18 @@ if ($handle = opendir($modx_backup_dir)) {
 
 $backup = $_lang['backup'];
 $help = $_lang['help'];
-$Config = $_lang["settings_config"];
+$Config = $_lang["settings_module"];
 $check_all= $_lang["check_all"];
-$out .= <<<EOD
+$out .= '
 </tbody></table>
 <div id="evobackup-info" style="display:none">
             <p class="element-edit-message">
-            <h3>Light Backup</h3>
-            <p>This backup includes only required files, user files and db.<br/> Generates a smaller zip archive and requires less memory and resources</p>  
-            <h3>Medium Backup</h3>
-            <p>This backup includes required files, user files, elements (snippets, modules, plugins..) and db.<br/> Generates a medium zip archive</p>  
-            <h3>Full Site Backup</h3>
-            <p>This backup includes whole assets and manager folder (included custom sub folders), root files and db backup<br/> Generates a bigger zip archive and requires more memory and resources</p> </p>
+             <h3>'.$_lang['light_backup'].'</h3>
+             '.$_lang['help_light_backup'].'
+            <h3>'.$_lang['medium_backup'].'</h3>
+             '.$_lang['help_medium_backup'].'
+            <h3>'.$_lang['full_backup'].'</h3>
+             '.$_lang['help_full_backup'].'
         </div>
 
  <script>
@@ -424,27 +429,22 @@ $(document).ready(function(){
     $(".evobackup-help").click(function(){
         $("#evobackup-info").toggle(800);
     });
-    $("#more-options-button").click(function(){
-        $("#more-options").toggle(800);
-    });
 });
 </script>
-<h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> Generate a new Backup Archive:</h2>
-<p><span class="info"><b><a href="#" class="evobackup-help"><i class="fa fa-question-circle fa-lg " aria-hidden="true"></i></a></b></span> Choose Backup type: <span class="info">
-<input type="checkbox" id="checkMinBackup"><b>Light Backup</b> 
-<input type="checkbox" id="checkReqBackup" checked="checked"><b>Medium Backup</b>  <input type="checkbox" id="checkAllBackup" > <b>Full Site Backup</b></span></p>
-     
-             <!--- <a href="#" id="more-options-button">More Options</a>-->
+<h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> '.$_lang['generate_backup'].'</h2>
+<p><span class="info"><b><a href="#" title="'.$_lang['help'].'" class="evobackup-help"><i class="fa fa-question-circle fa-lg " aria-hidden="true"></i></a></b></span> '.$_lang['choose_backup'].' <span class="info">
+<input type="checkbox" id="checkMinBackup"><b>'.$_lang['light_backup'].'</b> 
+<input type="checkbox" id="checkReqBackup" checked="checked"><b>'.$_lang['medium_backup'].'</b>  <input type="checkbox" id="checkAllBackup" ><b>'.$_lang['full_backup'].'</b></span></p>
 
-<div class="border-top"style='clear:both'></div>
-<div id="more-options" style="display:inline">
+<div class="border-top" style="clear:both"></div>
+<div id="more-options">
 <div class="left border-right">
-<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Assets Backup</h3>
-<p class="info"><input type="checkbox" id="checkAllAssets" > $check_all  
- <label><input type="checkbox" name="dumpassets" class="checkAll"/>  <b>/assets</b> (Whole assets folder)</label></p>
+<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> '.$_lang['assets_backup'].'</h3>
+<p class="info"><input type="checkbox" id="checkAllAssets" > '.$_lang['check_all'].' 
+ <label><input type="checkbox" name="dumpassets" class="checkAll"/>  <b>/assets</b> ('.$_lang['whole_assets'].')</label></p>
 
 <div class="left border-right">
-<h4>User Folders</h4>
+<h4>'.$_lang['assets_user_folders'].'</h4>
 <label><input type="checkbox" name="dumptemplates" class="checkAssets checkReq checkMin" checked="checked"/>  /templates</label><br />
 <label><input type="checkbox" name="dumpfiles" class="checkAssets checkReq checkMin" checked="checked"/>  /files </label><br />
 <label><input type="checkbox" name="dumpflash" class="checkAssets checkReq checkMin" checked="checked"/>  /flash </label><br />
@@ -453,7 +453,7 @@ $(document).ready(function(){
 </div>
 
 <div class="left border-right">
-<h4>Elements Folders</h4>
+<h4>'.$_lang['assets_elements_folders'].'</h4>
 <label><input type="checkbox" name="dumpmodules" class="checkAssets checkReq" checked="checked"/>  /modules</label><br />
 <label><input type="checkbox" name="dumpplugins" class="checkAssets checkReq" checked="checked"/>  /plugins</label><br />
 <label><input type="checkbox" name="dumpsnippets" class="checkAssets checkReq" checked="checked"/>  /snippets</label><br />
@@ -463,7 +463,7 @@ $(document).ready(function(){
 </div>
 
 <div class="left">
-<h4>System Folders</h4>
+<h4>'.$_lang['assets_system_folders'].'</h4>
 <label><input type="checkbox" class="checkAssets" name="dumpthumbs" /> /.thumbs </label><br />
 <label><input type="checkbox" class="checkAssets" name="dumpbackup"/> /backup </label><br />
 <label><input type="checkbox" class="checkAssets" name="dumpcache" /> /cache </label><br />
@@ -477,24 +477,24 @@ $(document).ready(function(){
 </div>
 
 <div class="left" style="padding-right: 25px;">
-<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> <span class="capitalize">$MGR_DIR</span> Backup</h3>
-<p class="info"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> <b>/$MGR_DIR</b>  (Whole $MGR_DIR folder)</label></p>
+<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> '.$_lang['manager_backup'].'</h3>
+<p class="info"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> <b>/'.$MGR_DIR.'</b>  ('.$_lang['whole_manager'].')</label></p>
 <div class="left">
-<h4>Only those $MGR_DIR files and folders:</h4>
-<label><input type="checkbox" name="dumpconfig" class="checkReq checkMin" checked="checked"/> /includes/config.inc.php </label><span class="info">(config file)</span><br />
+<h4>'.$_lang['only_those_manager_files'].'</h4>
+<label><input type="checkbox" name="dumpconfig" class="checkReq checkMin" checked="checked"/> /includes/config.inc.php </label><span class="info">('.$_lang['manager_config_file'].')</span><br />
 <label><input type="checkbox" name="dumpmanhtaccess" /> /.htaccess </label><br />
-<label><input type="checkbox" name="dumpthemes" /> /media/styles </label><span class="info">(manager themes)</span><br />
+<label><input type="checkbox" name="dumpthemes" /> /media/styles </label><span class="info">('.$_lang['manager_themes'].')</span><br />
 <label><input type="checkbox" name="dumpmframes" /> /frames </label><br />
 <label><input type="checkbox" name="dumpmincludes" /> /includes </label><br />
 <label><input type="checkbox" name="dumpmmedia" /> /media </label><br />
 <label><input type="checkbox" name="dumpmprocessors" /> /processors </label><br />
 </div>
 </div>
-<div class="border-top"style='clear:both'></div>
+<div class="border-top" style="clear:both"></div>
 
 <div class="left border-right" style="padding-right: 25px;">
-<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> Root files Backup</h3>
-<p>Select additional root files to include in archive</p>
+<h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> '.$_lang['root_backup'].'</h3>
+<p>'.$_lang['root_backup_descr'].'</p>
 <label><input type="checkbox" class="checkAll" name="dumphtaccess" /> .htaccess </label><br />
 <label><input type="checkbox" class="checkAll checkReq" name="dumprobots" checked="checked"/> robots.txt </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindex" />  index.php </label><br />
@@ -502,15 +502,15 @@ $(document).ready(function(){
 </div>
 
 <div class="left border-right">
-<h3><i class="fa fa-database" aria-hidden="true"></i> Database Backup</h3>
-<label><input type="checkbox" name="dumpdbase" class="checkAll checkReq checkMin" checked="checked" /> include  .sql database backup to zip </label><br /><br />
+<h3><i class="fa fa-database" aria-hidden="true"></i> '.$_lang['db_backup'].'</h3>
+<label><input type="checkbox" name="dumpdbase" class="checkAll checkReq checkMin" checked="checked" /> '.$_lang['include_db_to_zip'].' </label><br /><br />
 </div>
 <div class="left">
-EOD;
+';
 
 if ($customfold1!=''){
 $out .= '
-<h3><i class="fa fa-folder-open" aria-hidden="true"></i> Custom Files and Folders</h3>
+<h3><i class="fa fa-folder-open" aria-hidden="true"></i> '.$_lang['custom_files_backup'].'</h3>
 <label><input type="checkbox" name="dumpcustomfold1" class="checkAll"/>  '.$customfold1.' </label><br />';
 }
 if ($customfold2!=''){
@@ -538,7 +538,7 @@ $out .=  '
 <span class="actionButtons evobkpbuttons">
              
              <!--- <a href="#" id="more-options-button">More Options</a>-->
-             <a class="primary" href="#" onclick="postForm(\'generate\')" value="Backup Now!" />'.$backup.'</a>
+             <a class="primary" href="#" onclick="postForm(\'generate\')" value="Backup Now!" />'.$_lang['backup_button_text'].'</a>
         </span>
 
 </form>
