@@ -24,6 +24,8 @@ https://modx.com/extras/package/modbak
 
 video: https://youtu.be/UfpgFIBOxrg
 
+for automatic backups check https://github.com/Nicola1971/AutoEvoBackup
+
 ![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/backupb4.1.png)
 
 # Setup
