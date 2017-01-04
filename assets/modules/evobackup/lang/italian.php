@@ -22,8 +22,11 @@
 
 $_lang['modulename'] = 'EvoBackup';
 $_lang['backup'] = 'backup';
+$_lang['TabManageBackup'] = 'Gestisci Archivi di Backup';
+$_lang['TabMODxBackup'] = 'Gestisci Backup Sql';
 //Manage Backups
-$_lang['manage_backup'] = 'Gestisci Backups';
+$_lang['manage_backup'] = 'Gestisci archivi di Backup generati da EvoBackup';
+$_lang['manage_modx_backup'] = 'Gestisci i backup .sql del sitema MODx';
 $_lang['manage_backup_descr'] = 'Scarica o cancella i precedenti backup';
 $_lang['backup_filename'] = 'Nome file';
 $_lang['backup_filesize'] = 'Dimensione';
@@ -62,8 +65,8 @@ $_lang['backup_button_text'] = 'Backup!';
 $_lang['help'] = 'Aiuto';
 $_lang['settings_module'] = 'Configurazione';
 //help
-$_lang['help_light_backup'] = '<p>Questo backup include solo i file necessari, i file utente e il backup del db. <br/> Genera un archivio zip più piccolo e richiede meno memoria e risorse';
+$_lang['help_light_backup'] = '<p>Questo backup include solo i file necessari, i file utente e il backup del db. <br/> Genera un archivio zip più piccolo e richiede meno memoria e risorse</p>';
 $_lang['help_medium_backup'] = '<p>Questo backup include file necessari, i file utente, elementi (frammenti, moduli, plugin ..) e il backup del db. <br/> Genera un archivio zip di medie dimensioni</p> ';
-$_lang['help_full_backup'] = '<p>Questo backup include le directory assets e manager (incluse sottocartelle personalizzate), i file di root e il backup del db <br/> Genera un archivio zip più grande e richiede più memoria e risorse</p> </p>';
+$_lang['help_full_backup'] = '<p>Questo backup include le directory assets e manager (incluse sottocartelle personalizzate), i file di root e il backup del db <br/> Genera un archivio zip più grande e richiede più memoria e risorse</p>';
 
 
