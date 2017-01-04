@@ -46,7 +46,7 @@ table.evobackup .btn {
 .info b{color: #3697CD;}
 .alert {padding: 20px;background-color: #f44336; color: white;margin-bottom: 5px;}
 .success {padding: 20px;background-color: #07b922; color: white;margin-bottom: 5px;}
-.success a:link {color: white!important;}
+.success a.textlink:link {color: white!important;}
 .closebtn {
     margin-left: 15px;
     color: white;
