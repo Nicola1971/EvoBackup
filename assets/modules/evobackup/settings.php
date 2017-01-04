@@ -5,7 +5,7 @@
 */
 
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].'/_evobackup_archives/';
-
+$modx_db_backup_dir = $_SERVER['DOCUMENT_ROOT'].'/assets/backup/'; 
 // Generate Archive(s) within subdir of backup directory - ie /backup_dir/site1/site1_date1_db.zip
 // /site1/site1_date2_db.zip                              
 // /site2/site2_date1_db.zip
