@@ -27,7 +27,7 @@ $_lang['TabManageBackup'] = 'Gestisci Archivi di Backup';
 $_lang['TabMODxBackup'] = 'Gestisci Backup Sql';
 //Manage Backups
 $_lang['manage_backup'] = 'Gestisci archivi di Backup generati da EvoBackup';
-$_lang['manage_modx_backup'] = 'Gestisci i backup .sql del sitema MODX';
+$_lang['manage_modx_backup'] = 'Gestisci i backup .sql del sistema';
 $_lang['manage_backup_descr'] = 'Scarica o cancella i precedenti backup';
 $_lang['backup_filename'] = 'Nome file';
 $_lang['backup_filesize'] = 'Dimensione';
