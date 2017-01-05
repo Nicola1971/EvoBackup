@@ -1,4 +1,4 @@
-# EvoBackup 1.2 RC1
+# EvoBackup 1.2 RC2
 Backup Evo files and compress into .zip for easy download
 
 Based on modbak by stempy
