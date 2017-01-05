@@ -22,11 +22,12 @@
 
 $_lang['modulename'] = 'EvoBackup';
 $_lang['backup'] = 'backup';
+$_lang["bk_manager"] = 'Backup Manager';
 $_lang['TabManageBackup'] = 'Manage Backup Archives';
 $_lang['TabMODxBackup'] = 'Manage Database Backups';
 //Manage Backups
 $_lang['manage_backup'] = 'Manage EvoBackup Archives Backups';
-$_lang['manage_modx_backup'] = 'Manage MODx System .sql Backups';
+$_lang['manage_modx_backup'] = 'Manage MODX System .sql Backups';
 $_lang['manage_backup_descr'] = 'Download or delete previous backup archives';
 $_lang['backup_filename'] = 'Filename';
 $_lang['backup_filesize'] = 'File size';
@@ -68,5 +69,11 @@ $_lang['settings_module'] = 'Settings';
 $_lang['help_light_backup'] = '<p>This backup includes only required files, user files and db.<br/> Generates a smaller zip archive and requires less memory and resources</p>  ';
 $_lang['help_medium_backup'] = '<p>This backup includes required files, user files, elements (snippets, modules, plugins..) and db.<br/> Generates a medium zip archive</p> ';
 $_lang['help_full_backup'] = '<p>This backup includes whole assets and manager folder (included custom sub folders), root files and db backup<br/> Generates a bigger zip archive and requires more memory and resources</p>';
-
-
+//Alerts
+$_lang['backup_successful'] = 'Backup Successful!';
+$_lang['backup_directory'] = 'Backup directory';
+$_lang['does_not_exist'] = 'does not exist';
+$_lang['is_not_writable'] = 'is NOT writable!';
+$_lang['file'] = 'File';
+$_lang['deleted'] = 'Deleted';
+$_lang['unable_to_backup_db'] = 'Unable to Backup Database';

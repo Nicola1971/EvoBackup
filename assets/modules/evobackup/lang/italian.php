@@ -22,6 +22,7 @@
 
 $_lang['modulename'] = 'EvoBackup';
 $_lang['backup'] = 'backup';
+$_lang["bk_manager"] = 'Backup Manager';
 $_lang['TabManageBackup'] = 'Gestisci Archivi di Backup';
 $_lang['TabMODxBackup'] = 'Gestisci Backup Sql';
 //Manage Backups
@@ -68,5 +69,12 @@ $_lang['settings_module'] = 'Configurazione';
 $_lang['help_light_backup'] = '<p>Questo backup include solo i file necessari, i file utente e il backup del db. <br/> Genera un archivio zip più piccolo e richiede meno memoria e risorse</p>';
 $_lang['help_medium_backup'] = '<p>Questo backup include file necessari, i file utente, elementi (frammenti, moduli, plugin ..) e il backup del db. <br/> Genera un archivio zip di medie dimensioni</p> ';
 $_lang['help_full_backup'] = '<p>Questo backup include le directory assets e manager (incluse sottocartelle personalizzate), i file di root e il backup del db <br/> Genera un archivio zip più grande e richiede più memoria e risorse</p>';
-
+//Alerts
+$_lang['backup_successful'] = 'Backup Eseguito con successo!';
+$_lang['backup_directory'] = 'La Directory di Backup ';
+$_lang['does_not_exist'] = 'non esiste';
+$_lang['is_not_writable'] = 'NON è scrivibile!';
+$_lang['file'] = 'File';
+$_lang['deleted'] = 'Cancellato';
+$_lang['unable_to_backup_db'] = 'Impossibile eseguire il Backup del Database';
 

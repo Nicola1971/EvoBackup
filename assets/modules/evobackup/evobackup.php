@@ -32,10 +32,10 @@ $out .= $onManagerMainFrameHeaderHTMLBlock;
 // check if backup exists and is writable
 if (!file_exists($modx_backup_dir))
 {
-    $BACKUPERROR = "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Backup directory <strong>$modx_backup_dir</strong> does not exist";
+    $BACKUPERROR = "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> ".$_lang['backup_directory']." <strong>$modx_backup_dir</strong> ".$_lang['does_not_exist']."";
 } elseif(!is_writable($modx_backup_dir))
     {
-        $BACKUPERROR = "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Backup directory <strong>$modx_backup_dir</strong> is NOT writable!";
+        $BACKUPERROR = "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> ".$_lang['backup_directory']." <strong>$modx_backup_dir</strong> ".$_lang['is_not_writable']."";
     }
 
 if (isset($BACKUPERROR) && $BACKUPERROR!='') {
@@ -303,13 +303,13 @@ switch($opcode)
         $deletefile = $modx_backup_dir.$filename;
         if (!file_exists($deletefile))
         {
-            $out .= "<p class=\"alert\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> File $filename does not exist<br /></p>";
+            $out .= "<p class=\"alert\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> ".$_lang['file']." $filename ".$_lang['does_not_exist']."<br /></p>";
         } else
             {
                 unlink($deletefile);
                 $out .= "<div class=\"alert\">
                 <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>
-                <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename Deleted<br /></div>";
+                <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename ".$_lang['deleted']."<br /></div>";
             }
     break;
     case 'deletesql': // delete file
@@ -317,13 +317,13 @@ switch($opcode)
         $deletefile = $modx_db_backup_dir.$filename;
         if (!file_exists($deletefile))
         {
-            $out .= "<p class=\"alert\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> File $filename does not exist<br /></p>";
+            $out .= "<p class=\"alert\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> File $filename ".$_lang['does_not_exist']."<br /></p>";
         } else
             {
                 unlink($deletefile);
                 $out .= "<div class=\"alert\">
                 <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>
-                <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename Deleted<br /></div>";
+                <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename ".$_lang['deleted']."<br /></div>";
             }
     break;    
     case 'generate': // generate backup
@@ -342,7 +342,7 @@ switch($opcode)
             return $out;
         }
         rename($tempfile,$archive_file);       
-        $out .= "<div class=\"success\"><span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span><h2><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> EvoBackup Backup Successful </h2><strong> <a  class=\"textlink\"  href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\">$archive_file</a></strong><br /><br />
+        $out .= "<div class=\"success\"><span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span><h2><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> ".$_lang['backup_successful']." </h2><strong> <a  class=\"textlink\"  href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\">$archive_file</a></strong><br /><br />
         <span class=\"actionButtons evobkpbuttons\">
              <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
         </span></div>";    
@@ -379,7 +379,7 @@ switch($opcode)
           $out .= "<script type=\"text/javascript\" language=\"javascript\">postForm('zipdatabase','".basename($filename)."');</script>";
          }       
         else {
-	        $e->setError(1,"Unable to Backup Database");
+	        $e->setError(1,"".$_lang['unable_to_backup_db']."");
 	        $e->dumpError();
         }
   
@@ -408,7 +408,7 @@ switch($opcode)
           //          if ($deletebackupsql!='') {
       unlink($modx_db_backup_dir.$database_filename);
     //}
-    $out .= "<div class=\"success\"><span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span><h2><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> EvoBackup Backup Successful </h2><strong><a class=\"textlink\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($fname."_db.".$ext)."\">".$modx_backup_dir.$fname."_db.".$ext."</a></strong><br /><br />
+    $out .= "<div class=\"success\"><span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span><h2><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> ".$_lang['backup_successful']." </h2><strong><a class=\"textlink\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($fname."_db.".$ext)."\">".$modx_backup_dir.$fname."_db.".$ext."</a></strong><br /><br />
     <span class=\"actionButtons evobkpbuttons\">
              <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($fname."_db.".$ext)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
         </span>
@@ -621,6 +621,9 @@ if ($handle = opendir($modx_db_backup_dir)) {
    closedir($handle);
 }
 
+global $lang;
+$out .= '</tbody></table><span class="actionButtons evobkpbuttons">
+             <a href="index.php?a=93" class="primary" style="display:inline-block;" onclick="document.snapshot.save.click();">'.$_lang['bk_manager'].'</a>
+        </span></div>';
 
-$out .= '</tbody></table></div>';
 ?>
