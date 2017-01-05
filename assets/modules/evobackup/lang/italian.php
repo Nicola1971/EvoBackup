@@ -27,7 +27,7 @@ $_lang['TabManageBackup'] = 'Gestisci Archivi di Backup';
 $_lang['TabMODxBackup'] = 'Gestisci Backup Sql';
 //Manage Backups
 $_lang['manage_backup'] = 'Gestisci archivi di Backup generati da EvoBackup';
-$_lang['manage_modx_backup'] = 'Gestisci i backup .sql del sitema MODx';
+$_lang['manage_modx_backup'] = 'Gestisci i backup .sql del sitema MODX';
 $_lang['manage_backup_descr'] = 'Scarica o cancella i precedenti backup';
 $_lang['backup_filename'] = 'Nome file';
 $_lang['backup_filesize'] = 'Dimensione';
@@ -69,6 +69,11 @@ $_lang['settings_module'] = 'Configurazione';
 $_lang['help_light_backup'] = '<p>Questo backup include solo i file necessari, i file utente e il backup del db. <br/> Genera un archivio zip più piccolo e richiede meno memoria e risorse</p>';
 $_lang['help_medium_backup'] = '<p>Questo backup include file necessari, i file utente, elementi (frammenti, moduli, plugin ..) e il backup del db. <br/> Genera un archivio zip di medie dimensioni</p> ';
 $_lang['help_full_backup'] = '<p>Questo backup include le directory assets e manager (incluse sottocartelle personalizzate), i file di root e il backup del db <br/> Genera un archivio zip più grande e richiede più memoria e risorse</p>';
+$_lang['archive_backup_help_title'] = 'Scarica o cancella gli archivi di backup in formato .zip';
+$_lang['archive_backup_help'] = '<p>Note: gli archivi .zip con suffisso <b>_db</b> contengono un file .sql con il Backup del Database</p><p>Gli archivi privi del suffisso <b>_db</b> contengono solo il backup dei files</p>
+<p>Per creare automaticamente archivi di backup, scarica e installa <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</p> ';
+$_lang['sql_backup_help_title'] = 'Scarica o cancella file .sql con il Backup del Database';
+$_lang['sql_backup_help'] = '<p>I backup .sql possono essere generati manualmente, utilizzando lo strumento di sistema di <a href="index.php?a=93"> Backup e Snapshot</a></p> <p>Per creare automaticamente file .sql con il Backup del Database, scarica e installa <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</p>';
 //Alerts
 $_lang['backup_successful'] = 'Backup Eseguito con successo!';
 $_lang['backup_directory'] = 'La Directory di Backup ';

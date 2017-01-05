@@ -69,6 +69,7 @@ table.evobackup .btn {
 .element-edit-message {
   padding-bottom: 10px;
   border-bottom: 1px solid #ededed;
+  border-top:0!important;
   margin-bottom: 15px;
   color: #777;
 }

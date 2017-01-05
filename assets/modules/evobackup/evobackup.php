@@ -14,7 +14,7 @@ if(!$modx->hasPermission('bk_manager')) {
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
 $modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 // module info
-$module_version = '1.2 (RC1)';
+$module_version = '1.2 (RC2)';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 //lang
@@ -431,28 +431,32 @@ $Config = $_lang["settings_module"];
 $check_all= $_lang["check_all"];
 $out .= '
 </tbody></table></form>
-<div id="evobackup-info" style="display:none">
-            <p class="element-edit-message">
-             <h3>'.$_lang['light_backup'].'</h3>
-             '.$_lang['help_light_backup'].'
-            <h3>'.$_lang['medium_backup'].'</h3>
-             '.$_lang['help_medium_backup'].'
-            <h3>'.$_lang['full_backup'].'</h3>
-             '.$_lang['help_full_backup'].'
-             </p>
-        </div>
+
 
  <script>
 $(document).ready(function(){
     $(".evobackup-help").click(function(){
         $("#evobackup-info").toggle(800);
     });
-   $(".evobackup-sql").click(function(){
-   $("#evobackup-sql-butt").toggle(800);
+    $(".archivebackup-help").click(function(){
+        $("#archivebackup-info").toggle(800);
+    });
+    $(".sqlbackup-help").click(function(){
+        $("#sqlbackup-info").toggle(800);
     });
 });
 </script>
 <h2>'.$_lang['generate_backup'].'</h2>
+<div id="evobackup-info" style="display:none">
+            <div class="element-edit-message">
+             <h3>'.$_lang['light_backup'].'</h3>
+             '.$_lang['help_light_backup'].'
+            <h3>'.$_lang['medium_backup'].'</h3>
+             '.$_lang['help_medium_backup'].'
+            <h3>'.$_lang['full_backup'].'</h3>
+             '.$_lang['help_full_backup'].'
+             </div>
+        </div>
 <p><span class="info"><b><a href="#" title="'.$_lang['help'].'" class="evobackup-help"><i class="fa fa-question-circle fa-lg " aria-hidden="true"></i></a></b></span> '.$_lang['choose_backup'].' <span class="info">
 <input type="checkbox" id="checkMinBackup"><b>'.$_lang['light_backup'].'</b> 
 <input type="checkbox" id="checkReqBackup" checked="checked"><b>'.$_lang['medium_backup'].'</b>  <input type="checkbox" id="checkAllBackup" ><b>'.$_lang['full_backup'].'</b></span></p>
@@ -573,7 +577,14 @@ $out .=  '
 global $modx;
 $out .= "<div class=\"tab-page\" id=\"tabpanel-evofullbkp\">
 	<h2 id=\"tabs-fullbkp\" class=\"tab\"><a href=\"#tabpanel-evofullbkp\"><span><i class=\"fa fa-file-archive-o\" aria-hidden=\"true\"></i> ".$_lang['TabManageBackup']."</span></a></h2>
-    <h2> ".$_lang['manage_backup']."</h2><p> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
+    <h2> ".$_lang['manage_backup']."</h2>
+    <div id=\"archivebackup-info\" style=\"display:none\">
+            <div class=\"element-edit-message\">
+             <h3>".$_lang['archive_backup_help_title']."</h3>
+             ".$_lang['archive_backup_help']."
+             </div>
+        </div>
+    <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"archivebackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
     <th style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
     <th><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
@@ -600,7 +611,14 @@ global $modx;
 $sqlext = '.sql';
 $out .= "<div class=\"tab-page\" id=\"tabpanel-evosqlbkp\">
 	<h2 id=\"tabs-evosql\" class=\"tab\"><a href=\"#tabpanel-evosqlbkp\"><span><i class=\"fa fa-database\" aria-hidden=\"true\"></i> ".$_lang['TabMODxBackup']."</span></a></h2>
-<h2>".$_lang['manage_modx_backup']."</h2><p> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
+<h2>".$_lang['manage_modx_backup']."</h2>
+    <div id=\"sqlbackup-info\" style=\"display:none\">
+            <div class=\"element-edit-message\">
+             <h3>".$_lang['sql_backup_help_title']."</h3>
+             ".$_lang['sql_backup_help']."
+             </div>
+        </div>
+<p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"sqlbackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span>  ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
     <th style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
     <th><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
