@@ -423,7 +423,7 @@ $out .= "<div class=\"tab-pane\" id=\"evobackupPanes\">
         tpResources = new WebFXTabPane( document.getElementById( \"evobackupPanes\" ), true);
     </script>
         <div class=\"tab-page\" id=\"tabEvobackup\">
-    <h2 class=\"tab\"><a href=\"#tabpanel-evobackup\"><span><i class=\"fa fa-file-archive-o\" aria-hidden=\"true\"></i> ".$_lang['modulename']."</span></a></h2>";
+    <h2 class=\"tab\"><a href=\"#tabpanel-evobackup\"><span><i class=\"fa fa-download\" aria-hidden=\"true\"></i> ".$_lang['modulename']."</span></a></h2>";
 
 $backup = $_lang['backup'];
 $help = $_lang['help'];
@@ -572,7 +572,7 @@ $out .=  '
 */    
 global $modx;
 $out .= "<div class=\"tab-page\" id=\"tabpanel-evofullbkp\">
-	<h2 id=\"tabs-fullbkp\" class=\"tab\"><a href=\"#tabpanel-evofullbkp\"><span><i class=\"fa fa-download\" aria-hidden=\"true\"></i> ".$_lang['TabManageBackup']."</span></a></h2>
+	<h2 id=\"tabs-fullbkp\" class=\"tab\"><a href=\"#tabpanel-evofullbkp\"><span><i class=\"fa fa-file-archive-o\" aria-hidden=\"true\"></i> ".$_lang['TabManageBackup']."</span></a></h2>
     <h2> ".$_lang['manage_backup']."</h2><p> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
     <th style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
     <th><b>".$_lang['backup_filesize']."</b></th>
@@ -599,7 +599,7 @@ $out .= '</tbody></table></div>';
 global $modx;
 $sqlext = '.sql';
 $out .= "<div class=\"tab-page\" id=\"tabpanel-evosqlbkp\">
-	<h2 id=\"tabs-evosql\" class=\"tab\"><a href=\"#tabpanel-evosqlbkp\"><span><i class=\"fa fa-download\" aria-hidden=\"true\"></i> ".$_lang['TabMODxBackup']."</span></a></h2>
+	<h2 id=\"tabs-evosql\" class=\"tab\"><a href=\"#tabpanel-evosqlbkp\"><span><i class=\"fa fa-database\" aria-hidden=\"true\"></i> ".$_lang['TabMODxBackup']."</span></a></h2>
 <h2>".$_lang['manage_modx_backup']."</h2><p> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
     <th style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
     <th><b>".$_lang['backup_filesize']."</b></th>
