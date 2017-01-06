@@ -34,6 +34,8 @@ $_lang['backup_filesize'] = 'Dimensione';
 $_lang['backup_file_options'] = 'Opzioni';
 $_lang['delete_backup'] = 'Cancella Backup';
 $_lang['download_backup'] = 'Scarica Backup';
+$_lang['extract_zip_backup'] = 'Estrai archivio di Backup';
+$_lang['restore_sql_backup'] = 'Ripristina Sql Backup';
 //Generate Backup
 $_lang['generate_backup'] = 'Genera un nuovo archivio di Backup';
 $_lang['choose_backup'] = 'Scegli un tipo di Backup:';
@@ -71,9 +73,9 @@ $_lang['help_medium_backup'] = '<p>Questo backup include file necessari, i file 
 $_lang['help_full_backup'] = '<p>Questo backup include le directory assets e manager (incluse sottocartelle personalizzate), i file di root e il backup del db <br/> Genera un archivio zip più grande e richiede più memoria e risorse</p>';
 $_lang['archive_backup_help_title'] = 'Scarica o cancella gli archivi di backup in formato .zip';
 $_lang['archive_backup_help'] = '<p>Note: gli archivi .zip con suffisso <b>_db</b> contengono un file .sql con il Backup del Database</p><p>Gli archivi privi del suffisso <b>_db</b> contengono solo il backup dei files</p>
-<p>Per creare automaticamente archivi di backup, scarica e installa <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</p> ';
+<p>Per creare automaticamente archivi di backup, scarica e installa <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p> ';
 $_lang['sql_backup_help_title'] = 'Scarica o cancella file .sql con il Backup del Database';
-$_lang['sql_backup_help'] = '<p>I backup .sql possono essere generati manualmente, utilizzando lo strumento di sistema di <a href="index.php?a=93"> Backup e Snapshot</a></p> <p>Per creare automaticamente file .sql con il Backup del Database, scarica e installa <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</p>';
+$_lang['sql_backup_help'] = '<p>I backup .sql possono essere generati manualmente, utilizzando lo strumento di sistema di <a href="index.php?a=93"> Backup e Snapshot</a></p> <p>Per creare automaticamente file .sql con il Backup del Database, scarica e installa <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
 //Alerts
 $_lang['backup_successful'] = 'Backup Eseguito con successo!';
 $_lang['backup_directory'] = 'La Directory di Backup ';
@@ -82,4 +84,17 @@ $_lang['is_not_writable'] = 'NON è scrivibile!';
 $_lang['file'] = 'File';
 $_lang['deleted'] = 'Cancellato';
 $_lang['unable_to_backup_db'] = 'Impossibile eseguire il Backup del Database';
+$_lang['archive_extracted'] = 'Archivio Estratto!';
+$_lang['db_extracted'] = 'Database Ripristinato';
+$_lang['error_open_archive'] = 'Impossibile aprire il file zipe';
+// Confirm windows alerts
+$_lang['delete_confirm'] = 'Sei sicuro di voler Cancellare';
+$_lang['delete_confirm_info'] = 'I file cancellati non potranno essere recuperati!';
+$_lang['extract_zip_confirm'] = 'Sei sicuro di voler Estrarre';
+$_lang['extract_to'] = 'in';
+$_lang['backup_folder'] = 'Cartella di Backup';
+$_lang['extract_folder'] = 'Cartella di Estrazione';
+$_lang['extract_zip_info'] = 'Estraendo il file zip di backup nella root del tuo sito, sovrascriverai tutti i file. Questa operazione può essere molto pericolosa!';
+$_lang['restore_sql_confirm'] = 'Sei sicuro di voler Ripristinare';
+$_lang['restore_sql_info'] = 'Ripristinando questo backuo .sql tutti i dati del database saranno sovrascritti. Questa operazione può essere molto pericolosa!';
 
