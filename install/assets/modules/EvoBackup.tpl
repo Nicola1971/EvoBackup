@@ -27,38 +27,11 @@
 *  Courtesy of http://www.phpconcept.net 
 *  ----------------------------------------
 */
-/*
-
-*/
-/**
-*   Variables to set:
-*       modx_backup_dir [string]
-*                Path to create archives and sql file in, must be writable
-* 
-*       archive_prefix  [string]
-*                Prefix for archive filename
-* 
-*       archive_suffix  [string]
-*                Suffix for archive filename
-* 
-*       database_filename [string]
-*                Filename for SQL dump file
-*
-*       table_prefix [string]
-*               Table prefix to dump tables, default is current modx $GLOBALS['table_prefix']
-* 
-*/
 
 // directory to contain zipped archives, default is servers document root, not secure
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
 $modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 $modx_extract_dir = $modx->config['base_path'].$extract_dir;
-/*
-*  $modx_root_dir 
-*        MODx Base path
-*  $mods_path
-*        Modules Path
-*/
 $modx_root_dir =$modx->config['base_path'];
 $mods_path = $modx->config['base_path'] . "assets/modules/";
 $site_name = preg_replace('/[^a-zA-Z0-9]+/', '_', $modx->config['site_name']);
