@@ -17,6 +17,12 @@ https://modx.com/extras/package/modbak
 * Support for custom/renamed manager folder
 * Evolution installer for Package Manager and Extras module
 
+## Available Languages
+* english
+* italian
+* nederlands by [@fourroses666] (https://github.com/fourroses666)
+* spanish by [@risingisland] (https://github.com/risingisland)
+
 video: https://youtu.be/UfpgFIBOxrg
 
 for automatic backups check https://github.com/Nicola1971/AutoEvoBackup
