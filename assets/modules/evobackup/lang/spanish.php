@@ -38,7 +38,7 @@ $_lang['extract_zip_backup'] = 'Extraer archivo de copia de seguridad';
 $_lang['restore_sql_backup'] = 'Restaurar copia de seguridad de SQL';
 //Generate Backup
 $_lang['generate_backup'] = 'Generar un nuevo archivo de copia de seguridad';
-$_lang['choose_backup'] = 'Elija Tipo de copia de seguridad:';
+$_lang['choose_backup'] = 'Elija tipo de copia de seguridad:';
 $_lang['light_backup'] = 'Copia mínima';
 $_lang['medium_backup'] = 'Copia media';
 $_lang['full_backup'] = 'Copia del sitio completo';
@@ -65,24 +65,24 @@ $_lang['include_db_to_zip'] = 'Incluir la copia de seguridad de .sql de la base 
 $_lang['custom_files_backup'] = 'Archivos y carpetas personalizadas';
 //buttons
 $_lang['backup_button_text'] = '¡Crear copia ahora!';
-$_lang['backupdb_button_text'] = 'Backup Database';
-$_lang['backupdbonly_button_text'] = 'Backup Database Only';
-$_lang['close'] = 'Close';
-$_lang['help'] = 'Help';
+$_lang['backupdb_button_text'] = 'Crear copia de seguridad de la base de datos';
+$_lang['backupdbonly_button_text'] = 'Sólo crear copia de la base de datos';
+$_lang['close'] = 'Cerrar';
+$_lang['help'] = 'Ayuda';
 $_lang['settings_module'] = 'Ajustes';
 //help
 $_lang['help_light_backup'] = '<p>Esta copia de seguridad incluye sólo los archivos necesarios, los archivos de usuario y db. <br/> Genera un archivo zip más pequeño y requiere menos memoria y recursos</p>  ';
 $_lang['help_medium_backup'] = '<p>Esta copia de seguridad incluye archivos necesarios, archivos de usuario, elementos (snippets, modules, plugins..) y db. <br/> Genera un archivo zip medio</p> ';
 $_lang['help_full_backup'] = '<p>Esta copia de seguridad incluye recursos completos y carpeta de admin (incluidas subcarpetas personalizadas), archivos raíz y respaldo db <br/> Genera un archivo zip más grande y requiere más memoria y recursos</p>';
 $_lang['archive_backup_help_title'] = 'Descargar o eliminar las copias de seguridad .zip de EvoBackup ';
-$_lang['archive_backup_help'] = '<p>Note: zip archive with <b>_db</b> suffix contains a .sql file with Database Backup</p><p>Archives without <b>_db</b> suffix contains just files</p>
-<p>To create automatic archives backups, download and install <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p> ';
+$_lang['archive_backup_help'] = '<p>Nota: el archivo zip con sufijo <b>_db</b> contiene un archivo .sql con archivos de copia de seguridad de base de datos.</p><p>Archivos sin sufijo <b>_db</b> contiene sólo archivos.</p>
+<p>Para crear copias de seguridad automáticas de archivos, descargue e instale <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p> ';
 $_lang['sql_backup_help_title'] = 'Descargar o eliminar copias de seguridad .sql';
 $_lang['sql_backup_help'] = '<p>Las copias de seguridad de SQL se pueden generar manualmente con el predeterminado <a href="index.php?a=93">MODX Backup Snapshot Manager</a></p> <p>Para crear copias de seguridad .sql automáticas, descargue e instale <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
 //Alerts
 $_lang['backup_successful'] = '¡Copia creada con éxito!';
 $_lang['backupdb_successful'] = '¡Copia Database creada con éxito!';
-$_lang['backupzip_successful'] = '¡Copia archivo creada con éxito!';
+$_lang['backupzip_successful'] = '¡Copia creada con éxito!';
 $_lang['backup_directory'] = 'Directorio de copia de seguridad';
 $_lang['does_not_exist'] = 'no existe';
 $_lang['is_not_writable'] = '¡NO se puede escribir!';
