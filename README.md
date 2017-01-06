@@ -1,4 +1,4 @@
-# EvoBackup 1.2 beta 4.2
+# EvoBackup 1.2 RC2
 Backup Evo files and compress into .zip for easy download
 
 Based on modbak by stempy
@@ -20,11 +20,16 @@ https://modx.com/extras/package/modbak
 * Support for custom/renamed manager folder
 * Evolution installer for Package Manager and Extras module
 * Help
+* Manager Backups in assets/backup (default evo backup sql folder)
 * various mods
 
 video: https://youtu.be/UfpgFIBOxrg
 
-![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/backupb4.1.png)
+for automatic backups check https://github.com/Nicola1971/AutoEvoBackup
+
+![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/bkptab1.png)
+![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/bkptab2.png)
+![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/bkptab3.png)
 
 # Setup
 1. Create directory named "_evobackup_archives"  on your root webserver to hold modx .zip archives, and set read/write permissions to 777
