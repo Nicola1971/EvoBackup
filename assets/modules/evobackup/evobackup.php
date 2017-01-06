@@ -4,16 +4,19 @@
 */
 if(IN_MANAGER_MODE!="true") die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the MODx Content Manager instead of accessing this file directly.");
 global $modx, $_lang;
+
 $MGR_DIR = MGR_DIR;
 if(!$modx->hasPermission('bk_manager')) {	
 	$e->setError(3);
 	$e->dumpError();
     exit;	
 }
-
+$modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
+$modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 // module info
-$module_version = '1.2 (beta 4.2)';
+$module_version = '1.2 (RC2)';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
+
 //lang
 $_lang = array();
 include($mods_path.'evobackup/lang/english.php');
@@ -21,13 +24,18 @@ if (file_exists($mods_path.'evobackup/lang/' . $modx->config['manager_language']
     include($mods_path.'evobackup/lang/' . $modx->config['manager_language'] . '.php');
 }
 $out ='';
+// onManagerMainFrameHeaderHTMLBlock
+$evtOut = $modx->invokeEvent('OnManagerMainFrameHeaderHTMLBlock');
+$onManagerMainFrameHeaderHTMLBlock = is_array($evtOut) ? implode("\n", $evtOut) : '';
+$out .= $onManagerMainFrameHeaderHTMLBlock;
+
 // check if backup exists and is writable
 if (!file_exists($modx_backup_dir))
 {
-    $BACKUPERROR = "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Backup directory <strong>$modx_backup_dir</strong> does not exist";
+    $BACKUPERROR = "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> ".$_lang['backup_directory']." <strong>$modx_backup_dir</strong> ".$_lang['does_not_exist']."";
 } elseif(!is_writable($modx_backup_dir))
     {
-        $BACKUPERROR = "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> Backup directory <strong>$modx_backup_dir</strong> is NOT writable!";
+        $BACKUPERROR = "<i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> ".$_lang['backup_directory']." <strong>$modx_backup_dir</strong> ".$_lang['is_not_writable']."";
     }
 
 if (isset($BACKUPERROR) && $BACKUPERROR!='') {
@@ -42,6 +50,7 @@ $customfold3 = isset ($customfold3) ? $customfold3 : '';
 $customfold4 = isset ($customfold4) ? $customfold4 : '';
 $customfold5 = isset ($customfold5) ? $customfold5 : '';
 // --------------- Set Directories and files to include in archive
+$dumpmanager  = isset($_POST['dumpmanager']) ? $_POST['dumpmanager']:'';
 $dumpmanager  = isset($_POST['dumpmanager']) ? $_POST['dumpmanager']:'';
 $dumpmactions  = isset($_POST['dumpmactions']) ? $_POST['dumpmactions']:'';
 $dumpmframes  = isset($_POST['dumpmframes']) ? $_POST['dumpmframes']:'';
@@ -272,7 +281,7 @@ $opcode     = isset($_POST['opcode']) ? $_POST['opcode']:'';
 $dumpdbase  = isset($_POST['dumpdbase']) ? $_POST['dumpdbase']:'';
 $droptables = isset($_POST['droptables']) ? $_POST['droptables']:'';
 $filename   = isset($_REQUEST['filename']) ? $_REQUEST['filename']:'';
-
+$deletebackupsql  = isset($_POST['deletebackupsql']) ? $_POST['deletebackupsql']:'';
 
 
 $out .= <<<EOD
@@ -294,16 +303,29 @@ switch($opcode)
         $deletefile = $modx_backup_dir.$filename;
         if (!file_exists($deletefile))
         {
-            $out .= "<p class=\"alert\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> File $filename does not exist<br /></p>";
+            $out .= "<p class=\"alert\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> ".$_lang['file']." $filename ".$_lang['does_not_exist']."<br /></p>";
         } else
             {
                 unlink($deletefile);
                 $out .= "<div class=\"alert\">
                 <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>
-                <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename Deleted<br /></div>";
+                <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename ".$_lang['deleted']."<br /></div>";
             }
     break;
-    
+    case 'deletesql': // delete file
+        $modx_backup_default = "../assets/backup/";
+        $deletefile = $modx_db_backup_dir.$filename;
+        if (!file_exists($deletefile))
+        {
+            $out .= "<p class=\"alert\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i> File $filename ".$_lang['does_not_exist']."<br /></p>";
+        } else
+            {
+                unlink($deletefile);
+                $out .= "<div class=\"alert\">
+                <span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span>
+                <i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> $filename ".$_lang['deleted']."<br /></div>";
+            }
+    break;    
     case 'generate': // generate backup
         /**
         * Zip directories into archive
@@ -320,15 +342,17 @@ switch($opcode)
             return $out;
         }
         rename($tempfile,$archive_file);       
-        $out .= "<p class=\"success\"><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> <br />Modx Backup Successful <strong>--&gt <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\">$archive_file</a></strong><br /><br /></p>";    
+        $out .= "<div class=\"success\"><span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span><h2><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> ".$_lang['backup_successful']." </h2><strong> <a  class=\"textlink\"  href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\">$archive_file</a></strong><br /><br />
+        <span class=\"actionButtons evobkpbuttons\">
+             <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
+        </span></div>";    
 
         // add database, callback for dbdump
-        if ($dumpdbase!='') {
-            $out .= "<i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> Adding Database..<script type=\"text/javascript\" language=\"javascript\">postForm('dumpdbase','".basename($archive_file)."');</script>";
+       if ($dumpdbase!='') {
+            $out .= "<script type=\"text/javascript\" language=\"javascript\">postForm('dumpdbase','".basename($archive_file)."');</script>";
         }
         
     break;
-    
     case 'dumpdbase': // add mysql database dump to archive
         // dump sql data to temp file
         include_once($mods_path.'evobackup/dumpsql.php');
@@ -346,27 +370,28 @@ switch($opcode)
 		$dumper->setTablePrefix($table_prefix);
         $dumper->setDroptables(true);
         $dumpfinished = $dumper->createDump($dump_log_tables);
-        $fh = fopen($modx_backup_dir.$database_filename,'w');
+        $fh = fopen($modx_db_backup_dir.$database_filename,'w');
         
         if($dumpfinished) 
         {
             fwrite($fh,$dumpfinished);               
             fclose($fh);
-            $out .= "<script type=\"text/javascript\" language=\"javascript\">postForm('adddumpfile','".basename($filename)."');</script>";
-        }       
+          $out .= "<script type=\"text/javascript\" language=\"javascript\">postForm('zipdatabase','".basename($filename)."');</script>";
+         }       
         else {
-	        $e->setError(1,"Unable to Backup Database");
+	        $e->setError(1,"".$_lang['unable_to_backup_db']."");
 	        $e->dumpError();
-        }    
+        }
+  
     break;
-    
-    case 'adddumpfile':
+
+    case 'zipdatabase':
         // add dump file to archive
         @set_time_limit($zip_time_limit);
         @ini_set("memory_limit",$zip_memory_limit);
         include_once($mods_path.'evobackup/pclzip.lib.php');
         $archive = new PclZip($modx_backup_dir.$filename);
-        $v_list = $archive->add($modx_backup_dir.$database_filename,PCLZIP_OPT_REMOVE_PATH, $modx_backup_dir );
+        $v_list = $archive->add($modx_db_backup_dir.$database_filename,PCLZIP_OPT_REMOVE_PATH, $modx_db_backup_dir );
         if ($v_list == 0) {
             $out .= "Error : ".$archive->errorInfo(true);
             return $out;
@@ -380,58 +405,58 @@ switch($opcode)
 		// list($fname,$ext) = explode('.',$filename);
         rename($modx_backup_dir.$filename,$modx_backup_dir.$fname.'_db.'.$ext);
         // delete .sql file in backup dir after adding to zip
-        unlink($modx_backup_dir.$database_filename);
-    break;
+          //          if ($deletebackupsql!='') {
+      unlink($modx_db_backup_dir.$database_filename);
+    //}
+    $out .= "<div class=\"success\"><span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span><h2><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> ".$_lang['backup_successful']." </h2><strong><a class=\"textlink\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($fname."_db.".$ext)."\">".$modx_backup_dir.$fname."_db.".$ext."</a></strong><br /><br />
+    <span class=\"actionButtons evobkpbuttons\">
+             <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($fname."_db.".$ext)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
+        </span>
+    </div>";    
+ break;
 }
+    
 
-/**
-* Display list of backups with download
-*/
-global $modx;
-$out .= "<h2><i class=\"fa fa-download\" aria-hidden=\"true\"></i> ".$_lang['manage_backup']."</h2><p> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
-    <th style=\"width: 300px;\">".$_lang['backup_filename']."</th>
-    <th>".$_lang['backup_filesize']."</b></th>
-    <th style=\"text-align:right;\">".$_lang['backup_file_options']."</th>
-  </tr></thead><tbody>
-  ";
-if ($handle = opendir($modx_backup_dir)) {
-   /* Loop over backup directory */
-   while (false !== ($file = readdir($handle))  ) {
-       if ($file!='.' && $file!='..' && (strpos($file,$archive_prefix)!==false ) && $file!=$database_filename)
-       {
-           $fs = filesize($modx_backup_dir.$file)/1024; 
-           $out .= "<tr><td><i class=\"fa fa-file-archive-o yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
-                  ."<td style=\"text-align:right;\"><a title='".$_lang['download_backup']."' class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class='fa fa-download'></i></a> 
-                   <a title='".$_lang['delete_backup']."' class=\"btn btn-default btn-sm\" onclick=\"postForm('delete','$file')\" /><i class='fa fa-trash'></i></a></td></tr>";
-       }
-   }
-   closedir($handle);
-}
+/** tabs**/
+$out .= "<div class=\"tab-pane\" id=\"evobackupPanes\">
+   <script type=\"text/javascript\">
+        tpResources = new WebFXTabPane( document.getElementById( \"evobackupPanes\" ), true);
+    </script>
+        <div class=\"tab-page\" id=\"tabEvobackup\">
+    <h2 class=\"tab\"><a href=\"#tabpanel-evobackup\"><span><i class=\"fa fa-download\" aria-hidden=\"true\"></i> ".$_lang['modulename']."</span></a></h2>";
 
 $backup = $_lang['backup'];
 $help = $_lang['help'];
 $Config = $_lang["settings_module"];
 $check_all= $_lang["check_all"];
 $out .= '
-</tbody></table>
-<div id="evobackup-info" style="display:none">
-            <p class="element-edit-message">
-             <h3>'.$_lang['light_backup'].'</h3>
-             '.$_lang['help_light_backup'].'
-            <h3>'.$_lang['medium_backup'].'</h3>
-             '.$_lang['help_medium_backup'].'
-            <h3>'.$_lang['full_backup'].'</h3>
-             '.$_lang['help_full_backup'].'
-        </div>
+</tbody></table></form>
+
 
  <script>
 $(document).ready(function(){
     $(".evobackup-help").click(function(){
         $("#evobackup-info").toggle(800);
     });
+    $(".archivebackup-help").click(function(){
+        $("#archivebackup-info").toggle(800);
+    });
+    $(".sqlbackup-help").click(function(){
+        $("#sqlbackup-info").toggle(800);
+    });
 });
 </script>
-<h2><i class="fa fa-file-archive-o" aria-hidden="true"></i> '.$_lang['generate_backup'].'</h2>
+<h2>'.$_lang['generate_backup'].'</h2>
+<div id="evobackup-info" style="display:none">
+            <div class="element-edit-message">
+             <h3>'.$_lang['light_backup'].'</h3>
+             '.$_lang['help_light_backup'].'
+            <h3>'.$_lang['medium_backup'].'</h3>
+             '.$_lang['help_medium_backup'].'
+            <h3>'.$_lang['full_backup'].'</h3>
+             '.$_lang['help_full_backup'].'
+             </div>
+        </div>
 <p><span class="info"><b><a href="#" title="'.$_lang['help'].'" class="evobackup-help"><i class="fa fa-question-circle fa-lg " aria-hidden="true"></i></a></b></span> '.$_lang['choose_backup'].' <span class="info">
 <input type="checkbox" id="checkMinBackup"><b>'.$_lang['light_backup'].'</b> 
 <input type="checkbox" id="checkReqBackup" checked="checked"><b>'.$_lang['medium_backup'].'</b>  <input type="checkbox" id="checkAllBackup" ><b>'.$_lang['full_backup'].'</b></span></p>
@@ -503,7 +528,8 @@ $(document).ready(function(){
 
 <div class="left border-right">
 <h3><i class="fa fa-database" aria-hidden="true"></i> '.$_lang['db_backup'].'</h3>
-<label><input type="checkbox" name="dumpdbase" class="checkAll checkReq checkMin" checked="checked" /> '.$_lang['include_db_to_zip'].' </label><br /><br />
+<label><input type="checkbox" name="dumpdbase" class="checkAll checkReq checkMin" checked="checked" /> '.$_lang['include_db_to_zip'].'</label><br /><br />
+<br />
 </div>
 <div class="left">
 ';
@@ -536,14 +562,86 @@ $out .=  '
 <div class="border-top" style="clear:both"></div>
 </div>
 <span class="actionButtons evobkpbuttons">
-             
-             <!--- <a href="#" id="more-options-button">More Options</a>-->
-             <a class="primary" href="#" onclick="postForm(\'generate\')" value="Backup Now!" />'.$_lang['backup_button_text'].'</a>
+             <a class="primary" href="#" onclick="postForm(\'generate\')" value="Backup Now!">'.$_lang['backup_button_text'].'</a>
         </span>
 
-</form>
 
-<div style="clear:both"></div>
+
+<!---<div style="clear:both"></div>-->
+</div>
 
 ';
+/**
+* Display list of backups with download
+*/    
+global $modx;
+$out .= "<div class=\"tab-page\" id=\"tabpanel-evofullbkp\">
+	<h2 id=\"tabs-fullbkp\" class=\"tab\"><a href=\"#tabpanel-evofullbkp\"><span><i class=\"fa fa-file-archive-o\" aria-hidden=\"true\"></i> ".$_lang['TabManageBackup']."</span></a></h2>
+    <h2> ".$_lang['manage_backup']."</h2>
+    <div id=\"archivebackup-info\" style=\"display:none\">
+            <div class=\"element-edit-message\">
+             <h3>".$_lang['archive_backup_help_title']."</h3>
+             ".$_lang['archive_backup_help']."
+             </div>
+        </div>
+    <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"archivebackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
+    <th style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
+    <th><b>".$_lang['backup_filesize']."</b></th>
+    <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
+  </tr></thead><tbody>
+  ";
+if ($handle = opendir($modx_backup_dir)) {
+   /* Loop over backup directory */
+   while (false !== ($file = readdir($handle))  ) {
+       if ($file!='.' && $file!='..' && (strpos($file,$archive_prefix)!==false ) && $file!=$database_filename)
+       {
+           $fs = filesize($modx_backup_dir.$file)/1024; 
+           $out .= "<tr><td><i class=\"fa fa-file-archive-o yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
+                  ."<td style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
+                   <a title=\"".$_lang['delete_backup']."\" class=\"btn btn-default btn-sm\" onclick=\"postForm('delete','$file')\"><i class=\"fa fa-trash\"></i></a></td></tr>";
+       }
+   }
+   closedir($handle);
+}
+$out .= '</tbody></table></div>';
+/**
+* Display list of modx backups with download
+*/
+global $modx;
+$sqlext = '.sql';
+$out .= "<div class=\"tab-page\" id=\"tabpanel-evosqlbkp\">
+	<h2 id=\"tabs-evosql\" class=\"tab\"><a href=\"#tabpanel-evosqlbkp\"><span><i class=\"fa fa-database\" aria-hidden=\"true\"></i> ".$_lang['TabMODxBackup']."</span></a></h2>
+<h2>".$_lang['manage_modx_backup']."</h2>
+    <div id=\"sqlbackup-info\" style=\"display:none\">
+            <div class=\"element-edit-message\">
+             <h3>".$_lang['sql_backup_help_title']."</h3>
+             ".$_lang['sql_backup_help']."
+             </div>
+        </div>
+<p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"sqlbackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span>  ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
+    <th style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
+    <th><b>".$_lang['backup_filesize']."</b></th>
+    <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
+  </tr></thead><tbody>
+  ";
+$modx_backup_default = "../assets/backup/"; 
+if ($handle = opendir($modx_db_backup_dir)) {
+   /* Loop over backup directory */
+   while (false !== ($file = readdir($handle))  ) {
+     if (strpos($file,'.sql')!==false )
+       {
+           $fs = filesize($modx_backup_default.$file)/1024; 
+           $out .= "<tr><td><i class=\"fa fa-database yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
+                  ."<td style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
+                   <a title=\"".$_lang['delete_backup']."\" class=\"btn btn-default btn-sm\" onclick=\"postForm('deletesql','$file')\"><i class=\"fa fa-trash\"></i></a></td></tr>";
+       }
+   }
+   closedir($handle);
+}
+
+global $lang;
+$out .= '</tbody></table><span class="actionButtons evobkpbuttons">
+             <a href="index.php?a=93" class="primary" style="display:inline-block;" onclick="document.snapshot.save.click();">'.$_lang['bk_manager'].'</a>
+        </span></div>';
+
 ?>

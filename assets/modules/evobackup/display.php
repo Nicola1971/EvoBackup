@@ -9,8 +9,9 @@ $o = '
 	<meta http-equiv="Content-Type" content="text/html; charset='.$modx_manager_charset.'" />
 	<link rel="stylesheet" type="text/css" href="media/style/'.$manager_theme.'/style.css" />
     <link rel="stylesheet" href="media/style/common/font-awesome/css/font-awesome.min.css" />
-<script src="media/script/jquery/jquery.min.js"></script>
-</head>
+<script src="../assets/modules/evobackup/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/modules/evobackup/js/tabpane.js"></script>
+
 <script>
 jQuery( document ).ready(function( $ ) {
 $(\'#checkAllAssets\').click(function () {    
@@ -27,9 +28,11 @@ $(\'#checkMinBackup\').click(function () {
  });
  });
  </script>
+
 <style>
 h2 {border-bottom: 1px dotted #dedede;}
 h3 {color: #3697CD;}
+h2.tab a:hover {text-decoration:none;}
 p {margin-bottom: 10px;}
 table.evobackup {margin-bottom:24px;}
 table.evobackup th, table.evobackup td {font-size:13px;}
@@ -42,6 +45,8 @@ table.evobackup .btn {
 .info {color: #777;}
 .info b{color: #3697CD;}
 .alert {padding: 20px;background-color: #f44336; color: white;margin-bottom: 5px;}
+.success {padding: 20px;background-color: #07b922; color: white;margin-bottom: 5px;}
+.success a.textlink:link {color: white!important;}
 .closebtn {
     margin-left: 15px;
     color: white;
@@ -55,7 +60,7 @@ table.evobackup .btn {
 .closebtn:hover {
     color: black;
 }
-.success {color: #07b922;}
+
 .yellow {font-size:14px; color:#444; background-color: yellow; border-radius:50%; border: 1px solid #f7bf04; padding:5px 7px; margin-right:5px;}
 .left {float: left; padding:10px; margin-right:20px;}
 .border-right {border-right: 1px dotted #dedede;}
@@ -64,11 +69,14 @@ table.evobackup .btn {
 .element-edit-message {
   padding-bottom: 10px;
   border-bottom: 1px solid #ededed;
+  border-top:0!important;
   margin-bottom: 15px;
   color: #777;
 }
 
 </style>
+ </head>
+ <body>
 <h1 class="pagetitle">
   <span class="pagetitle-icon">
     <i class="fa fa-download"></i>
@@ -88,15 +96,12 @@ table.evobackup .btn {
         </a></li>
     </ul>
 </div>
-<div class="sectionBody">
-<div class="dynamic-tab-pane-control tab-pane" id="evobackupPanes">
-<div class="tab-row">
-        
-        </div>
-        <div class="tab-page panel-container">
-        
+<div class="sectionBody">  
 ';
 
-$out = $o.$out.'</div></div></div>';
+$out = $o.$out.' </div> </div>
+
+</body>
+</html>';
 return $out;
 ?>
