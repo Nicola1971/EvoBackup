@@ -34,6 +34,8 @@ $_lang['backup_filesize'] = 'Bestandsgrootte';
 $_lang['backup_file_options'] = 'Opties';
 $_lang['delete_backup'] = 'Verwijder backup';
 $_lang['download_backup'] = 'Download backup';
+$_lang['extract_zip_backup'] = 'Archief backup uitpakken';
+$_lang['restore_sql_backup'] = 'Herstel Sql backup';
 //Generate Backup
 $_lang['generate_backup'] = 'Genereer een nieuw backup archief';
 $_lang['choose_backup'] = 'Selecteer backup type:';
@@ -82,3 +84,16 @@ $_lang['is_not_writable'] = 'is NIET schrijfbaar!';
 $_lang['file'] = 'Bestand';
 $_lang['deleted'] = 'Verwijderd';
 $_lang['unable_to_backup_db'] = 'Backup database lukt niet';
+$_lang['archive_extracted'] = 'Archief uitgepakt';
+$_lang['db_extracted'] = 'Database hersteld';
+$_lang['error_open_archive'] = 'Archief openen mislukt';
+// Confirm windows alerts
+$_lang['delete_confirm'] = 'Bestanden verwijderen, weet je het zeker?';
+$_lang['delete_confirm_info'] = 'Bestanden verwijderen kan niet worden hersteld in de toekomst!';
+$_lang['extract_zip_confirm'] = 'Uitpakken van bestanden, weet je het zeker?';
+$_lang['extract_to'] = 'om';
+$_lang['backup_folder'] = 'Backup map';
+$_lang['extract_folder'] = 'Uitpak map';
+$_lang['extract_zip_info'] = 'Herstellen van een archief backup in je website root zal alle bestaande bestanden overschrijven. Deze actie kan zeer gevaarlijk zijn!';
+$_lang['restore_sql_confirm'] = 'Weet je zeker dat je wil herstellen?';
+$_lang['restore_sql_info'] = 'Herstel van .sql backup zal de data in de database overschrijven. Deze actie kan zeer gevaarlijk zijn!';
