@@ -59,7 +59,7 @@ $modx_extract_dir = $modx->config['base_path'].$extract_dir;
 */
 $modx_root_dir =$modx->config['base_path'];
 $mods_path = $modx->config['base_path'] . "assets/modules/";
-$site_name = str_replace(' ','_', $modx->config['site_name']);
+$site_name = preg_replace('/[^a-zA-Z0-9]+/', '_', $modx->config['site_name']);
 
 // Archive file name prefix - 5mar07 - change to default site name
 $archive_prefix = (isset($archive_prefix))? $archive_prefix: $site_name;
