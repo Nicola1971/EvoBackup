@@ -65,6 +65,8 @@ $_lang['include_db_to_zip'] = 'include .sql database backup to zip ';
 $_lang['custom_files_backup'] = 'Custom Files and Folders';
 //buttons
 $_lang['backup_button_text'] = 'Backup Now!';
+$_lang['backupdb_button_text'] = 'Backup Database';
+$_lang['backupdbonly_button_text'] = 'Backup Database Only';
 $_lang['help'] = 'Help';
 $_lang['settings_module'] = 'Settings';
 //help

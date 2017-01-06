@@ -65,6 +65,8 @@ $_lang['include_db_to_zip'] = 'includi un backup .sql del database';
 $_lang['custom_files_backup'] = 'Altri File e Cartelle';
 //buttons
 $_lang['backup_button_text'] = 'Backup!';
+$_lang['backupdb_button_text'] = 'Backup Database';
+$_lang['backupdbonly_button_text'] = 'Backup solo Database';
 $_lang['help'] = 'Aiuto';
 $_lang['settings_module'] = 'Configurazione';
 //help
