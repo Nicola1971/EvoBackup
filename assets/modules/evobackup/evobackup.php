@@ -522,8 +522,8 @@ $(document).ready(function(){
              </div>
         </div>
 <p><span class="info"><b><a href="#" title="'.$_lang['help'].'" class="evobackup-help"><i class="fa fa-question-circle fa-lg " aria-hidden="true"></i></a></b></span> '.$_lang['choose_backup'].' <span class="info">
-<input type="checkbox" id="checkMinBackup"><b>'.$_lang['light_backup'].'</b> 
-<input type="checkbox" id="checkReqBackup" checked="checked"><b>'.$_lang['medium_backup'].'</b>  <input type="checkbox" id="checkAllBackup" ><b>'.$_lang['full_backup'].'</b></span></p>
+<input type="checkbox" id="checkMinBackup" checked="checked"><b>'.$_lang['light_backup'].'</b> 
+<input type="checkbox" id="checkReqBackup"><b>'.$_lang['medium_backup'].'</b>  <input type="checkbox" id="checkAllBackup" ><b>'.$_lang['full_backup'].'</b></span></p>
 
 <div class="border-top" style="clear:both"></div>
 <div id="more-options">
@@ -543,12 +543,12 @@ $(document).ready(function(){
 
 <div class="left border-right">
 <h4>'.$_lang['assets_elements_folders'].'</h4>
-<label><input type="checkbox" name="dumpmodules" class="checkAssets checkReq" checked="checked"/>  /modules</label><br />
-<label><input type="checkbox" name="dumpplugins" class="checkAssets checkReq" checked="checked"/>  /plugins</label><br />
-<label><input type="checkbox" name="dumpsnippets" class="checkAssets checkReq" checked="checked"/>  /snippets</label><br />
-<label><input type="checkbox" name="dumptvs" class="checkAssets checkReq" checked="checked"/>  /tvs</label><br />
-<label><input type="checkbox" name="dumplib" class="checkAssets checkReq" checked="checked"/>  /lib </label><br />
-<label><input type="checkbox" name="dumpjs" class="checkAssets checkReq" checked="checked"/>  /js </label><br />
+<label><input type="checkbox" name="dumpmodules" class="checkAssets checkReq"/>  /modules</label><br />
+<label><input type="checkbox" name="dumpplugins" class="checkAssets checkReq"/>  /plugins</label><br />
+<label><input type="checkbox" name="dumpsnippets" class="checkAssets checkReq"/>  /snippets</label><br />
+<label><input type="checkbox" name="dumptvs" class="checkAssets checkReq"/>  /tvs</label><br />
+<label><input type="checkbox" name="dumplib" class="checkAssets checkReq"/>  /lib </label><br />
+<label><input type="checkbox" name="dumpjs" class="checkAssets checkReq"/>  /js </label><br />
 </div>
 
 <div class="left">
@@ -570,7 +570,7 @@ $(document).ready(function(){
 <p class="info"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> <b>/'.$MGR_DIR.'</b>  ('.$_lang['whole_manager'].')</label></p>
 <div class="left">
 <h4>'.$_lang['only_those_manager_files'].'</h4>
-<label><input type="checkbox" name="dumpconfig" class="checkReq checkMin" checked="checked"/> /includes/config.inc.php </label><span class="info">('.$_lang['manager_config_file'].')</span><br />
+<label><input type="checkbox" name="dumpconfig" class="checkReq"/> /includes/config.inc.php </label><span class="info">('.$_lang['manager_config_file'].')</span><br />
 <label><input type="checkbox" name="dumpmanhtaccess" /> /.htaccess </label><br />
 <label><input type="checkbox" name="dumpthemes" /> /media/styles </label><span class="info">('.$_lang['manager_themes'].')</span><br />
 <label><input type="checkbox" name="dumpmframes" /> /frames </label><br />
@@ -585,7 +585,7 @@ $(document).ready(function(){
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> '.$_lang['root_backup'].'</h3>
 <p>'.$_lang['root_backup_descr'].'</p>
 <label><input type="checkbox" class="checkAll" name="dumphtaccess" /> .htaccess </label><br />
-<label><input type="checkbox" class="checkAll checkReq" name="dumprobots" checked="checked"/> robots.txt </label><br />
+<label><input type="checkbox" class="checkAll checkReq" name="dumprobots"/> robots.txt </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindex" />  index.php </label><br />
 <label><input type="checkbox" class="checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
 </div>
