@@ -354,6 +354,38 @@ switch($opcode)
         }
         
     break;
+        case 'onlydbase': // add mysql database dump to archive
+        // dump sql data to temp file
+        include_once($mods_path.'evobackup/dumpsql.php');
+        
+        /*
+         * Code taken from Ralph A. Dahlgren MySQLdumper Snippet - Etomite 0.6 - 2004-09-27
+         * Modified by Raymond 3-Jan-2005
+         * Perform MySQLdumper data dump
+         */
+        @set_time_limit($db_time_limit); // set timeout limit to 2 minutes
+        global $dbase,$database_user,$database_password,$dbname,$database_server;
+        $dbname = str_replace("`","",$dbase);
+        $dumper = new Mysqldumper($database_server, $database_user, $database_password, $dbname); # Variables have replaced original hard-coded values
+        
+		$dumper->setTablePrefix($table_prefix);
+        $dumper->setDroptables(true);
+        $dumpfinished = $dumper->createDump($dump_log_tables);
+        $fh = fopen($modx_db_backup_dir.$database_filename,'w');
+        
+        if($dumpfinished) 
+        {
+            fwrite($fh,$dumpfinished);               
+            fclose($fh);
+          $out .= "Done!";
+         }       
+        else {
+	        $e->setError(1,"".$_lang['unable_to_backup_db']."");
+	        $e->dumpError();
+        }
+  
+    break;
+        
     case 'dumpdbase': // add mysql database dump to archive
         // dump sql data to temp file
         include_once($mods_path.'evobackup/dumpsql.php');
@@ -591,6 +623,7 @@ $out .=  '
 </div>
 <span class="actionButtons evobkpbuttons">
              <a class="primary" href="#" onclick="postForm(\'generate\')" value="Backup Now!">'.$_lang['backup_button_text'].'</a>  
+             <a class="primary" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdbonly_button_text'].'</a> 
         </span>
 
 
@@ -691,7 +724,9 @@ if ($handle = opendir($modx_db_backup_dir)) {
 
 global $lang;
 $out .= '</tbody></table><span class="actionButtons evobkpbuttons">
-             <a href="index.php?a=93" class="primary" style="display:inline-block;">'.$_lang['bk_manager'].'</a>
+            <a class="primary" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdb_button_text'].'</a>
+             <a href="index.php?a=93" class="" style="display:inline-block;">'.$_lang['bk_manager'].'</a>
+  
         </span></div>
 ';
 
