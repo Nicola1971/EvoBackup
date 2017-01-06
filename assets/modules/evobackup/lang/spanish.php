@@ -80,6 +80,8 @@ $_lang['sql_backup_help_title'] = 'Descargar o eliminar copias de seguridad .sql
 $_lang['sql_backup_help'] = '<p>Las copias de seguridad de SQL se pueden generar manualmente con el predeterminado <a href="index.php?a=93">MODX Backup Snapshot Manager</a></p> <p>Para crear copias de seguridad .sql automáticas, descargue e instale <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
 //Alerts
 $_lang['backup_successful'] = '¡Copia creada con éxito!';
+$_lang['backupdb_successful'] = '¡Copia Database creada con éxito!';
+$_lang['backupzip_successful'] = '¡Copia archivo creada con éxito!';
 $_lang['backup_directory'] = 'Directorio de copia de seguridad';
 $_lang['does_not_exist'] = 'no existe';
 $_lang['is_not_writable'] = '¡NO se puede escribir!';

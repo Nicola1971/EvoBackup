@@ -80,6 +80,8 @@ $_lang['sql_backup_help_title'] = 'Download of verwijder .sql backups';
 $_lang['sql_backup_help'] = '<p>Sql backups kunnen handmatig worden gegenereerd met standaard <a href="index.php?a=93">MODX Backup snapshot manager</a></p> <p>Om automatische .sql back-ups te maken, download en installeer <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
 //Alerts
 $_lang['backup_successful'] = 'Backup gelukt!';
+$_lang['backupdb_successful'] = 'Database Backup gelukt!';
+$_lang['backupzip_successful'] = 'Archief Backup gelukt!';
 $_lang['backup_directory'] = 'Backup locatie';
 $_lang['does_not_exist'] = 'bestaat niet';
 $_lang['is_not_writable'] = 'is NIET schrijfbaar!';

@@ -80,6 +80,8 @@ $_lang['sql_backup_help_title'] = 'Scarica o cancella file .sql con il Backup de
 $_lang['sql_backup_help'] = '<p>I backup .sql possono essere generati manualmente, utilizzando lo strumento di sistema di <a href="index.php?a=93"> Backup e Snapshot</a></p> <p>Per creare automaticamente file .sql con il Backup del Database, scarica e installa <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
 //Alerts
 $_lang['backup_successful'] = 'Backup Eseguito con successo!';
+$_lang['backupdb_successful'] = 'Database Backup eseguito con successo!';
+$_lang['backupzip_successful'] = 'Archivio Backup eseguito con successo!';
 $_lang['backup_directory'] = 'La Directory di Backup ';
 $_lang['does_not_exist'] = 'non esiste';
 $_lang['is_not_writable'] = 'NON è scrivibile!';
