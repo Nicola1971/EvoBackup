@@ -67,6 +67,7 @@ $_lang['custom_files_backup'] = 'Archivos y carpetas personalizadas';
 $_lang['backup_button_text'] = '¡Crear copia ahora!';
 $_lang['backupdb_button_text'] = 'Backup Database';
 $_lang['backupdbonly_button_text'] = 'Backup Database Only';
+$_lang['close'] = 'Close';
 $_lang['help'] = 'Help';
 $_lang['settings_module'] = 'Ajustes';
 //help

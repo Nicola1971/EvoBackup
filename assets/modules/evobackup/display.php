@@ -48,7 +48,7 @@ $(\'#checkMinBackup\').click(function () {
     <!--@ENDIF-->
      <li id="Button9"><a href="#" class="evobackup-help"><i class="fa fa-question-circle"></i> '.$help.'</a></li>
         <li id="Button5"><a href="index.php?a=2">
-            Close
+            '.$_lang['close'].'
         </a></li>
     </ul>
 </div>

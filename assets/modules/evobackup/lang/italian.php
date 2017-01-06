@@ -67,6 +67,7 @@ $_lang['custom_files_backup'] = 'Altri File e Cartelle';
 $_lang['backup_button_text'] = 'Backup!';
 $_lang['backupdb_button_text'] = 'Backup Database';
 $_lang['backupdbonly_button_text'] = 'Backup solo Database';
+$_lang['close'] = 'Chiudi';
 $_lang['help'] = 'Aiuto';
 $_lang['settings_module'] = 'Configurazione';
 //help
@@ -100,5 +101,5 @@ $_lang['backup_folder'] = 'Cartella di Backup';
 $_lang['extract_folder'] = 'Cartella di Estrazione';
 $_lang['extract_zip_info'] = 'Estraendo il file zip di backup nella root del tuo sito, sovrascriverai tutti i file. Questa operazione può essere molto pericolosa!';
 $_lang['restore_sql_confirm'] = 'Sei sicuro di voler Ripristinare';
-$_lang['restore_sql_info'] = 'Ripristinando questo backup .sql tutti i dati del database saranno sovrascritti. Questa operazione può essere molto pericolosa!';
+$_lang['restore_sql_info'] = 'Ripristinando questo backuo .sql tutti i dati del database saranno sovrascritti. Questa operazione può essere molto pericolosa!';
 

@@ -67,6 +67,7 @@ $_lang['custom_files_backup'] = 'Custom bestanden en mappen';
 $_lang['backup_button_text'] = 'Backup maken!';
 $_lang['backupdb_button_text'] = 'Backup Database';
 $_lang['backupdbonly_button_text'] = 'Backup Database Only';
+$_lang['close'] = 'Close';
 $_lang['help'] = 'Help';
 $_lang['settings_module'] = 'Instellingen';
 //help
