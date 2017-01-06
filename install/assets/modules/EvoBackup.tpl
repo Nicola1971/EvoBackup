@@ -5,9 +5,10 @@
  * @category	module
  * @version     1.2 RC3
  * @author      Author: Nicola Lambathakis http://www.tattoocms.it/
+ * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
  * @internal	@modx_category Manager
  * @internal    @properties &backup_dir=Backup Directory:;string;/_evobackup_archives/;; Need to edit /assets/modules/evobackup/settings.php too and set $modx_backup_dir. Make sure read/write permission is set. &extract_dir=Extract zip archive Directory:;string;_extract/;; Warning: setting to site root (empty) will overwrite existing files! &zip_t_limit=ZIP time limit:;string;250 &zip_m_limit=ZIP memory limit:;string;50M &db_t_limit=DB time limit:;string;250 &db_m_limit=DB memory limit:;string;50M &dump_logs=Dump logs tables:;menu;false,true;false;;Include Log table data in database backup. These tables can be quite large, so default is to exclude them. &customfold1=Custom file or folder 1:;string;;; example assets/galleries &customfold2=Custom file or folder 2:;string;;; example assets/videos &customfold3=Custom file or folder 3:;string;;; example forum &customfold4=Custom file or folder 4:;string;;; example shop &customfold5=Custom file or folder 5:;string;;; example google123456abcdefg789.html
- * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
+ * 
  */
 /**
 *  Description: 
