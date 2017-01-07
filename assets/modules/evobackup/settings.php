@@ -4,23 +4,8 @@
 * v1.2
 */
 
-//changed path in rc3 for local wamp
-define('MODX_API_MODE', true);
-include_once ('../../../manager/includes/config.inc.php');
-require_once('../../../manager/includes/protect.inc.php');
-include_once ('../../../manager/includes/document.parser.class.inc.php');
-$modx = new DocumentParser;
-$modx->db->connect();
-$modx->loadExtension("ManagerAPI");
-$modx->getSettings();
-
-global $modx;
-$modx_root_dir = $modx->config['base_path'];
-$modx_backup_dir = $modx_root_dir.'/_evobackup_archives/';
-$modx_db_backup_dir = $modx_root_dir.'/assets/backup/'; 
-
-//$modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].'/_evobackup_archives/';
-//$modx_db_backup_dir = $_SERVER['DOCUMENT_ROOT'].'/assets/backup/'; 
+$modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].'/_evobackup_archives/';
+$modx_db_backup_dir = $_SERVER['DOCUMENT_ROOT'].'/assets/backup/'; 
 // Generate Archive(s) within subdir of backup directory - ie /backup_dir/site1/site1_date1_db.zip
 // /site1/site1_date2_db.zip                              
 // /site2/site2_date1_db.zip
