@@ -110,7 +110,7 @@ class Mysqldumper {
 	
 	function createDump($dumpLogs=false,$callBack=null) {
 		
-		global $site_name,$full_appname,$modx_version;
+		global $site_name,$version;
 		
 		// Set line feed
 		$lf = "\n";
@@ -142,13 +142,11 @@ class Mysqldumper {
 			$result = mysqli_query($resource,"SHOW CREATE TABLE `$tblval`");
 			$createtable[$tblval] = $this->result2Array(1, $result);
 		}
-        global $modx, $modx_version;
 		// Set header
 		$output = "#". $lf;
 		$output .= "# ".addslashes($site_name)." Database Dump" . $lf;
-		$output .= "# ".$full_appname.$lf;
+		$output .= "# " . $full_appname . $lf;
 		$output .= "# ". $lf;
-		$output .= "# MODX Version:{$version['version']}{$lf}";
 		$output .= "# Host: " . $this->getHost() . $lf;
 		$output .= "# Generation Time: " . date("M j, Y at H:i") . $lf;
 		$output .= "# Server version: ". mysqli_get_server_info($resource) . $lf;
