@@ -527,15 +527,15 @@ $(document).ready(function(){
              </div>
         </div>
 <p><span class="info"><b><a href="#" title="'.$_lang['help'].'" class="evobackup-help"><i class="fa fa-question-circle fa-lg " aria-hidden="true"></i></a></b></span> '.$_lang['choose_backup'].' <span class="info">
-<input type="checkbox" id="checkMinBackup" checked="checked"><b>'.$_lang['light_backup'].'</b> 
-<input type="checkbox" id="checkReqBackup"><b>'.$_lang['medium_backup'].'</b>  <input type="checkbox" id="checkAllBackup" ><b>'.$_lang['full_backup'].'</b></span></p>
+<input type="checkbox" class="UncheckReq UncheckFull" id="checkMinBackup" checked="checked"><b>'.$_lang['light_backup'].'</b> 
+<input type="checkbox" class="UncheckMin UncheckFull" id="checkReqBackup"><b>'.$_lang['medium_backup'].'</b>  <input type="checkbox" class="UncheckReq UncheckMin" id="checkAllBackup" ><b>'.$_lang['full_backup'].'</b></span></p>
 
 <div class="border-top" style="clear:both"></div>
 <div id="more-options">
 <div class="left border-right">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> '.$_lang['assets_backup'].'</h3>
-<p class="info"><input type="checkbox" id="checkAllAssets" > '.$_lang['check_all'].' 
- <label><input type="checkbox" name="dumpassets" class="checkAll"/>  <b>/assets</b> ('.$_lang['whole_assets'].')</label></p>
+<p class="info"><input type="checkbox" class="UncheckReq UncheckMin" id="checkAllAssets" > '.$_lang['check_all'].' 
+ <label><input type="checkbox" name="dumpassets" class="UncheckReq UncheckMin checkAll"/>  <b>/assets</b> ('.$_lang['whole_assets'].')</label></p>
 
 <div class="left border-right">
 <h4>'.$_lang['assets_user_folders'].'</h4>
@@ -548,23 +548,23 @@ $(document).ready(function(){
 
 <div class="left border-right">
 <h4>'.$_lang['assets_elements_folders'].'</h4>
-<label><input type="checkbox" name="dumpmodules" class="checkAssets checkReq"/>  /modules</label><br />
-<label><input type="checkbox" name="dumpplugins" class="checkAssets checkReq"/>  /plugins</label><br />
-<label><input type="checkbox" name="dumpsnippets" class="checkAssets checkReq"/>  /snippets</label><br />
-<label><input type="checkbox" name="dumptvs" class="checkAssets checkReq"/>  /tvs</label><br />
-<label><input type="checkbox" name="dumplib" class="checkAssets checkReq"/>  /lib </label><br />
-<label><input type="checkbox" name="dumpjs" class="checkAssets checkReq"/>  /js </label><br />
+<label><input type="checkbox" name="dumpmodules" class="checkAssets UncheckMin checkReq"/>  /modules</label><br />
+<label><input type="checkbox" name="dumpplugins" class="checkAssets UncheckMin checkReq"/>  /plugins</label><br />
+<label><input type="checkbox" name="dumpsnippets" class="checkAssets UncheckMin checkReq"/>  /snippets</label><br />
+<label><input type="checkbox" name="dumptvs" class="checkAssets UncheckMin checkReq"/>  /tvs</label><br />
+<label><input type="checkbox" name="dumplib" class="checkAssets UncheckMin checkReq"/>  /lib </label><br />
+<label><input type="checkbox" name="dumpjs" class="checkAssets UncheckMin checkReq"/>  /js </label><br />
 </div>
 
 <div class="left">
 <h4>'.$_lang['assets_system_folders'].'</h4>
-<label><input type="checkbox" class="checkAssets" name="dumpthumbs" /> /.thumbs </label><br />
-<label><input type="checkbox" class="checkAssets" name="dumpbackup"/> /backup </label><br />
-<label><input type="checkbox" class="checkAssets" name="dumpcache" /> /cache </label><br />
-<label><input type="checkbox" class="checkAssets" name="dumpdocs" />  /docs </label><br />
-<label><input type="checkbox" class="checkAssets" name="dumpexport" />  /export </label><br />
-<label><input type="checkbox" class="checkAssets" name="dumpimport" />  /import </label><br />
-<label><input type="checkbox" class="checkAssets" name="dumpsite" />  /site</label><br />
+<label><input type="checkbox" class="checkAssets UncheckMin UncheckReq" name="dumpthumbs" /> /.thumbs </label><br />
+<label><input type="checkbox" class="checkAssets UncheckMin UncheckReq" name="dumpbackup"/> /backup </label><br />
+<label><input type="checkbox" class="checkAssets UncheckMin UncheckReq" name="dumpcache" /> /cache </label><br />
+<label><input type="checkbox" class="checkAssets UncheckMin UncheckReq" name="dumpdocs" />  /docs </label><br />
+<label><input type="checkbox" class="checkAssets UncheckMin UncheckReq" name="dumpexport" />  /export </label><br />
+<label><input type="checkbox" class="checkAssets UncheckMin UncheckReq" name="dumpimport" />  /import </label><br />
+<label><input type="checkbox" class="checkAssets UncheckMin UncheckReq" name="dumpsite" />  /site</label><br />
 </div>
 
 
@@ -572,16 +572,16 @@ $(document).ready(function(){
 
 <div class="left" style="padding-right: 25px;">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> '.$_lang['manager_backup'].'</h3>
-<p class="info"><label><input type="checkbox" class="checkAll" name="dumpmanager" /> <b>/'.$MGR_DIR.'</b>  ('.$_lang['whole_manager'].')</label></p>
+<p class="info"><label><input type="checkbox" class="UncheckReq UncheckMin checkAll" name="dumpmanager" /> <b>/'.$MGR_DIR.'</b>  ('.$_lang['whole_manager'].')</label></p>
 <div class="left">
 <h4>'.$_lang['only_those_manager_files'].'</h4>
-<label><input type="checkbox" name="dumpconfig" class="checkReq"/> /includes/config.inc.php </label><span class="info">('.$_lang['manager_config_file'].')</span><br />
-<label><input type="checkbox" name="dumpmanhtaccess" /> /.htaccess </label><br />
-<label><input type="checkbox" name="dumpthemes" /> /media/styles </label><span class="info">('.$_lang['manager_themes'].')</span><br />
-<label><input type="checkbox" name="dumpmframes" /> /frames </label><br />
-<label><input type="checkbox" name="dumpmincludes" /> /includes </label><br />
-<label><input type="checkbox" name="dumpmmedia" /> /media </label><br />
-<label><input type="checkbox" name="dumpmprocessors" /> /processors </label><br />
+<label><input type="checkbox" name="dumpconfig" class="checkReq UncheckFull UncheckMin"/> /includes/config.inc.php </label><span class="info">('.$_lang['manager_config_file'].')</span><br />
+<label><input type="checkbox" name="dumpmanhtaccess" class="UncheckReq UncheckMin UncheckFull"/> /.htaccess </label><br />
+<label><input type="checkbox" name="dumpthemes" class="UncheckReq UncheckMin UncheckFull"/> /media/styles </label><span class="info">('.$_lang['manager_themes'].')</span><br />
+<label><input type="checkbox" name="dumpmframes" class="UncheckReq UncheckMin UncheckFull"/> /frames </label><br />
+<label><input type="checkbox" name="dumpmincludes" class="UncheckReq UncheckMin UncheckFull"/> /includes </label><br />
+<label><input type="checkbox" name="dumpmmedia" class="UncheckReq UncheckMin UncheckFull"/> /media </label><br />
+<label><input type="checkbox" name="dumpmprocessors" class="UncheckReq UncheckMin UncheckFull"/> /processors </label><br />
 </div>
 </div>
 <div class="border-top" style="clear:both"></div>
@@ -589,10 +589,10 @@ $(document).ready(function(){
 <div class="left border-right" style="padding-right: 25px;">
 <h3><i class="fa fa-folder-open-o" aria-hidden="true"></i> '.$_lang['root_backup'].'</h3>
 <p>'.$_lang['root_backup_descr'].'</p>
-<label><input type="checkbox" class="checkAll" name="dumphtaccess" /> .htaccess </label><br />
-<label><input type="checkbox" class="checkAll checkReq" name="dumprobots"/> robots.txt </label><br />
-<label><input type="checkbox" class="checkAll" name="dumpindex" />  index.php </label><br />
-<label><input type="checkbox" class="checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
+<label><input type="checkbox" class="UncheckReq UncheckMin checkAll" name="dumphtaccess" /> .htaccess </label><br />
+<label><input type="checkbox" class="UncheckMin checkAll checkReq" name="dumprobots"/> robots.txt </label><br />
+<label><input type="checkbox" class="UncheckReq UncheckMin checkAll" name="dumpindex" />  index.php </label><br />
+<label><input type="checkbox" class="UncheckReq UncheckMin checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
 </div>
 
 <div class="left border-right">
@@ -606,23 +606,23 @@ $(document).ready(function(){
 if ($customfold1!=''){
 $out .= '
 <h3><i class="fa fa-folder-open" aria-hidden="true"></i> '.$_lang['custom_files_backup'].'</h3>
-<label><input type="checkbox" name="dumpcustomfold1" class="checkAll"/>  '.$customfold1.' </label><br />';
+<label><input class="UncheckReq UncheckMin checkAll" type="checkbox" name="dumpcustomfold1" class="checkAll"/>  '.$customfold1.' </label><br />';
 }
 if ($customfold2!=''){
 $out .=  '
-<label><input type="checkbox" name="dumpcustomfold2" class="checkAll"/>  '.$customfold2.' </label><br />';
+<label><input class="UncheckReq UncheckMin checkAll" type="checkbox" name="dumpcustomfold2" class="checkAll"/>  '.$customfold2.' </label><br />';
 }
 if ($customfold3!=''){
 $out .= '
-<label><input type="checkbox" name="dumpcustomfold3" class="checkAll"/>  '.$customfold3.' </label><br />';
+<label><input class="UncheckReq UncheckMin checkAll" type="checkbox" name="dumpcustomfold3" class="checkAll"/>  '.$customfold3.' </label><br />';
 }
 if ($customfold4!=''){
 $out .= '
-<label><input type="checkbox" name="dumpcustomfold4" class="checkAll"/>  '.$customfold4.' </label><br />';
+<label><input class="UncheckReq UncheckMin checkAll" type="checkbox" name="dumpcustomfold4" class="checkAll"/>  '.$customfold4.' </label><br />';
 }
 if ($customfold5!=''){
 $out .= '
-<label><input type="checkbox" name="dumpcustomfold5" class="checkAll"/>  '.$customfold5.' </label><br />';
+<label><input class="UncheckReq UncheckMin checkAll" type="checkbox" name="dumpcustomfold5" class="checkAll"/>  '.$customfold5.' </label><br />';
 }
 
 $out .=  '

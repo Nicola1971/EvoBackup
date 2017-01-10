@@ -19,13 +19,18 @@ $(\'#checkAllAssets\').click(function () {
     $(\':checkbox.checkAssets\').prop(\'checked\', this.checked);    
  });
 $(\'#checkAllBackup\').click(function () {    
-    $(\':checkbox.checkAll\').prop(\'checked\', this.checked);    
+    $(\':checkbox.checkAll\').prop(\'checked\', this.checked); 
+    $(\':checkbox.UncheckFull\').prop(\'checked\', false);
+    $(\':checkbox.checkAssets\').prop(\'checked\', false);
  });
 $(\'#checkReqBackup\').click(function () {    
-    $(\':checkbox.checkReq\').prop(\'checked\', this.checked);    
+    $(\':checkbox.checkReq\').prop(\'checked\', this.checked);
+    $(\':checkbox.UncheckReq\').prop(\'checked\', false)
+    
  });
 $(\'#checkMinBackup\').click(function () {    
-    $(\':checkbox.checkMin\').prop(\'checked\', this.checked);    
+    $(\':checkbox.checkMin\').prop(\'checked\', this.checked); 
+    $(\':checkbox.UncheckMin\').prop(\'checked\', false);
  });
 
  });
