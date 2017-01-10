@@ -39,7 +39,7 @@ for automatic backups check https://github.com/Nicola1971/AutoEvoBackup
 5. Click Backup, if it works there should be a .zip link containing your modx site.
 
 ## Change Backup directory
-1. Edit /assets/modules/modbak/settings.php, and set $modx_backup_dir to backup dir in new directory
+1. Edit /assets/modules/evobackup/settings.php, and set $modx_backup_dir to backup dir in new directory
 2. Set Module configuration > **Backup Directory** to your new backup dir
 
 # troubleshooting
