@@ -505,6 +505,11 @@ $(document).ready(function(){
     $(".sqlbackup-help").click(function(){
         $("#sqlbackup-info").toggle(800);
     });
+    $(".all-help").click(function(){
+        $("#sqlbackup-info").toggle(800);
+        $("#evobackup-info").toggle(800);
+        $("#archivebackup-info").toggle(800);
+    });
 });
 </script>
 
