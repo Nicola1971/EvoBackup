@@ -46,7 +46,7 @@ class Mysqldumper {
 	var $_dbtables;
 	var $_isDroptables;
 	
-	function Mysqldumper($host = "localhost", $dbuser = "", $dbpassword = "", $dbname = "") {
+	function __construct($host = "localhost", $dbuser = "", $dbpassword = "", $dbname = "") {
 		$this->setHost($host);
 		$this->setDBuser($dbuser);
 		$this->setDBpassword($dbpassword);
@@ -110,7 +110,7 @@ class Mysqldumper {
 	
 	function createDump($dumpLogs=false,$callBack=null) {
 		
-		global $site_name,$version;
+		global $site_name,$version,$full_appname;
 		
 		// Set line feed
 		$lf = "\n";
