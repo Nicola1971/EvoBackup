@@ -1,9 +1,6 @@
 # EvoBackup 1.2 RC4
 Backup Evo files and compress into .zip for easy download
 
-Based on modbak by stempy
-https://modx.com/extras/package/modbak
-
 # EvoBackup Features
 
 * Checkbox options to choose which folder and files add to archive
@@ -18,6 +15,7 @@ https://modx.com/extras/package/modbak
 * Evolution installer for Package Manager and Extras module
 
 ## Credits
+* Based on modbak by stempy https://modx.com/extras/package/modbak
 * styles improvements and various fixes by  [@pmfx] (https://github.com/pmfx)
 
 ## Available Languages
