@@ -17,6 +17,9 @@ https://modx.com/extras/package/modbak
 * Support for custom/renamed manager folder
 * Evolution installer for Package Manager and Extras module
 
+## Credits
+* styles improvements and various fixes by  [@pmfx] (https://github.com/pmfx)
+
 ## Available Languages
 * english
 * italian
