@@ -41,12 +41,12 @@ for automatic backups check https://github.com/Nicola1971/AutoEvoBackup
 4. Select additional folders and files to include in the archive
 5. Click Backup, if it works there should be a .zip link containing your modx site.
 
-## Change Backup directory
+## Change Backup directory (not required)
 1. Edit /assets/modules/evobackup/settings.php, and set $modx_backup_dir to backup dir in new directory
 2. Set Module configuration > **Backup Directory** to your new backup dir
 
 # troubleshooting
-#### 1) module does not complete backup, stops with a temp file of 50M
+#### 1) module does not complete backup, stops with a temp file
 
 **Solution**
 Remove some folders from backup or increase "ZIP memory limit" value in module configuration page
@@ -54,6 +54,4 @@ Remove some folders from backup or increase "ZIP memory limit" value in module c
 # to do
 
 * **change backup folder path**: avoid edit hardcoded path in settings.php
-* multi language (done in 4.2)
-* option to add custom assets folders - ie: assets/galleries (done in beta 4.1)
-* support for custom/renamed manager folder (done in beta 4.0)
+
