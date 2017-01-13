@@ -15,7 +15,7 @@ if(!$modx->hasPermission('bk_manager')) {
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
 $modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 // module info
-$module_version = '1.2 (RC4)';
+$module_version = '1.2';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 //lang

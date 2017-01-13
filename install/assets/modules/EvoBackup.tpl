@@ -3,7 +3,7 @@
  *
  * Backup modx files and compress into .zip for easy download
  * @category	module
- * @version     1.2 RC4
+ * @version     1.2
  * @author      Author: Nicola Lambathakis http://www.tattoocms.it/
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
  * @internal	@modx_category Manager
