@@ -1,4 +1,4 @@
-# EvoBackup 1.3 for Evolutionn CMS
+# EvoBackup 1.3 for Evolution CMS
 Backup Evo files and compress into .zip for easy download
 
 # EvoBackup Features
