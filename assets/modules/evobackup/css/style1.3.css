@@ -46,13 +46,16 @@ th[data-sort]{
 cursor:pointer;
 }
 td.actions .btn {width:3em; text-align:center}
-.btn-info {
-  color: #fff;
+td.actions .btn-info {
+  color: #fff!important;
   background-color: #5bc0de;
   border-color: #5bc0de;
 }
-.btn-warning {
+td.actions .btn-warning {
   color: #fff!important;
   background-color: #f0ad4e;
   border-color: #f0ad4e;
+}
+td.actions .btn-danger, td.actions .btn-default {
+  color: #fff!important;
 }

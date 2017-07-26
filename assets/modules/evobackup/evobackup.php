@@ -702,12 +702,12 @@ if ($handle = opendir($modx_db_backup_dir)) {
        {
            $fs = filesize($modx_backup_default.$file)/1024; 
            $out .= "<tr><td><i class=\"fa fa-database yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
-                  ."<td style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
+                  ."<td class=\"actions\" style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
                   
-                  <a title=\"".$_lang['restore_sql_backup']."\" class=\"btn btn-default btn-sm\"><i class=\"fa fa-repeat\" onclick=\"javascript:if(confirm('".$_lang['restore_sql_confirm']." $file? ".$_lang['restore_sql_info']."')){postForm('restoresql','$file'); return false;}\"></i></a>
+                  <a title=\"".$_lang['restore_sql_backup']."\" class=\"btn btn-warning btn-sm\"><i class=\"fa fa-repeat\" onclick=\"javascript:if(confirm('".$_lang['restore_sql_confirm']." $file? ".$_lang['restore_sql_info']."')){postForm('restoresql','$file'); return false;}\"></i></a>
                   
                   
-                   <a title=\"".$_lang['delete_backup']."\" class=\"btn btn-default btn-sm\" onclick=\"javascript:if(confirm('".$_lang['delete_confirm']." $file? ".$_lang['delete_confirm_info']."')){postForm('deletesql','$file'); return false;}\"><i class=\"fa fa-trash\"></i></a>
+                   <a title=\"".$_lang['delete_backup']."\" class=\"btn btn-danger btn-sm\" onclick=\"javascript:if(confirm('".$_lang['delete_confirm']." $file? ".$_lang['delete_confirm_info']."')){postForm('deletesql','$file'); return false;}\"><i class=\"fa fa-trash\"></i></a>
                    </td></tr>";
        }
    }
