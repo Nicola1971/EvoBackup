@@ -1,0 +1,58 @@
+h2 {border-bottom: 1px dotted #dedede; padding:10px;}
+h3 {color: #3697CD;}
+h2.tab a:hover {text-decoration:none;}
+p {padding-left:10px; margin-bottom: 10px;}
+table.evobackup {margin-bottom:24px;}
+table.evobackup th, table.evobackup td {font-size:13px;}
+table.evobackup a {
+  cursor: pointer;
+}
+table.evobackup .btn {
+  width: 15px;
+}
+.info {color: #777;}
+.info b{color: #3697CD;}
+.alert {padding: 20px;background-color: #f44336; color: white;margin-bottom: 5px;}
+.success {padding: 20px;background-color: #07b922; color: white;margin-bottom: 5px;}
+.success a.textlink:link {color: white!important;}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
+}
+
+.yellow {font-size:14px; color:#444; background-color: yellow; border-radius:50%; border: 1px solid #f7bf04; padding:5px 7px; margin-right:5px;}
+.left {float: left; padding:10px; margin-right:20px;}
+.border-right {border-right: 1px dotted #dedede;}
+.border-top {padding-top: 10px; border-top: 1px dotted #dedede;}
+.capitalize {text-transform: capitalize;}
+.evobackup-tab-help {
+  padding: 15px;
+  border-bottom: 1px solid #ededed;
+  border-top:0!important;
+  margin-bottom: 15px;
+  color: #777;
+}
+
+th[data-sort]{
+cursor:pointer;
+}
+td.actions .btn {width:3em; text-align:center}
+.btn-info {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+}
+.btn-warning {
+  color: #fff!important;
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+}

@@ -8,13 +8,17 @@ $o = '
 	<title>EvoBackup Backup Manager Module</title>
 	<meta http-equiv="Content-Type" content="text/html; charset='.$modx_manager_charset.'" />
 	<link rel="stylesheet" type="text/css" href="media/style/'.$manager_theme.'/style.css" />
-    <link rel="stylesheet" type="text/css" href="../assets/modules/evobackup/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/modules/evobackup/css/style1.3.css" />
     <link rel="stylesheet" href="media/style/common/font-awesome/css/font-awesome.min.css" />
 <script src="../assets/modules/evobackup/js/jquery.min.js"></script>
 <script type="text/javascript" src="../assets/modules/evobackup/js/tabpane.js"></script>
+<script type="text/javascript" src="../assets/modules/evobackup/js/stupidtable.min.js"></script>
 
 <script>
+
 jQuery( document ).ready(function( $ ) {
+$(\'#zipbackup\').stupidtable(); 
+$(\'#sqlbackup\').stupidtable(); 
 $(\'#checkAllAssets\').click(function () {    
     $(\':checkbox.checkAssets\').prop(\'checked\', this.checked);    
  });
@@ -33,9 +37,22 @@ $(\'#checkMinBackup\').click(function () {
     $(\':checkbox.UncheckMin\').prop(\'checked\', false);
  });
 
- });
- </script>
-
+$(".evobackup-help").click(function(){
+        $("#evobackup-info").toggle(800);
+    });
+$(".archivebackup-help").click(function(){
+        $("#archivebackup-info").toggle(800);
+    });
+$(".sqlbackup-help").click(function(){
+        $("#sqlbackup-info").toggle(800);
+    });
+$(".all-help").click(function(){
+        $("#sqlbackup-info").toggle(800);
+        $("#evobackup-info").toggle(800);
+        $("#archivebackup-info").toggle(800);
+    });
+});
+</script>
  </head>
  <body>
 <h1 class="pagetitle">

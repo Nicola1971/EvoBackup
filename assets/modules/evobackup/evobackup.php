@@ -15,7 +15,7 @@ if(!$modx->hasPermission('bk_manager')) {
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
 $modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 // module info
-$module_version = '1.2';
+$module_version = '1.3';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 //lang
@@ -494,28 +494,11 @@ $out .= '
 </tbody></table></form>
 
 
- <script>
-$(document).ready(function(){
-    $(".evobackup-help").click(function(){
-        $("#evobackup-info").toggle(800);
-    });
-    $(".archivebackup-help").click(function(){
-        $("#archivebackup-info").toggle(800);
-    });
-    $(".sqlbackup-help").click(function(){
-        $("#sqlbackup-info").toggle(800);
-    });
-    $(".all-help").click(function(){
-        $("#sqlbackup-info").toggle(800);
-        $("#evobackup-info").toggle(800);
-        $("#archivebackup-info").toggle(800);
-    });
-});
-</script>
+
 
 <h2>'.$_lang['generate_backup'].'</h2>
 <div id="evobackup-info" style="display:none">
-            <div class="element-edit-message">
+            <div class="evobackup-tab-help">
              <h3>'.$_lang['light_backup'].'</h3>
              '.$_lang['help_light_backup'].'
             <h3>'.$_lang['medium_backup'].'</h3>
@@ -649,7 +632,7 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evofullbkp\">
 	<h2 id=\"tabs-fullbkp\" class=\"tab\"><a href=\"#tabpanel-evofullbkp\"><span><i class=\"fa fa-file-archive-o\" aria-hidden=\"true\"></i> ".$_lang['TabManageBackup']."</span></a></h2>
     <h2> ".$_lang['manage_backup']."</h2>
     <div id=\"archivebackup-info\" style=\"display:none\">
-            <div class=\"element-edit-message\">
+            <div class=\"evobackup-tab-help\">
              <h3>".$_lang['archive_backup_help_title']."</h3>
              ".$_lang['archive_backup_help']."
              <h3>".$_lang['extract_zip_backup']."</h3>
@@ -660,9 +643,9 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evofullbkp\">
              <p>".$_lang['delete_confirm_info']."</p>
              </div>
         </div>
-    <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"archivebackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span> ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
-    <th style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
-    <th><b>".$_lang['backup_filesize']."</b></th>
+    <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"archivebackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span> ".$_lang['manage_backup_descr']."</p><table id=\"zipbackup\" class=\"evobackup grid tablesorter\" width=\"100%\"><thead><tr>
+    <th data-sort=\"string\" style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
+    <th data-sort=\"int\"><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
   </tr></thead><tbody>
   ";
@@ -673,12 +656,12 @@ if ($handle = opendir($modx_backup_dir)) {
        {
            $fs = filesize($modx_backup_dir.$file)/1024; 
            $out .= "<tr><td><i class=\"fa fa-file-archive-o yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
-                  ."<td style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
+                  ."<td class=\"actions\" style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
                   
-                  <a title=\"".$_lang['extract_zip_backup']."\" class=\"btn btn-default btn-sm\" onclick=\"javascript:if(confirm('".$_lang['extract_zip_confirm']." $file ".$_lang['extract_to']." $modx_extract_dir ? ".$_lang['extract_zip_info']."')){postForm('extractzip','$file'); return false;}\"><i class=\"fa fa-file-archive-o\"></i></a>
+                  <a title=\"".$_lang['extract_zip_backup']."\" class=\"btn btn-warning btn-sm\" onclick=\"javascript:if(confirm('".$_lang['extract_zip_confirm']." $file ".$_lang['extract_to']." $modx_extract_dir ? ".$_lang['extract_zip_info']."')){postForm('extractzip','$file'); return false;}\"><i class=\"fa fa-file-archive-o\"></i></a>
                   
           
-                  <a title=\"".$_lang['delete_backup']."\" class=\"btn btn-default btn-sm\" onclick=\"javascript:if(confirm('".$_lang['delete_confirm']." $file? ".$_lang['delete_confirm_info']."')){postForm('deletezip','$file'); return false;}\"><i class=\"fa fa-trash\"></i></a>
+                  <a title=\"".$_lang['delete_backup']."\" class=\"btn btn-danger btn-sm\" onclick=\"javascript:if(confirm('".$_lang['delete_confirm']." $file? ".$_lang['delete_confirm_info']."')){postForm('deletezip','$file'); return false;}\"><i class=\"fa fa-trash\"></i></a>
            
                    
                    </td></tr>";
@@ -696,7 +679,7 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evosqlbkp\">
 	<h2 id=\"tabs-evosql\" class=\"tab\"><a href=\"#tabpanel-evosqlbkp\"><span><i class=\"fa fa-database\" aria-hidden=\"true\"></i> ".$_lang['TabMODxBackup']."</span></a></h2>
 <h2>".$_lang['manage_modx_backup']."</h2>
     <div id=\"sqlbackup-info\" style=\"display:none\">
-            <div class=\"element-edit-message\">
+            <div class=\"evobackup-tab-help\">
              <h3>".$_lang['sql_backup_help_title']."</h3>
              ".$_lang['sql_backup_help']."
              <h3>".$_lang['restore_sql_backup']."</h3>
@@ -705,9 +688,9 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evosqlbkp\">
              <p>".$_lang['delete_confirm_info']."</p>
              </div>
         </div>
-<p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"sqlbackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span>  ".$_lang['manage_backup_descr']."</p><table class=\"evobackup grid\" width=\"100%\"><thead><tr>
-    <th style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
-    <th><b>".$_lang['backup_filesize']."</b></th>
+<p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"sqlbackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span>  ".$_lang['manage_backup_descr']."</p><table id=\"sqlbackup\" class=\"evobackup grid\" width=\"100%\"><thead><tr>
+    <th data-sort=\"string\" style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
+    <th data-sort=\"int\"><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
   </tr></thead><tbody>
   ";

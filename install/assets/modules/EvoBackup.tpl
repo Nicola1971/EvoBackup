@@ -1,9 +1,9 @@
 /**
  * EvoBackup
  *
- * Backup modx files and compress into .zip for easy download
+ * Backup EVO files and compress into .zip for easy download
  * @category	module
- * @version     1.2
+ * @version     1.3
  * @author      Author: Nicola Lambathakis http://www.tattoocms.it/
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
  * @internal	@modx_category Manager
@@ -13,7 +13,7 @@
 
 /**
 *  Description: 
-*  Backup modx files and compress into .zip for easy download
+*  Backup EVO files and compress into .zip for easy download
 *  @author Nicola Lambathakis
 *  based on modbak by Robin Stemp <robinstemp@gmail.com>
 * 
