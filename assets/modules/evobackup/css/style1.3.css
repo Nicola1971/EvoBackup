@@ -1,6 +1,6 @@
 h2 {border-bottom: 1px dotted #dedede; padding:10px;}
 h3 {color: #3697CD;}
-h2.tab a:hover {text-decoration:none;}
+h2.tab a {text-decoration:none!important;}
 p {padding-left:10px; margin-bottom: 10px;}
 table.evobackup {margin-bottom:24px;}
 table.evobackup th, table.evobackup td {font-size:13px;}

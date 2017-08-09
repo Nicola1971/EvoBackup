@@ -643,7 +643,7 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evofullbkp\">
              <p>".$_lang['delete_confirm_info']."</p>
              </div>
         </div>
-    <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"archivebackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span> ".$_lang['manage_backup_descr']."</p><table id=\"zipbackup\" class=\"evobackup grid tablesorter\" width=\"100%\"><thead><tr>
+    <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"archivebackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span> ".$_lang['manage_backup_descr']."</p><div class=\"table-responsive\"><table id=\"zipbackup\" class=\"evobackup tablesorter table data\" width=\"100%\"><thead><tr>
     <th data-sort=\"string\" style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
     <th data-sort=\"int\"><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
@@ -656,12 +656,12 @@ if ($handle = opendir($modx_backup_dir)) {
        {
            $fs = filesize($modx_backup_dir.$file)/1024; 
            $out .= "<tr><td><i class=\"fa fa-file-archive-o yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
-                  ."<td class=\"actions\" style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
+                  ."<td class=\"actions\" style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\"  href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
                   
-                  <a title=\"".$_lang['extract_zip_backup']."\" class=\"btn btn-warning btn-sm\" onclick=\"javascript:if(confirm('".$_lang['extract_zip_confirm']." $file ".$_lang['extract_to']." $modx_extract_dir ? ".$_lang['extract_zip_info']."')){postForm('extractzip','$file'); return false;}\"><i class=\"fa fa-file-archive-o\"></i></a>
+                  <a title=\"".$_lang['extract_zip_backup']."\" onclick=\"javascript:if(confirm('".$_lang['extract_zip_confirm']." $file ".$_lang['extract_to']." $modx_extract_dir ? ".$_lang['extract_zip_info']."')){postForm('extractzip','$file'); return false;}\"><i class=\"fa fa-file-archive-o\"></i></a>
                   
           
-                  <a title=\"".$_lang['delete_backup']."\" class=\"btn btn-danger btn-sm\" onclick=\"javascript:if(confirm('".$_lang['delete_confirm']." $file? ".$_lang['delete_confirm_info']."')){postForm('deletezip','$file'); return false;}\"><i class=\"fa fa-trash\"></i></a>
+                  <a title=\"".$_lang['delete_backup']."\" onclick=\"javascript:if(confirm('".$_lang['delete_confirm']." $file? ".$_lang['delete_confirm_info']."')){postForm('deletezip','$file'); return false;}\"><i class=\"fa fa-trash\"></i></a>
            
                    
                    </td></tr>";
@@ -669,7 +669,7 @@ if ($handle = opendir($modx_backup_dir)) {
    }
    closedir($handle);
 }
-$out .= '</tbody></table></div>';
+$out .= '</tbody></table></div></div>';
 /**
 * Display list of modx backups with download
 */
@@ -688,7 +688,7 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evosqlbkp\">
              <p>".$_lang['delete_confirm_info']."</p>
              </div>
         </div>
-<p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"sqlbackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span>  ".$_lang['manage_backup_descr']."</p><table id=\"sqlbackup\" class=\"evobackup grid\" width=\"100%\"><thead><tr>
+<p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"sqlbackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span>  ".$_lang['manage_backup_descr']."</p><div class=\"table-responsive\"><table id=\"sqlbackup\" class=\"evobackup table data\" width=\"100%\"><thead><tr>
     <th data-sort=\"string\" style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
     <th data-sort=\"int\"><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
@@ -702,12 +702,12 @@ if ($handle = opendir($modx_db_backup_dir)) {
        {
            $fs = filesize($modx_backup_default.$file)/1024; 
            $out .= "<tr><td><i class=\"fa fa-database yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
-                  ."<td class=\"actions\" style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" class=\"btn btn-default btn-sm\" href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
+                  ."<td class=\"actions\" style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
                   
-                  <a title=\"".$_lang['restore_sql_backup']."\" class=\"btn btn-warning btn-sm\"><i class=\"fa fa-repeat\" onclick=\"javascript:if(confirm('".$_lang['restore_sql_confirm']." $file? ".$_lang['restore_sql_info']."')){postForm('restoresql','$file'); return false;}\"></i></a>
+                  <a title=\"".$_lang['restore_sql_backup']."\"><i class=\"fa fa-repeat\" onclick=\"javascript:if(confirm('".$_lang['restore_sql_confirm']." $file? ".$_lang['restore_sql_info']."')){postForm('restoresql','$file'); return false;}\"></i></a>
                   
                   
-                   <a title=\"".$_lang['delete_backup']."\" class=\"btn btn-danger btn-sm\" onclick=\"javascript:if(confirm('".$_lang['delete_confirm']." $file? ".$_lang['delete_confirm_info']."')){postForm('deletesql','$file'); return false;}\"><i class=\"fa fa-trash\"></i></a>
+                   <a title=\"".$_lang['delete_backup']."\" onclick=\"javascript:if(confirm('".$_lang['delete_confirm']." $file? ".$_lang['delete_confirm_info']."')){postForm('deletesql','$file'); return false;}\"><i class=\"fa fa-trash\"></i></a>
                    </td></tr>";
        }
    }
@@ -715,7 +715,7 @@ if ($handle = opendir($modx_db_backup_dir)) {
 }
 
 global $lang;
-$out .= '</tbody></table><span class="actionButtons evobkpbuttons">
+$out .= '</tbody></table></div><span class="actionButtons evobkpbuttons">
             <a class="primary" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdb_button_text'].'</a>
              <a href="index.php?a=93" class="" style="display:inline-block;">'.$_lang['bk_manager'].'</a>
   
