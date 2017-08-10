@@ -45,17 +45,7 @@ table.evobackup .btn {
 th[data-sort]{
 cursor:pointer;
 }
+.actionButtons.evobkpbuttons {display:block; margin-top:5px; padding:3px}
+.actionButtons.evobkpbuttons .btn {margin-right:3px}
+.actionButtons.evobkpbuttons .btn.btn-success {background-color:#5cb85c;border-color:#56ac56;color:#fff;}
 td.actions .btn {width:3em; text-align:center}
-td.actions .btn-info {
-  color: #fff!important;
-  background-color: #5bc0de;
-  border-color: #5bc0de;
-}
-td.actions .btn-warning {
-  color: #fff!important;
-  background-color: #f0ad4e;
-  border-color: #f0ad4e;
-}
-td.actions .btn-danger, td.actions .btn-default {
-  color: #fff!important;
-}
