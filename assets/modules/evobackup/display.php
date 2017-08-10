@@ -54,6 +54,27 @@ $(".all-help").click(function(){
 });
 </script>
  </head>
+ <style>
+ /* Sortable indicator icon */
+th[data-sort]:after {
+    font-family: FontAwesome;
+    content: \'\f07d\';
+    padding-left: 5px;
+    color: #dedede;
+}
+th.sorting-desc:after {
+    font-family: FontAwesome;
+    content: \'\f175\';
+    padding-left: 5px;
+    color: red;
+}
+th.sorting-asc:after {
+    font-family: FontAwesome;
+    content: \'\f176\';
+    padding-left: 5px;
+    color: red;
+}
+ </style>
  <body>
 <h1 class="pagetitle">
   <span class="pagetitle-icon">

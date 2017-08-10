@@ -1,6 +1,6 @@
 <?php
 /**
-* Main Modbak include code
+* EvoBackup Module
 */
 if(IN_MANAGER_MODE!="true") die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the MODx Content Manager instead of accessing this file directly.");
 global $modx, $_lang;
@@ -614,8 +614,8 @@ $out .=  '
 <div class="border-top" style="clear:both"></div>
 </div>
 <span class="actionButtons evobkpbuttons">
-             <a class="primary" href="#" onclick="postForm(\'generate\')" value="Backup Now!">'.$_lang['backup_button_text'].'</a>  
-             <a class="primary" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdbonly_button_text'].'</a> 
+             <a class="btn btn-success" href="#" onclick="postForm(\'generate\')" value="Backup Now!">'.$_lang['backup_button_text'].'</a>  
+              <a class="btn btn-primary" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdbonly_button_text'].'</a> 
         </span>
 
 
@@ -716,7 +716,7 @@ if ($handle = opendir($modx_db_backup_dir)) {
 
 global $lang;
 $out .= '</tbody></table></div><span class="actionButtons evobkpbuttons">
-            <a class="primary" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdb_button_text'].'</a>
+            <a class="btn btn-success" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdb_button_text'].'</a>
              <a href="index.php?a=93" class="" style="display:inline-block;">'.$_lang['bk_manager'].'</a>
   
         </span></div>
