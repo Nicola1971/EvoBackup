@@ -615,7 +615,7 @@ $out .=  '
 </div>
 <span class="actionButtons evobkpbuttons">
              <a class="btn btn-success" href="#" onclick="postForm(\'generate\')" value="Backup Now!">'.$_lang['backup_button_text'].'</a>  
-              <a class="btn btn-primary" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdbonly_button_text'].'</a> 
+              <a class="btn" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdbonly_button_text'].'</a> 
         </span>
 
 
