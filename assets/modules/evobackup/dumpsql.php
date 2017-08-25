@@ -139,7 +139,7 @@ class Mysqldumper {
 		
 		
 		foreach ($tables as $tblval) {
-			$result = mysqli_query($resource,"SHOW CREATE TABLE `$tblval`");
+			$result = mysqli_query($resource,"SHOW CREATE TABLE `$tblval`")  or die(mysqli_error($resource));
 			$createtable[$tblval] = $this->result2Array(1, $result);
 		}
 		// Set header
@@ -154,7 +154,6 @@ class Mysqldumper {
 		$output .= "# Database : `" . $this->getDBname() . "`" . $lf;
         $output .= "# Description: EvoBackup {$lf}";
 		$output .= "#";
-
 
 		// Generate dumptext for the tables.
 		if (isset($this->_dbtables) && count($this->_dbtables)) {
@@ -247,7 +246,7 @@ class Mysqldumper {
 			$array[] = $row[$numinarray];
 		}
 		mysqli_free_result($resource);
-		return $array;
+        return $array;
 	}
 }
 
