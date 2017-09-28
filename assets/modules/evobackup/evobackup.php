@@ -15,7 +15,7 @@ if(!$modx->hasPermission('bk_manager')) {
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
 $modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 // module info
-$module_version = '1.3';
+$module_version = '1.3.1';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 //lang
@@ -346,8 +346,22 @@ switch($opcode)
         $out .= "<div class=\"success\"><span class=\"closebtn\" onclick=\"this.parentElement.style.display='none';\">&times;</span><h2><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i> ".$_lang['backup_successful']." </h2><strong> <a  class=\"textlink\"  href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\">$archive_file</a></strong><br /><br />
         <span class=\"actionButtons evobkpbuttons\">
              <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
-        </span></div>";    
-
+        </span></div>";
+if ($v_list !== 0) {
+ // Send email
+if ($sendEmail == 'yes') {
+$to = $SendTo;
+$sitename = $modx->config['site_name'];
+$subject = $emSubject;
+$txt = "<h1>".$_lang['backup_successful']."</h1><a href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=".basename($database_filename)."\">Download Backup</a>";
+$msg = wordwrap($txt,255);
+$headers = "From: ".$modx->config['emailsender']."" . "\r\n" .
+"CC: ".$SendToCC."";
+$my_subject = $sitename . ' ' .$subject; 
+mail($to,$my_subject,$msg,$headers);
+}
+// end Send email
+    }
         // add database, callback for dbdump
        if ($dumpdbase!='') {
             $out .= "<script type=\"text/javascript\" language=\"javascript\">postForm('dumpdbase','".basename($archive_file)."');</script>";
@@ -382,6 +396,20 @@ switch($opcode)
              <a href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=".basename($database_filename)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
         </span>
     </div>";
+ // Send email
+if ($sendEmail == 'yes') {
+$to = $SendTo;
+$sitename = $modx->config['site_name'];
+$subject = $emSubject;
+$txt = "<h1>".$_lang['backup_successful']."</h1><a href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=".basename($database_filename)."\">Download Backup</a>";
+$msg = wordwrap($txt,255);
+$headers = "From: ".$modx->config['emailsender']."" . "\r\n" .
+"CC: ".$SendToCC."";
+$my_subject = $sitename . ' ' .$subject; 
+mail($to,$my_subject,$msg,$headers);
+}
+// end Send email
+
          }       
         else {
 	        $e->setError(1,"".$_lang['unable_to_backup_db']."");
