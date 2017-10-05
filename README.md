@@ -28,9 +28,7 @@ video: https://youtu.be/UfpgFIBOxrg
 
 for automatic backups check https://github.com/Nicola1971/AutoEvoBackup
 
-![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/evobackup-rc3-tab1.png)
-![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/evobackup-rc3-tab2.png)
-![evobackup](https://github.com/Nicola1971/training-materials/blob/master/Images/evobackup-rc3-tab3.png)
+![evobackup1 3](https://user-images.githubusercontent.com/7342798/31240426-f2f7591e-aa00-11e7-8755-b3bd3e79a7a6.png)
 
 # Setup
 1. Create directory named "_evobackup_archives"  on your root webserver to hold modx .zip archives, and set read/write permissions to 777
