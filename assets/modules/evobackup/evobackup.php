@@ -672,7 +672,7 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evofullbkp\">
              </div>
         </div>
     <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"archivebackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span> ".$_lang['manage_backup_descr']."</p><div class=\"table-responsive\"><table id=\"zipbackup\" class=\"evobackup tablesorter table data\" width=\"100%\"><thead><tr>
-    <th data-sort=\"string\" style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
+    <th data-sort=\"string\" style=\"min-width: 350px;\"><b>".$_lang['backup_filename']."</b></th>
     <th data-sort=\"int\"><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
   </tr></thead><tbody>
@@ -717,7 +717,7 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evosqlbkp\">
              </div>
         </div>
 <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"sqlbackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span>  ".$_lang['manage_backup_descr']."</p><div class=\"table-responsive\"><table id=\"sqlbackup\" class=\"evobackup table data\" width=\"100%\"><thead><tr>
-    <th data-sort=\"string\" style=\"width: 300px;\"><b>".$_lang['backup_filename']."</b></th>
+    <th data-sort=\"string\" style=\"min-width: 350px;\"><b>".$_lang['backup_filename']."</b></th>
     <th data-sort=\"int\"><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
   </tr></thead><tbody>
