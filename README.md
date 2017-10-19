@@ -1,4 +1,4 @@
-# EvoBackup 1.3 for Evolution CMS
+# EvoBackup 1.3.2 for Evolution CMS
 Backup Evo files and compress into .zip for easy download
 
 # EvoBackup Features
@@ -13,6 +13,7 @@ Backup Evo files and compress into .zip for easy download
 * Help
 * Support for custom/renamed manager folder
 * Evolution installer for Package Manager and Extras module
+* Option to send email with download link
 
 ## Credits
 * Based on modbak by stempy https://modx.com/extras/package/modbak
