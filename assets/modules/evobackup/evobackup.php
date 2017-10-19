@@ -347,22 +347,23 @@ switch($opcode)
         <span class=\"actionButtons evobkpbuttons\">
              <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
         </span></div>";
-if ($v_list !== 0) {
- // Send email
+
+if ($dumpdbase =='') {        
+                    // Send email Database Backup
 if ($sendEmail == 'yes') {
 $to = $SendTo;
 $sitename = $modx->config['site_name'];
 $subject = $emSubject;
-$txt = "<h1>".$_lang['backup_successful']."</h1><a href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=".basename($database_filename)."\">Download Backup</a>";
+$txt = "<h1>".$_lang['backup_successful']."</h1><a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($archive_file)."\">Download Site Backup</a>";
 $msg = wordwrap($txt,255);
 $headers = "From: ".$modx->config['emailsender']."" . "\r\n" .
 "CC: ".$SendToCC."";
 $my_subject = $sitename . ' ' .$subject; 
 mail($to,$my_subject,$msg,$headers);
 }
+ }
 // end Send email
-    }
-        // add database, callback for dbdump
+
        if ($dumpdbase!='') {
             $out .= "<script type=\"text/javascript\" language=\"javascript\">postForm('dumpdbase','".basename($archive_file)."');</script>";
         }
@@ -396,12 +397,12 @@ mail($to,$my_subject,$msg,$headers);
              <a href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=".basename($database_filename)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
         </span>
     </div>";
- // Send email
+ // Send email Database Backup
 if ($sendEmail == 'yes') {
 $to = $SendTo;
 $sitename = $modx->config['site_name'];
 $subject = $emSubject;
-$txt = "<h1>".$_lang['backup_successful']."</h1><a href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=".basename($database_filename)."\">Download Backup</a>";
+$txt = "<h1>".$_lang['backup_successful']."</h1><a href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=".basename($database_filename)."\">Download Database Backup</a>";
 $msg = wordwrap($txt,255);
 $headers = "From: ".$modx->config['emailsender']."" . "\r\n" .
 "CC: ".$SendToCC."";
@@ -477,7 +478,20 @@ mail($to,$my_subject,$msg,$headers);
     <span class=\"actionButtons evobkpbuttons\">
              <a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($fname."_db.".$ext)."\"><i class=\"fa fa-download\" aria-hidden=\"true\"></i>  ".$_lang['download_backup']."</a>
         </span>
-    </div>";    
+    </div>";
+     // Send email Database Backup
+if ($sendEmail == 'yes') {
+$to = $SendTo;
+$sitename = $modx->config['site_name'];
+$subject = $emSubject;
+$txt = "<h1>".$_lang['backup_successful']."</h1><a href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=".basename($fname."_db.".$ext)."\">Download Database Backup</a>";
+$msg = wordwrap($txt,255);
+$headers = "From: ".$modx->config['emailsender']."" . "\r\n" .
+"CC: ".$SendToCC."";
+$my_subject = $sitename . ' ' .$subject; 
+mail($to,$my_subject,$msg,$headers);
+}
+// end Send email
  break;
 //extract a ZipArchive 
 case 'extractzip': 
@@ -520,10 +534,6 @@ $Config = $_lang["settings_module"];
 $check_all= $_lang["check_all"];
 $out .= '
 </tbody></table></form>
-
-
-
-
 <h2>'.$_lang['generate_backup'].'</h2>
 <div id="evobackup-info" style="display:none">
             <div class="evobackup-tab-help">
