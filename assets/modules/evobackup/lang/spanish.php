@@ -31,6 +31,7 @@ $_lang['manage_modx_backup'] = 'Gestionar las copias de seguridad de .sql del si
 $_lang['manage_backup_descr'] = 'Descargar o eliminar archivos de copia de seguridad anteriores';
 $_lang['backup_filename'] = 'Nombre del archivo';
 $_lang['backup_filesize'] = 'Tamaño del archivo';
+$_lang['backup_filedate'] = 'Fecha';
 $_lang['backup_file_options'] = 'Opciones';
 $_lang['delete_backup'] = 'Eliminar copia de seguridad';
 $_lang['download_backup'] = 'Descargar copia de seguridad';

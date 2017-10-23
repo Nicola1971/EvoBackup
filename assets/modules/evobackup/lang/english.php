@@ -7,7 +7,7 @@
 //         Backup Evo files and compress into .zip for easy download.
 //
 //   Version:
-//         1.2
+//         1.3.3
 //
 //   Created by:
 // 	    Nicola Lambathakis http://www.tattoocms.it/
@@ -31,6 +31,7 @@ $_lang['manage_modx_backup'] = 'Manage MODX System .sql Backups';
 $_lang['manage_backup_descr'] = 'Download or delete previous backup archives';
 $_lang['backup_filename'] = 'Filename';
 $_lang['backup_filesize'] = 'File size';
+$_lang['backup_filedate'] = 'Date';
 $_lang['backup_file_options'] = 'Options';
 $_lang['delete_backup'] = 'Delete Backup';
 $_lang['download_backup'] = 'Download Backup';

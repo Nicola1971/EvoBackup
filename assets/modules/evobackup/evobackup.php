@@ -15,7 +15,7 @@ if(!$modx->hasPermission('bk_manager')) {
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
 $modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 // module info
-$module_version = '1.3.2';
+$module_version = '1.3.3';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 //lang
@@ -682,7 +682,8 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evofullbkp\">
              </div>
         </div>
     <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"archivebackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span> ".$_lang['manage_backup_descr']."</p><div class=\"table-responsive\"><table id=\"zipbackup\" class=\"evobackup tablesorter table data\" width=\"100%\"><thead><tr>
-    <th data-sort=\"string\" data-sort-default=\"desc\" style=\"min-width: 350px;\" data-sort-onload=yes><b>".$_lang['backup_filename']."</b></th>
+    <th data-sort=\"string\" style=\"min-width: 350px;\"><b>".$_lang['backup_filename']."</b></th>
+    <th data-sort=\"string\" data-sort-default=\"desc\" data-sort-onload=yes><b>".$_lang['backup_filedate']."</b></th>
     <th data-sort=\"int\"><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
   </tr></thead><tbody>
@@ -693,7 +694,8 @@ if ($handle = opendir($modx_backup_dir)) {
        if ($file!='.' && $file!='..' && (strpos($file,$archive_prefix)!==false ) && $file!=$database_filename)
        {
            $fs = filesize($modx_backup_dir.$file)/1024; 
-           $out .= "<tr><td><i class=\"fa fa-file-archive-o yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
+           $filetime =  date("Y-m-d-Hi", filemtime($modx_backup_dir.$file ));
+           $out .= "<tr><td><i class=\"fa fa-file-archive-o yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td>$filetime</td><td> ".ceil($fs)." kb</td>"
                   ."<td class=\"actions\" style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\"  href=\"".$modx->config['site_url']."assets/modules/evobackup/download.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
                   
                   <a title=\"".$_lang['extract_zip_backup']."\" onclick=\"javascript:if(confirm('".$_lang['extract_zip_confirm']." $file ".$_lang['extract_to']." $modx_extract_dir ? ".$_lang['extract_zip_info']."')){postForm('extractzip','$file'); return false;}\"><i class=\"fa fa-file-archive-o\"></i></a>
@@ -727,7 +729,8 @@ $out .= "<div class=\"tab-page\" id=\"tabpanel-evosqlbkp\">
              </div>
         </div>
 <p><span class=\"info\"><b><a href=\"#\" title=\"".$_lang['help']."\" class=\"sqlbackup-help\"><i class=\"fa fa-question-circle fa-lg \" aria-hidden=\"true\"></i></a></b></span>  ".$_lang['manage_backup_descr']."</p><div class=\"table-responsive\"><table id=\"sqlbackup\" class=\"evobackup table data\" width=\"100%\"><thead><tr>
-    <th data-sort=\"string\" data-sort-default=\"desc\" style=\"min-width: 350px;\" data-sort-onload=yes><b>".$_lang['backup_filename']."</b></th>
+    <th data-sort=\"string\" style=\"min-width: 350px;\"><b>".$_lang['backup_filename']."</b></th>
+    <th data-sort=\"string\" data-sort-default=\"desc\" data-sort-onload=yes><b>".$_lang['backup_filedate']."</b></th>
     <th data-sort=\"string\"><b>".$_lang['backup_filesize']."</b></th>
     <th style=\"text-align:right;\"><b>".$_lang['backup_file_options']."</b></th>
   </tr></thead><tbody>
@@ -738,8 +741,9 @@ if ($handle = opendir($modx_db_backup_dir)) {
    while (false !== ($file = readdir($handle))  ) {
      if (strpos($file,'.sql')!==false )
        {
+           $filetime =  date("Y-m-d-Hi", filemtime($modx_backup_default.$file ));
            $fs = filesize($modx_backup_default.$file)/1024; 
-           $out .= "<tr><td><i class=\"fa fa-database yellow\" aria-hidden=\"true\"></i>  <b>$file</b></td><td> ".ceil($fs)." kb</td>"
+           $out .= "<tr><td><i class=\"fa fa-database yellow\" aria-hidden=\"true\"></i>  <b>$file </b></td><td>$filetime</td><td> ".ceil($fs)." kb</td>"
                   ."<td class=\"actions\" style=\"text-align:right;\"><a title=\"".$_lang['download_backup']."\" href=\"".$modx->config['site_url']."assets/modules/evobackup/downloadsql.php?filename=$file\"><i class=\"fa fa-download\"></i></a> 
                   
                   <a title=\"".$_lang['restore_sql_backup']."\"><i class=\"fa fa-repeat\" onclick=\"javascript:if(confirm('".$_lang['restore_sql_confirm']." $file? ".$_lang['restore_sql_info']."')){postForm('restoresql','$file'); return false;}\"></i></a>

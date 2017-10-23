@@ -31,6 +31,7 @@ $_lang['manage_modx_backup'] = 'Beheer MODX Systeem .sql Backups';
 $_lang['manage_backup_descr'] = 'Download of verwijder oudere backup archieven';
 $_lang['backup_filename'] = 'Bestandsnaam';
 $_lang['backup_filesize'] = 'Bestandsgrootte';
+$_lang['backup_filedate'] = 'Datum';
 $_lang['backup_file_options'] = 'Opties';
 $_lang['delete_backup'] = 'Verwijder backup';
 $_lang['download_backup'] = 'Download backup';
