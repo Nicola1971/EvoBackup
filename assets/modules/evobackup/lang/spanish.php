@@ -27,7 +27,7 @@ $_lang['TabManageBackup'] = 'Gestionar archivos de copias de seguridad';
 $_lang['TabMODxBackup'] = 'Gestionar copias de seguridad de bases de datos';
 //Manage Backups
 $_lang['manage_backup'] = 'Gestionar copias de seguridad de los archivos de EvoBackup';
-$_lang['manage_modx_backup'] = 'Gestionar las copias de seguridad de .sql del sistema MODx';
+$_lang['manage_modx_backup'] = 'Gestionar las copias de seguridad de .sql del sistema EVO';
 $_lang['manage_backup_descr'] = 'Descargar o eliminar archivos de copia de seguridad anteriores';
 $_lang['backup_filename'] = 'Nombre del archivo';
 $_lang['backup_filesize'] = 'Tamaño del archivo';
@@ -79,7 +79,7 @@ $_lang['archive_backup_help_title'] = 'Descargar o eliminar las copias de seguri
 $_lang['archive_backup_help'] = '<p>Nota: el archivo zip con sufijo <b>_db</b> contiene un archivo .sql con archivos de copia de seguridad de base de datos.</p><p>Archivos sin sufijo <b>_db</b> contiene sólo archivos.</p>
 <p>Para crear copias de seguridad automáticas de archivos, descargue e instale <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p> ';
 $_lang['sql_backup_help_title'] = 'Descargar o eliminar copias de seguridad .sql';
-$_lang['sql_backup_help'] = '<p>Las copias de seguridad de SQL se pueden generar manualmente con el predeterminado <a href="index.php?a=93">MODX Backup Snapshot Manager</a></p> <p>Para crear copias de seguridad .sql automáticas, descargue e instale <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
+$_lang['sql_backup_help'] = '<p>Las copias de seguridad de SQL se pueden generar manualmente con el predeterminado <a href="index.php?a=93">EVO Backup Snapshot Manager</a></p> <p>Para crear copias de seguridad .sql automáticas, descargue e instale <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
 //Alerts
 $_lang['backup_successful'] = '¡Copia creada con éxito!';
 $_lang['backupdb_successful'] = '¡Copia Database creada con éxito!';

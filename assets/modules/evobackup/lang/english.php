@@ -27,7 +27,7 @@ $_lang['TabManageBackup'] = 'Manage Backup Archives';
 $_lang['TabMODxBackup'] = 'Manage Database Backups';
 //Manage Backups
 $_lang['manage_backup'] = 'Manage EvoBackup Archives Backups';
-$_lang['manage_modx_backup'] = 'Manage MODX System .sql Backups';
+$_lang['manage_modx_backup'] = 'Manage EVO System .sql Backups';
 $_lang['manage_backup_descr'] = 'Download or delete previous backup archives';
 $_lang['backup_filename'] = 'Filename';
 $_lang['backup_filesize'] = 'File size';
@@ -79,7 +79,7 @@ $_lang['archive_backup_help_title'] = 'Download or delete EvoBackup .zip archive
 $_lang['archive_backup_help'] = '<p>Note: zip archive with <b>_db</b> suffix contains a .sql file with Database Backup</p><p>Archives without <b>_db</b> suffix contains just files</p>
 <p>To create automatic archives backups, download and install <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p> ';
 $_lang['sql_backup_help_title'] = 'Download or delete .sql backups';
-$_lang['sql_backup_help'] = '<p>Sql backups can be manually generated with default <a href="index.php?a=93">MODX Backup Snapshot Manager</a></p> <p>To create automatic .sql backups, download and install <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
+$_lang['sql_backup_help'] = '<p>Sql backups can be manually generated with default <a href="index.php?a=93">EVO Backup Snapshot Manager</a></p> <p>To create automatic .sql backups, download and install <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
 //Alerts
 $_lang['backup_successful'] = 'Backup Successful!';
 $_lang['backupdb_successful'] = 'Database Backup Successful!';

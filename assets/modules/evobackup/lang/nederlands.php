@@ -27,7 +27,7 @@ $_lang['TabManageBackup'] = 'Beheer backup archief';
 $_lang['TabMODxBackup'] = 'Beheer database backups';
 //Manage Backups
 $_lang['manage_backup'] = 'Beheer EvoBackup gearchiveerde Backups';
-$_lang['manage_modx_backup'] = 'Beheer MODX Systeem .sql Backups';
+$_lang['manage_modx_backup'] = 'Beheer EVO Systeem .sql Backups';
 $_lang['manage_backup_descr'] = 'Download of verwijder oudere backup archieven';
 $_lang['backup_filename'] = 'Bestandsnaam';
 $_lang['backup_filesize'] = 'Bestandsgrootte';
@@ -79,7 +79,7 @@ $_lang['archive_backup_help_title'] = 'Download of EvoBackup zip-archief back-up
 $_lang['archive_backup_help'] = '<p>Opmerking: zip-archief met <b>_db</b> achtervoegsel bevat een .sql bestand met de Database Backup</p><p>Archieven zonder <b>_db</b> achtervoegsel bevat gewoon bestanden</p>
 <p>Om de automatische archieven back-ups te maken, te downloaden en te installeren <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p> ';
 $_lang['sql_backup_help_title'] = 'Download of verwijder .sql backups';
-$_lang['sql_backup_help'] = '<p>Sql backups kunnen handmatig worden gegenereerd met standaard <a href="index.php?a=93">MODX Backup snapshot manager</a></p> <p>Om automatische .sql back-ups te maken, download en installeer <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
+$_lang['sql_backup_help'] = '<p>Sql backups kunnen handmatig worden gegenereerd met standaard <a href="index.php?a=93">EVO Backup snapshot manager</a></p> <p>Om automatische .sql back-ups te maken, download en installeer <a href="https://github.com/Nicola1971/AutoEvoBackup" target="_blank">AutoEvoBackup</a></p>';
 //Alerts
 $_lang['backup_successful'] = 'Backup gelukt!';
 $_lang['backupdb_successful'] = 'Database Backup gelukt!';
