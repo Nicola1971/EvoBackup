@@ -15,7 +15,7 @@ if(!$modx->hasPermission('bk_manager')) {
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
 $modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 // module info
-$module_version = '1.3.3';
+$module_version = '1.3.4';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 //lang
@@ -83,12 +83,10 @@ $dumpcache  = isset($_POST['dumpcache']) ? $_POST['dumpcache']:'';
 $dumpdocs  = isset($_POST['dumpdocs']) ? $_POST['dumpdocs']:'';
 $dumpexport  = isset($_POST['dumpexport']) ? $_POST['dumpexport']:'';
 $dumpfiles  = isset($_POST['dumpfiles']) ? $_POST['dumpfiles']:'';
-$dumpflash  = isset($_POST['dumpflash']) ? $_POST['dumpflash']:'';
 $dumpimages  = isset($_POST['dumpimages']) ? $_POST['dumpimages']:'';
 $dumpimport  = isset($_POST['dumpimport']) ? $_POST['dumpimport']:'';
 $dumpjs  = isset($_POST['dumpjs']) ? $_POST['dumpjs']:'';
 $dumplib  = isset($_POST['dumplib']) ? $_POST['dumplib']:'';
-$dumpmedia  = isset($_POST['dumpmedia']) ? $_POST['dumpmedia']:'';
 $dumpmodules  = isset($_POST['dumpmodules']) ? $_POST['dumpmodules']:'';
 $dumpplugins  = isset($_POST['dumpplugins']) ? $_POST['dumpplugins']:'';
 $dumpsite  = isset($_POST['dumpsite']) ? $_POST['dumpsite']:'';
@@ -131,10 +129,7 @@ if ($dumpfiles!='')
 {
     $modx_files_array[]=$modx_root_dir.'assets/files';
 }
-if ($dumpflash!='')
-{
-    $modx_files_array[]=$modx_root_dir.'assets/flash';
-}
+
 if ($dumpimages!='')
 {
     $modx_files_array[]=$modx_root_dir.'assets/images';
@@ -150,10 +145,6 @@ if ($dumpjs!='')
 if ($dumplib!='')
 {
     $modx_files_array[]=$modx_root_dir.'assets/lib';
-}
-if ($dumpmedia!='')
-{
-    $modx_files_array[]=$modx_root_dir.'assets/media';
 }
 if ($dumpmodules!='')
 {
@@ -230,13 +221,6 @@ if ($dumpmprocessors!='')
 if ($dumpindex!='')
 {
     $modx_files_array[]=$modx_root_dir.'index.php';
-}
-if ($dumpindexajax!='')
-{
-if (file_exists($modx_root_dir.'index-ajax.php'))
-{
-    $modx_files_array[]=$modx_root_dir.'index-ajax.php';
-}  
 }
 if ($dumphtaccess!='')
 {
@@ -562,9 +546,7 @@ $out .= '
 <h4>'.$_lang['assets_user_folders'].'</h4>
 <label><input type="checkbox" name="dumptemplates" class="checkAssets checkReq checkMin" checked="checked"/>  /templates</label><br />
 <label><input type="checkbox" name="dumpfiles" class="checkAssets checkReq checkMin" checked="checked"/>  /files </label><br />
-<label><input type="checkbox" name="dumpflash" class="checkAssets checkReq checkMin" checked="checked"/>  /flash </label><br />
 <label><input type="checkbox" name="dumpimages" class="checkAssets checkReq checkMin" checked="checked"/>  /images </label><br />
-<label><input type="checkbox" name="dumpmedia" class="checkAssets checkReq checkMin" checked="checked"/>  /media </label><br />
 </div>
 
 <div class="left border-right">
@@ -613,7 +595,6 @@ $out .= '
 <label><input type="checkbox" class="UncheckReq UncheckMin checkAll" name="dumphtaccess" /> .htaccess </label><br />
 <label><input type="checkbox" class="UncheckMin checkAll checkReq" name="dumprobots"/> robots.txt </label><br />
 <label><input type="checkbox" class="UncheckReq UncheckMin checkAll" name="dumpindex" />  index.php </label><br />
-<label><input type="checkbox" class="UncheckReq UncheckMin checkAll" name="dumpindexajax" />  index-ajax.php </label><br /><br />
 </div>
 
 <div class="left border-right">
