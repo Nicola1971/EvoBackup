@@ -13,6 +13,7 @@ table.evobackup .btn {
 .info {color: #777;}
 .info b{color: #3697CD;}
 .alert {padding: 20px;background-color: #f44336; color: white;margin-bottom: 5px;}
+.alert.alert-progress {font-size: 22px; padding: 20px;background-color: #D9EDF7; border-color: #B6D3E1;color: #31708F;margin-bottom: 5px;}
 .success {padding: 20px;background-color: #07b922; color: white;margin-bottom: 5px;}
 .success a.textlink:link {color: white!important;}
 .closebtn {
@@ -53,21 +54,13 @@ td.actions .btn {width:3em; text-align:center}
 /*loader*/
 .spinner {
     display: inline-block;
-    opacity: 0;
-    width: 0;
+    opacity: 1;
+    width: auto;
     -webkit-transition: opacity 0.25s, width 0.25s;
     -moz-transition: opacity 0.25s, width 0.25s;
     -o-transition: opacity 0.25s, width 0.25s;
     transition: opacity 0.25s, width 0.25s;
-}
-
-.has-spinner.active {
     cursor:progress;
-}
-
-.has-spinner.active .spinner {
-    opacity: 1;
-    width: auto;
 }
 
 .has-spinner.btn.active .spinner {

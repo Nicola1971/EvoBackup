@@ -16,12 +16,12 @@ $o = '
 <script>
 jQuery( document ).ready(function( $ ) {
 $(\'.btn-load\').click(function () {
-  var btn = $(this);
 $(\'.btn-load\').html(\'<span class="spinner"><i class="fa fa-spinner fa-spin" title="button-loader"></i></span> '.$_lang["Processing_Backup"].'\');
+$(\'.message\').html(\'<div class="alert alert-progress"><span class="spinner"><i class="fa fa-spinner fa-spin" title="button-loader"></i></span> '.$_lang["Processing_Backup"].'</div>\');
 });
 $(\'.btn-load2\').click(function () {
-  var btn = $(this);
 $(\'.btn-load2\').html(\'<span class="spinner"><i class="fa fa-spinner fa-spin" title="button-loader"></i></span> '.$_lang["Processing_Backup"].'\');
+$(\'.message\').html(\'<div class="alert alert-progress"><span class="spinner"><i class="fa fa-spinner fa-spin" title="button-loader"></i></span> '.$_lang["Processing_Backup"].'</div>\');
 });
 $(\'#zipbackup\').stupidtable(); 
 $(\'#sqlbackup\').stupidtable(); 
@@ -101,7 +101,8 @@ th.sorting-asc:after {
         </a></li>
     </ul>
 </div>
-<div class="sectionBody">  
+<div class="sectionBody">
+<div class="message"></div>
 ';
 
 $out = $o.$out.' </div> </div>
