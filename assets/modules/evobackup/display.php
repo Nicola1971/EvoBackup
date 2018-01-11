@@ -10,13 +10,19 @@ $o = '
 	<link rel="stylesheet" type="text/css" href="media/style/'.$manager_theme.'/style.css" />
     <link rel="stylesheet" type="text/css" href="../assets/modules/evobackup/css/style1.3.css" />
     <link rel="stylesheet" href="media/style/common/font-awesome/css/font-awesome.min.css" />
-<script src="../assets/modules/evobackup/js/jquery.min.js"></script>
-<script type="text/javascript" src="../assets/modules/evobackup/js/tabpane.js"></script>
-<script type="text/javascript" src="../assets/modules/evobackup/js/stupidtable.min.js"></script>
-
+	<script src="../assets/modules/evobackup/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../assets/modules/evobackup/js/tabpane.js"></script>
+	<script type="text/javascript" src="../assets/modules/evobackup/js/stupidtable.min.js"></script>
 <script>
-
 jQuery( document ).ready(function( $ ) {
+$(\'.btn-load\').click(function () {
+  var btn = $(this);
+$(\'.btn-load\').html(\'<span class="spinner"><i class="fa fa-spinner fa-spin" title="button-loader"></i></span> '.$_lang["Processing_Backup"].'\');
+});
+$(\'.btn-load2\').click(function () {
+  var btn = $(this);
+$(\'.btn-load2\').html(\'<span class="spinner"><i class="fa fa-spinner fa-spin" title="button-loader"></i></span> '.$_lang["Processing_Backup"].'\');
+});
 $(\'#zipbackup\').stupidtable(); 
 $(\'#sqlbackup\').stupidtable(); 
 $(\'#checkAllAssets\').click(function () {    

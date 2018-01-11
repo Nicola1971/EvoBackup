@@ -103,4 +103,5 @@ $_lang['extract_folder'] = 'Cartella di Estrazione';
 $_lang['extract_zip_info'] = 'Estraendo il file zip di backup nella root del tuo sito, sovrascriverai tutti i file. Questa operazione può essere molto pericolosa!';
 $_lang['restore_sql_confirm'] = 'Sei sicuro di voler Ripristinare';
 $_lang['restore_sql_info'] = 'Ripristinando questo backuo .sql tutti i dati del database saranno sovrascritti. Questa operazione può essere molto pericolosa!';
-
+//loading buttons
+$_lang['Processing_Backup'] = 'Attendere. Backup in corso';

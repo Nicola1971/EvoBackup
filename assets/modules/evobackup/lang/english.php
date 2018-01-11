@@ -103,3 +103,5 @@ $_lang['extract_folder'] = 'Extract Folder';
 $_lang['extract_zip_info'] = 'Restoring an archive backup, in your site root, will overwrite all existing files. This action can be very dangerous!';
 $_lang['restore_sql_confirm'] = 'Are you sure you want to Restore';
 $_lang['restore_sql_info'] = 'Restoring .sql backup will overwrite all existing database data. This action can be very dangerous!';
+//loading buttons
+$_lang['Processing_Backup'] = 'Backup in Progress. Please Wait';

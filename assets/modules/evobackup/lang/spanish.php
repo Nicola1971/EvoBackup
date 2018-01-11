@@ -103,3 +103,4 @@ $_lang['extract_folder'] = 'Carpeta de Extraer';
 $_lang['extract_zip_info'] = 'Restaurar una copia de seguridad del archivo, en la raíz del sitio, sobrescribirá todos los archivos existentes. ¡Esta acción puede ser muy peligrosa!';
 $_lang['restore_sql_confirm'] = '¿Seguro que quieres restaurar?';
 $_lang['restore_sql_info'] = 'Restaurar la copia de seguridad de .sql sobrescribirá todos los datos de base de datos existentes. ¡Esta acción puede ser muy peligrosa!';
+$_lang['Processing_Backup'] = 'Backup in Progress. Please Wait';

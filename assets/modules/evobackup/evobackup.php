@@ -15,7 +15,7 @@ if(!$modx->hasPermission('bk_manager')) {
 $modx_backup_dir = $_SERVER['DOCUMENT_ROOT'].$backup_dir;
 $modx_db_backup_dir = $modx->config['base_path'] . 'assets/backup/';
 // module info
-$module_version = '1.3.4';
+$module_version = '1.3.5';
 $module_id = (!empty($_REQUEST["id"])) ? (int)$_REQUEST["id"] : $yourModuleId;
 
 //lang
@@ -633,12 +633,9 @@ $out .=  '
 <div class="border-top" style="clear:both"></div>
 </div>
 <span class="actionButtons evobkpbuttons">
-             <a class="btn btn-success" href="#" onclick="postForm(\'generate\')" value="Backup Now!">'.$_lang['backup_button_text'].'</a>  
-              <a class="btn" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdbonly_button_text'].'</a> 
+             <a class="btn btn-success btn-load" href="#" onclick="postForm(\'generate\')" title="Backup Now!" value="Backup Now!">'.$_lang['backup_button_text'].'</a>  
+              <a class="btn btn-load2" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdbonly_button_text'].'</a> 
         </span>
-
-
-
 <!---<div style="clear:both"></div>-->
 </div>
 
@@ -739,7 +736,7 @@ if ($handle = opendir($modx_db_backup_dir)) {
 
 global $lang;
 $out .= '</tbody></table></div><span class="actionButtons evobkpbuttons">
-            <a class="btn btn-success" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdb_button_text'].'</a>
+            <a class="btn btn-success btn-load" href="#" onclick="postForm(\'onlydbase\')" value="Backup db">'.$_lang['backupdb_button_text'].'</a>
              <a href="index.php?a=93" class="" style="display:inline-block;">'.$_lang['bk_manager'].'</a>
   
         </span></div>
