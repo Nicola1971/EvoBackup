@@ -1,6 +1,8 @@
 # EvoBackup 1.3.5 for Evolution CMS
 Backup Evo files and compress into .zip for easy download
 
+![evobackup-134](https://user-images.githubusercontent.com/7342798/35193805-7439cc4a-fea8-11e7-9ea5-1fd166f1f40f.jpg)
+
 # EvoBackup Features
 
 * Checkbox options to choose which folder and files add to archive
